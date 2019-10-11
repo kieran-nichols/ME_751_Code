@@ -1,7 +1,6 @@
 classdef func
     methods(Static)
         % functions
-        % check G
         function G = calcG(p)
         G = [-p(2) p(1) p(4) -p(3); 
              -p(3) -p(3) p(1) -p(2);
