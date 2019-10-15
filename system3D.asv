@@ -88,16 +88,14 @@ t = 0;
 itr = 1000;
 t_end = 1;
 time = 0:t_end/itr:t_end;
-pos = zeros(3,itr);
-vel = zeros(3,itr);
-accel = zeros(3,itr);
+
 
 for k = 1:itr
     t = time(k);
     f.f = pi/4*cos(2*t); % ? is this the funciton or angle
     % have f.fd and f.dd  as 0 as I am not driving velocity and accel?
-    f.fd = -pi/2*sin(2*t);  % ? can f.fd be simply found by using the time diffrential
-    f.fdd = -pi*cos(2*t);  % ? same as f.fd
+    f.fd = 0; % -pi/2*sin(2*t);  % ? can f.fd be simply found by using the time diffrential
+    f.fdd = 0; % -pi*cos(2*t);  % ? same as f.fd
 
     % Solve for all of the B matrices
     i.Bpdab = func.calcB(i.Pd,i.ab); 
@@ -129,9 +127,10 @@ for k = 1:itr
     % Phi.D = ij.d'*ij.d - f.
     % Gamma.D = 2*ij.d'*i.Bpdsbp*i.Pd - 2*ij.d'*j.Bpdsbq*j.Pd - 2*ij.dd'*ij.dd + f.fdd;
     
-    nu = f.fd; % RHS velocity is equal to diffrential of function ?
+    nu = f.fd; % RHS velocity is equal to diffrential of function
     
-    
+    % Newton-Rhapson method to determine new position and vel states
+    % v =
 end
 
 % fprintf('The values of Phi.DP1 and Phi.CD are %f and %f\n', Phi.DP1,Phi.CD)
