@@ -73,10 +73,10 @@ classdef func
             CD.Gamma = ij.c'*i.Bpdsbp*i.Pd - ij.c'*j.Bpdsbq*j.Pd + f.fdd;
             if isequal(ground,'false')
                 CD.Phi_r = [-ij.c' ij.c'];
-                CD.Phi_p = [-ij.c'*i.Bpsbp, ij.c'*j.Bpsbq];
+                CD.Phi_p = [-ij.c'*i.Bpsbp, c'*j.Bpsbq];
             else
-                CD.Phi_r = [-ij.c' ij.c'];
-                CD.Phi_p = [-ij.c'*i.Bpsbp, ij.c'*j.Bpsbq];
+                CD.Phi_r = [-c' c'];
+                CD.Phi_p = [-c'*i.Bpsbp, c'*j.Bpsbq];
             end
             if isequal(print,'true')
                 fprintf('The partial derivatives for CD Phi_r and Phi_p are [ ');
