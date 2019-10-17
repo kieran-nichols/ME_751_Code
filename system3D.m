@@ -128,6 +128,7 @@ for k = 1:1 %itr
     vel(:,k) = L*[cos(f.fd);sin(f.fd);0];
     acc(:,k) = L*[cos(f.fdd);sin(f.fdd);0];     
 end
+
 % figure
 % subplot(3,1,1)
 % plot(time,pos(1,:),time,pos(2,:),time,pos(3,:))
@@ -135,15 +136,6 @@ end
 % plot(time,vel(1,:),time,vel(2,:),time,vel(3,:))
 % subplot(3,1,3)
 % plot(time,acc(1,:),time,acc(2,:),time,acc(3,:))
-
-% fprintf('The values of Phi.DP1 and Phi.CD are %f and %f\n', Phi.DP1,Phi.CD)
-% fprintf('The values of Phi.DP1 is %f\n', Phi.DP1)
-% fprintf('The right hand side of velocity equation is %f\n', nu)
-% fprintf('The right hand side of acceleration equation contains coefficients of %f\n', Gamma.DP1)
-% fprintf('The right hand side of acceleration equation contains coefficients of %f and %f\n', Gamma.DP1, Gamma.CD)
-% fprintf('The values of Phi.DP2 and Phi.D are %f and %f\n', Phi.DP2,Phi.D)
-% fprintf('The right hand side of velocity equation is %f\n', nu)
-% fprintf('The right hand side of acceleration equation contains coefficients of %f and %f\n', Gamma.DP2, Gamma.D)
 
 % disp('complete');
 

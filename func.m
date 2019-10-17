@@ -38,10 +38,14 @@ classdef func
                 DP1.Phi_p = [j.a'*i.Bpab, i.a'*j.Bpab];
             else
                 DP1.Phi_r = zeros(1,3);
-                DP1.Phi_p = [i.a'*j.Bpab];
+                DP1.Phi_p = [j.a'*i.Bpab];
             end
             if isequal(print,'true')
-                fprintf('The partial derivatives for DP1 Phi_r and Phi_p are [ ');
+                fprintf('-----------DP1-----------\n')
+                fprintf('Phi is %f\n', DP1.Phi)
+                fprintf('Nu is %f\n', f.fd)
+                fprintf('Gamma is %f\n', DP1.Gamma)
+                fprintf('Partial derivatives for Phi_r and Phi_p are [ ');
                 fprintf('%g ',DP1.Phi_r);
                 fprintf('] and [ ');
                 fprintf('%g ',DP1.Phi_p);
@@ -56,11 +60,15 @@ classdef func
                 DP2.Phi_r = [-i.a , i.a];
                 DP2.Phi_p = [-i.a'*i.Bpsbp+ij.d'*i.Bpab, i.a'*j.Bpsbq]; 
             else
-               DP2.Phi_r = [-i.a , i.a];
-               DP2.Phi_p = [-i.a'*i.Bpsbp+ij.d'*i.Bpab, i.a'*j.Bpsbq];  
+               DP2.Phi_r = [-i.a];
+               DP2.Phi_p = [-i.a'*i.Bpsbp+ij.d'*i.Bpab];  
             end
             if isequal(print,'true')
-                fprintf('The partial derivatives for DP2 Phi_r and Phi_p are [ ');
+                fprintf('-----------DP2-----------\n')
+                fprintf('Phi is %f\n', DP2.Phi)
+                fprintf('Nu is %f\n', f.fd)
+                fprintf('Gamma %f\n', DP2.Gamma)
+                fprintf('Partial derivatives for DP2 Phi_r and Phi_p are [ ');
                 fprintf('%g ',DP2.Phi_r);
                 fprintf('] and [ ');
                 fprintf('%g ',DP2.Phi_p);
@@ -72,14 +80,18 @@ classdef func
             CD.Phi = ij.c'*ij.d - f.f;
             CD.Gamma = ij.c'*i.Bpdsbp*i.Pd - ij.c'*j.Bpdsbq*j.Pd + f.fdd;
             if isequal(ground,'false')
-                CD.Phi_r = [-ij.c' ij.c'];
+                CD.Phi_r = [-ij.c', ij.c'];
                 CD.Phi_p = [-ij.c'*i.Bpsbp, ij.c'*j.Bpsbq];
             else
-                CD.Phi_r = [-ij.c' ij.c'];
-                CD.Phi_p = [-ij.c'*i.Bpsbp, ij.c'*j.Bpsbq];
+                CD.Phi_r = [-ij.c'];
+                CD.Phi_p = [-ij.c'*i.Bpsbp];
             end
             if isequal(print,'true')
-                fprintf('The partial derivatives for CD Phi_r and Phi_p are [ ');
+                fprintf('-----------CD-----------\n')
+                fprintf('Phi is %f\n', CD.Phi)
+                fprintf('Nu is %f\n', f.fd)
+                fprintf('Gamma %f\n', CD.Gamma)
+                fprintf('Partial derivatives for CD Phi_r and Phi_p are [ ');
                 fprintf('%g ',CD.Phi_r);
                 fprintf('] and [ ');
                 fprintf('%g ',CD.Phi_p);
@@ -94,11 +106,15 @@ classdef func
                 D.Phi_r = [-2*ij.d', 2*ij.d'];
                 D.Phi_p = [-2*ij.d'*i.Bpsbp, 2*ij.d'*j.Bpsbq];
             else
-                D.Phi_r = [-2*ij.d', 2*ij.d'];
-                D.Phi_p = [-2*ij.d'*i.Bpsbp, 2*ij.d'*j.Bpsbq];
+                D.Phi_r = [-2*ij.d'];
+                D.Phi_p = [-2*ij.d'*i.Bpsbp];
             end
             if isequal(print,'true')
-                fprintf('The partial derivatives for D Phi_r and Phi_p are [ ');
+                fprintf('-----------D-----------\n')
+                fprintf('Phi is %f\n', D.Phi)
+                fprintf('Nu is %f\n', f.fd)
+                fprintf('Gamma %f\n', D.Gamma) 
+                fprintf('Partial derivatives for D Phi_r and Phi_p are [ ');
                 fprintf('%g ',D.Phi_r);
                 fprintf('] and [ ');
                 fprintf('%g ',D.Phi_p);

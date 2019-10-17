@@ -8,99 +8,96 @@ clc; clear all;
 % using test case from some students on piazza
 % Test case 1
 % nbodies = 2;
-% body i
-% i.r = [8, 6, -3]'; 
-% i.p = [0;0;0];
-% i.q = [-1;0;0];
-% i.P = [4, 3, -5, 1]';
-% i.P = i.P/norm(i.P);
-% i.A = func.calcA(i.P);
-% i.ab = [-1.2, 1 ,0.3]'; 
-% i.a = i.A*i.ab;
-% i.Pd = [-0.2, 1.3, 3.4, 0]';
-% i.Pd(4) = -dot(i.Pd,i.P)/i.P(4);
-% i.Pd = i.Pd/norm(i.Pd);
-% i.Pdd =[0;0;0;0];
-% i.rd = [7;8;9];
-% i.rdd = [0;0;0];
-% i.sbp = [0.1, -0.3, 6.0]'; % ?
-% 
-% body j
-% j.r = [-0.5, 1.6, -6.3]'; 
-% j.P = [3.3, -4, 5.1, 6]';
-% j.P = j.P/norm(j.P,2);
-% j.A = func.calcA(j.P);
-% j.ab = [1.2, 4.5, 3.1]'; 
-% j.a = j.A*j.ab;
-% j.Pd = [0.6, -3.7, 5.1, 0]';
-% j.Pd(4) = -dot(j.Pd,j.P)/j.P(4);
-% j.Pd = j.Pd/norm(j.Pd,2);
-% j.Pdd =[0;0;0;0];
-% j.rd = [11;12;13];
-% j.rdd = [0;0;0];
-% j.sbq = [0.2, -1.0, 1.5]'; 
-% 
-% ij.c = [0.3, 0.4, -6]'; % diff between p coordinates on i and q coordinates on j
-% 
-% f.f = pi/4*cos(2*t);
-% f.fd = -pi/2*sin(2*t); 
-% f.fdd = -pi*cos(2*t); 
 
-%%
-% % Test case 2
-% % nbodies = 2;
-% % body i
-i.r = [2, 0, 0]'; 
-% i.p = [0;0;0];
-% i.q = [-1;0;0];
-i.P = [0, 0, 0, 1]';
-% i.P = i.P/norm(i.P);
+% body i
+i.r = [8, 6, -3]'; 
+i.p = [0;0;0];
+i.q = [-1;0;0];
+i.P = [4, 3, -5, 1]';
+i.P = i.P/norm(i.P);
 i.A = func.calcA(i.P);
 i.ab = [-1.2, 1 ,0.3]'; 
 i.a = i.A*i.ab;
-i.Pd = [0, 0, 0, 0]';
-% i.Pd(4) = -dot(i.Pd,i.P)/i.P(4);
-% i.Pd = i.Pd/norm(i.Pd);
+i.Pd = [-0.2, 1.3, 3.4, 0]';
+i.Pd(4) = -dot(i.Pd,i.P)/i.P(4);
+i.Pd = i.Pd/norm(i.Pd);
 i.Pdd =[0;0;0;0];
-i.rd = [0;0;0];
+i.rd = [7;8;9];
 i.rdd = [0;0;0];
-i.sbp = [2, 0, 0]'; 
+i.sbp = [0.1, -0.3, 6.0]'; % ?
 
 % body j
-j.r = [0, 0, 0]'; 
-j.P = [0, 0, 0, 0]';
-% j.P = j.P/norm(j.P,2);
+j.r = [-0.5, 1.6, -6.3]'; 
+j.P = [3.3, -4, 5.1, 6]';
+j.P = j.P/norm(j.P,2);
 j.A = func.calcA(j.P);
-j.ab = [0, 0, 0]'; 
+j.ab = [1.2, 4.5, 3.1]'; 
 j.a = j.A*j.ab;
-j.Pd = [0, 0, 0, 0]';
-% j.Pd(4) = -dot(j.Pd,j.P)/j.P(4);
-% j.Pd = j.Pd/norm(j.Pd,2);
+j.Pd = [0.6, -3.7, 5.1, 0]';
+j.Pd(4) = -dot(j.Pd,j.P)/j.P(4);
+j.Pd = j.Pd/norm(j.Pd,2);
 j.Pdd =[0;0;0;0];
-j.rd = [0;0;0];
+j.rd = [11;12;13];
 j.rdd = [0;0;0];
-j.sbq = [0, 0, 0]'; 
+j.sbq = [0.2, -1.0, 1.5]'; 
 
+ij.c = [0.3, 0.4, -6]'; % diff between p coordinates on i and q coordinates on j
+
+%%
+% % % Test case 2
+% % % nbodies = 2;
+% % % body i
+% i.r = [2, 0, 0]'; 
+% % i.p = [0;0;0];
+% % i.q = [-1;0;0];
+% i.P = [0, 0, 0, 1]';
+% % i.P = i.P/norm(i.P);
+% i.A = func.calcA(i.P);
+% i.ab = [2, 0, 0]'; 
+% i.a = i.A*i.ab;
+% i.Pd = [0, 0, 0, 0]';
+% % i.Pd(4) = -dot(i.Pd,i.P)/i.P(4);
+% % i.Pd = i.Pd/norm(i.Pd);
+% i.Pdd =[0;0;0;0];
+% i.rd = [0;0;0];
+% i.rdd = [0;0;0];
+% i.sbp = [2, 0, 0]'; 
+% 
+% % body j
+% j.r = [0, 0, 0]'; 
+% j.P = [0, 0, 0, 0]';
+% % j.P = j.P/norm(j.P,2);
+% j.A = func.calcA(j.P);
+% j.ab = [0, 0, 0]'; 
+% j.a = j.A*j.ab;
+% j.Pd = [0, 0, 0, 0]';
+% % j.Pd(4) = -dot(j.Pd,j.P)/j.P(4);
+% % j.Pd = j.Pd/norm(j.Pd,2);
+% j.Pdd =[0;0;0;0];
+% j.rd = [0;0;0];
+% j.rdd = [0;0;0];
+% j.sbq = [0, 0, 0]'; 
+% 
 % % ij.c = [0.3, 0.4, -6]'; % diff between p coordinates on i and q coordinates on j
 %%
 t = 0;
 itr = 1000;
 t_end = 10;
-time = 0:t_end/itr:t_end;
+time = 0.001:t_end/itr:t_end;
 pos = zeros(3,itr);
 vel = zeros(3,itr);
-acc = zeros(3,itr+1);
+acc = zeros(3,itr);
 L = 2;
 offset = pi/2;
 
-for k = 1:itr+1
+for k = 1:1 %itr
     t = time(k);
     theta = pi/4*cos(2*t);
     theta_d = -pi/2*sin(2*t);
     theta_dd = -pi*cos(2*t);
-    f.f = cos(theta+offset); 
-    f.fd = -theta_d*sin(theta+offset); 
-    f.fdd = -theta_dd*sin(theta+offset)-theta_d^2*cos(theta+offset); 
+    f.f = 1.2;%cos(theta+offset); 
+    f.fd = 2.5;%-theta_d*sin(theta+offset); 
+    f.fdd = 0.2;%-theta_dd*sin(theta+offset)-theta_d^2*cos(theta+offset); 
 
     % Solve for all of the B matrices
     i.Bpdab = func.calcB(i.Pd,i.ab); 
@@ -120,10 +117,10 @@ for k = 1:itr+1
     ij.dd = j.rd + j.Bpsbq*j.Pd - i.rd - i.Bpsbp*i.Pd;
 
     % Solve for Phi and Gamma for DP1 and CD constraints
-    [Phi.DP1,Gamma.DP1] = func.getDP1(i,j,f,'false');
-%     [Phi.DP2,Gamma.DP2] = func.getDP2(i,j,ij,f,'false');
-%     [Phi.CD,Gamma.CD] = func.getCD(i,j,ij,f,'false');
-%     [Phi.D,Gamma.D] = func.getD(i,j,ij,f,'false');
+    DP1 = func.getDP1(i,j,f,'true','true');
+    DP2 = func.getDP2(i,j,ij,f,'true','true');
+    CD = func.getCD(i,j,ij,f,'true','true');
+    D = func.getD(i,j,ij,f,'true','true');
     
     nu = f.fd; % RHS velocity is equal to diffrential of function ?
     
@@ -131,70 +128,14 @@ for k = 1:itr+1
     vel(:,k) = L*[cos(f.fd);sin(f.fd);0];
     acc(:,k) = L*[cos(f.fdd);sin(f.fdd);0];     
 end
-figure
-subplot(3,1,1)
-plot(time,pos(1,:),time,pos(2,:),time,pos(3,:))
-subplot(3,1,2)
-plot(time,vel(1,:),time,vel(2,:),time,vel(3,:))
-subplot(3,1,3)
-plot(time,acc(1,:),time,acc(2,:),time,acc(3,:))
 
-% fprintf('The values of Phi.DP1 and Phi.CD are %f and %f\n', Phi.DP1,Phi.CD)
-fprintf('The values of Phi.DP1 is %f\n', Phi.DP1)
-fprintf('The right hand side of velocity equation is %f\n', nu)
-fprintf('The right hand side of acceleration equation contains coefficients of %f\n', Gamma.DP1)
-% fprintf('The right hand side of acceleration equation contains coefficients of %f and %f\n', Gamma.DP1, Gamma.CD)
-% fprintf('The values of Phi.DP2 and Phi.D are %f and %f\n', Phi.DP2,Phi.D)
-% fprintf('The right hand side of velocity equation is %f\n', nu)
-% fprintf('The right hand side of acceleration equation contains coefficients of %f and %f\n', Gamma.DP2, Gamma.D)
-%%
-% Phi_r are the jacobian wrt partial derivatives of r
-% Phi_p are the jacobian wrt partial derivatives of p
-DP1.Phi_r = zeros(1,6);
-DP1.Phi_p = [j.a'*i.Bpab, i.a'*j.Bpab];
-
-% DP2.Phi_r = [-i.a , i.a];
-% DP2.Phi_p = [-i.a'*i.Bpsbp+ij.d'*i.Bpab, i.a'*j.Bpsbq]; 
-% 
-% CD.Phi_r = [-c' c'];
-% CD.Phi_p = [-c'*i.Bpsbp, c'*j.Bpsbq];
-% 
-% D.Phi_r = [-2*ij.d', 2*ij.d'];
-% D.Phi_p = [-2*ij.d'*i.Bpsbp, 2*ij.d'*j.Bpsbq];
-
-% fprintf('\n');
-fprintf('The partial derivatives for DP1 Phi_r are [ ');
-fprintf('%g ',DP1.Phi_r);
-fprintf(']\n');
-% 
-fprintf('The partial derivatives for DP1 Phi_p are [ ');
-fprintf('%g ',DP1.Phi_p);
-fprintf(']\n');
-% 
-% fprintf('The partial derivatives for CD Phi_r are [ ');
-% fprintf('%g ',CD.Phi_r);
-% fprintf(']\n');
-% 
-% fprintf('The partial derivatives for CD Phi_p are [ ');
-% fprintf('%g ',CD.Phi_p);
-% fprintf(']\n');
-% 
-% fprintf('\n');
-% fprintf('The partial derivatives for DP2 Phi_r are [ ');
-% fprintf('%g ',DP2.Phi_r);
-% fprintf(']\n');
-% 
-% fprintf('The partial derivatives for DP2 Phi_p are [ ');
-% fprintf('%g ',DP2.Phi_p);
-% fprintf(']\n');
-% 
-% fprintf('The partial derivatives for D Phi_r are [ ');
-% fprintf('%g ',D.Phi_r);
-% fprintf(']\n');
-% 
-% fprintf('The partial derivatives for D Phi_p are [ ');
-% fprintf('%g ',D.Phi_p);
-% fprintf(']\n');
+% figure
+% subplot(3,1,1)
+% plot(time,pos(1,:),time,pos(2,:),time,pos(3,:))
+% subplot(3,1,2)
+% plot(time,vel(1,:),time,vel(2,:),time,vel(3,:))
+% subplot(3,1,3)
+% plot(time,acc(1,:),time,acc(2,:),time,acc(3,:))
 
 % disp('complete');
 
