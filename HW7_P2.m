@@ -13,11 +13,11 @@ y = zeros(1,itr);
 % yd = x(1 -y/(1 + x^2)); % ydot
 
 % x and y variable for Backward Euler Method
-xbe = 1.1; % zeros(1,itr); 
-ybe = 2.1; % zeros(1,itr);
+xbe = 0; % ? 
+ybe = 2; % ?
 
 % Initial vaules
-x(1) = 0; y(1) = 2;
+x(1) = 0; y(1) = 2; % ?
 % x(2) = 0; y(2) = 2;
 
 % Backward Euler equation
@@ -38,9 +38,9 @@ epi = 10^-3;
 norm_corr = 10; %dummy high number
 
 for n = 2:itr
-%     xbe = x(n-1);
+    xbe = x(n-1);
     ybe = y(n-1);
-    m = 1;
+%     m = 1;
     while norm_corr > epi  
         % Non linear system
         G = [xbe*(1+h) + 4*h*xbe*ybe/(1+xbe^2) - x(n-1);
@@ -54,7 +54,7 @@ for n = 2:itr
         ybe =  ybe + corr(2);
         norm_corr = norm(corr);
         % continue itr if condition is not met
-        m = m + 1;
+%         m = m + 1;
     end
     % redifined xn and yn with the last itr of while loop info
     x(n) = xbe;
