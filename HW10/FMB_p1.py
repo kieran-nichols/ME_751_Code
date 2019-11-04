@@ -1,14 +1,9 @@
 import numpy as np
 import matplotlib.pyplot as plt
 
-phi_d_steady = 0 # at steady state and is a function of space where phi = phi(x)
-Delta = 0
 u = 1 # u(x,t)
-phi_bar = 0
 D = 1 # D(x,t)
-Delta_phi_bar = 0
 s = 1 # s(x,t)
-x0 = 0
 
 # Laplace: u=0 and s!=0
 # Diffusion u=0 and s=0
@@ -18,6 +13,8 @@ itr = n + 1
 
 x = np.linspace(0., 1., num=itr)
 phi = np.zeros([itr])
+psi1 = np.zeros([itr])
+psi2 = np.zeros([itr])
 A = np.zeros([itr,itr])
 b = np.zeros([itr])
 dx = x[1]
@@ -33,9 +30,8 @@ for i in np.arange(1,n,1):
 #    print(i)
 #    dx = x[i+1] - x[i]
     b[i] = s
-#    for j in np.arange(0,n-2,1):
-        # A is 2D coefficient matrix
-#    j = i
+    psi1[i] = (x[i+1]-x)/(x[i+1]-x[i])
+    psi2[i] = (-x[i]+x)/(x[i+1]-x[i])
     A[i,i-1] = - u/(2*dx) - D/dx**2         
     A[i,i] = 2*D/dx**2
     A[i,i+1] =  u/(2*dx) - D/dx**2 
