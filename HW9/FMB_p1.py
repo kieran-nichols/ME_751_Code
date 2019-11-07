@@ -13,7 +13,7 @@ x0 = 0
 # Laplace: u=0 and s!=0
 # Diffusion u=0 and s=0
 
-n = 20
+n = 500
 itr = n + 1
 
 x = np.linspace(0., 1., num=itr)
@@ -30,36 +30,21 @@ dx = x[1]
 # want to solve for vectore phi
 
 for i in np.arange(1,n,1):
-#    print(i)
-#    dx = x[i+1] - x[i]
+
     b[i] = s
-#    for j in np.arange(0,n-2,1):
-        # A is 2D coefficient matrix
-#    j = i
     A[i,i-1] = - u/(2*dx) - D/dx**2         
     A[i,i] = 2*D/dx**2
     A[i,i+1] =  u/(2*dx) - D/dx**2 
-#    if i == n:
-#        A[itr,itr] = u/(2*dx)
-#    dphi_dx = (phi(i+1) - phi(i))/(2*dx)
-#    d2phi_dx2 = (phi(i+1) - 2*phi(i) + phi(i))/(dx**2)
-#    if i == n: how should I deal with last value of Phi
-#        A[n,n] 
     
-A[0,0] = 1; b[0] = 0 #A[0,1] = - 2*D/dx**2; A[0,2] = - u/(2*dx) - D/dx**2 ;
-#A[n,n] = 3; A[n,n-1] = -4; A[n,n-2] = 1;
+A[0,0] = 1; b[0] = 0 
 A[n,n] = - D/dx**2; A[n,n-1] = 2*D/dx**2; A[n,n-2] = - D/dx**2#A[n,n-2] = 1;
-b[n] = s #2/n**2
+b[n] = s 
 
 phi = np.linalg.solve(A,b)
 
 plt.figure(1,figsize=(6, 4),dpi=50)
 plt.plot(x,phi, label='phi')
-plt.title("Phi")
-plt.xlabel('x_n')
-plt.ylabel('Phi(x_n)')
-#plt.legend()
-#plt.show()
+
 
 V = np.ones(itr)/n
 width = V[1]
@@ -99,5 +84,5 @@ plt.plot(center,phi1, label='phi')
 plt.title("Phi")
 plt.xlabel('midpoint of segment')
 plt.ylabel('Phi(x_n)')
-#plt.legend()
+plt.legend(['Finite Diff','Finite Volume'])
 #plt.show()
