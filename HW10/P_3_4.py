@@ -12,6 +12,7 @@ itr_m = m + 1
 
 x = np.linspace(0., 1., num=itr)
 time = np.linspace(0., 5., num=itr_m)
+# if the time for one second does not reach steady state
 dt = time[1]
 phi = np.zeros([itr])
 A = np.zeros([itr,itr])

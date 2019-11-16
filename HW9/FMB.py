@@ -42,7 +42,7 @@ s = 1 # s(x,t)
 # Laplace: u=0 and s!=0
 # Diffusion u=0 and s=0
 
-n = 1000
+n = 20
 itr = n + 1
 
 x = np.linspace(0., 1., num=itr)
