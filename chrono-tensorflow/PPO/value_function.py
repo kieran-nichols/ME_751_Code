@@ -37,8 +37,8 @@ class NNValueFunction(object):
         """ Construct TensorFlow graph, including loss function, init op and train op """
         self.g = tf.Graph()
         with self.g.as_default():
-            self.obs_ph = tf.placeholder(tf.float32, (None, self.obs_dim), 'obs_valfunc')
-            self.val_ph = tf.placeholder(tf.float32, (None,), 'val_valfunc')
+            self.obs_ph = tf.compat.v1.placeholder(tf.float32, (None, self.obs_dim), 'obs_valfunc')
+            self.val_ph = tf.compat.v1.placeholder(tf.float32, (None,), 'val_valfunc')
             # hid1 layer size is 10x obs_dim, hid3 size is 10, and hid2 is geometric mean
             hid1_size = self.obs_dim * 10  # 10 chosen empirically on 'Hopper-v1'
             hid3_size = 5  # 5 chosen empirically on 'Hopper-v1'
@@ -48,46 +48,46 @@ class NNValueFunction(object):
             print('Value Params -- h1: {}, h2: {}, h3: {}, lr: {:.3g}'
                   .format(hid1_size, hid2_size, hid3_size, self.lr))
             # 3 hidden layers with tanh activations
-            out = tf.layers.dense(self.obs_ph, hid1_size, tf.tanh,
-                                  kernel_initializer=tf.random_normal_initializer(
+            out = tf.compat.v1.layers.dense(self.obs_ph, hid1_size, tf.tanh,
+                                  kernel_initializer=tf.compat.v1.random_normal_initializer(
                                       stddev=np.sqrt(1 / self.obs_dim)), name="h1VF")
-            out = tf.layers.dense(out, hid2_size, tf.tanh,
-                                  kernel_initializer=tf.random_normal_initializer(
+            out = tf.compat.v1.layers.dense(out, hid2_size, tf.tanh,
+                                  kernel_initializer=tf.compat.v1.random_normal_initializer(
                                       stddev=np.sqrt(1 / hid1_size)), name="h2VF")
-            out = tf.layers.dense(out, hid3_size, tf.tanh,
-                                  kernel_initializer=tf.random_normal_initializer(
+            out = tf.compat.v1.layers.dense(out, hid3_size, tf.tanh,
+                                  kernel_initializer=tf.compat.v1.random_normal_initializer(
                                       stddev=np.sqrt(1 / hid2_size)), name="h3VF")
-            out = tf.layers.dense(out, 1,
-                                  kernel_initializer=tf.random_normal_initializer(
+            out = tf.compat.v1.layers.dense(out, 1,
+                                  kernel_initializer=tf.compat.v1.random_normal_initializer(
                                       stddev=np.sqrt(1 / hid3_size)), name='output')
             self.out = tf.squeeze(out)
-            self.loss = tf.reduce_mean(tf.square(self.out - self.val_ph), name='lossVF')  # squared loss
-            optimizer = tf.train.AdamOptimizer(self.lr)
+            self.loss = tf.reduce_mean(input_tensor=tf.square(self.out - self.val_ph), name='lossVF')  # squared loss
+            optimizer = tf.compat.v1.train.AdamOptimizer(self.lr)
             self.train_op = optimizer.minimize(self.loss, name='train_opVF')
-            self.init = tf.global_variables_initializer()
-            self.saverVF = tf.train.Saver()
+            self.init = tf.compat.v1.global_variables_initializer()
+            self.saverVF = tf.compat.v1.train.Saver()
         if self.multiGPU :
-                config = tf.ConfigProto()
+                config = tf.compat.v1.ConfigProto()
                 config.gpu_options.allow_growth = True
                 #config.gpu_options.per_process_gpu_memory_fraction = 0.1
-                self.sess = tf.Session(graph=self.g, config=config)
+                self.sess = tf.compat.v1.Session(graph=self.g, config=config)
         else:
 
-               self.sess = tf.Session(graph=self.g)
+               self.sess = tf.compat.v1.Session(graph=self.g)
         self.sess.run(self.init)
         
     def _restore(self):
            if self.multiGPU :
-                config = tf.ConfigProto()
+                config = tf.compat.v1.ConfigProto()
                 config.gpu_options.allow_growth = True
                 #config.gpu_options.per_process_gpu_memory_fraction = 0.1
-                self.sess = tf.Session(config=config)
+                self.sess = tf.compat.v1.Session(config=config)
            else:
 
-               self.sess = tf.Session()        
-           loader = tf.train.import_meta_graph("./savedmodel/"+self.env_name+"/VF/trained_VF.ckpt.meta")
-           self.sess.run(tf.global_variables_initializer())
-           self.g = tf.get_default_graph()
+               self.sess = tf.compat.v1.Session()        
+           loader = tf.compat.v1.train.import_meta_graph("./savedmodel/"+self.env_name+"/VF/trained_VF.ckpt.meta")
+           self.sess.run(tf.compat.v1.global_variables_initializer())
+           self.g = tf.compat.v1.get_default_graph()
            self.obs_ph = self.g.get_tensor_by_name('obs_valfunc:0') 
            self.val_ph = self.g.get_tensor_by_name('val_valfunc:0')
            out  = self.g.get_tensor_by_name('output/BiasAdd:0')
@@ -95,7 +95,7 @@ class NNValueFunction(object):
            self.loss  = self.g.get_tensor_by_name('lossVF:0')
            self.train_op  = self.g.get_operation_by_name('train_opVF') 
            self.lr =  1e-2 / np.sqrt(int(np.sqrt(self.obs_dim * 10 * 5)))
-           self.saverVF = tf.train.Saver()
+           self.saverVF = tf.compat.v1.train.Saver()
            loader.restore(self.sess, tf.train.latest_checkpoint("./savedmodel/"+self.env_name+"/VF"))
 
     def fit(self, x, y, logger):
