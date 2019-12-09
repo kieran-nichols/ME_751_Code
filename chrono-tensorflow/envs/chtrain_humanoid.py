@@ -11,7 +11,7 @@ class Model(object):
    def __init__(self, render):
 
       self.animate = render
-      self.observation_space = np.empty([30,])
+      self.observation_space = np.empty([22,])
       self.action_space = np.zeros([8,])
       self.info =  {}
     # ---------------------------------------------------------------------
@@ -102,7 +102,7 @@ class Model(object):
       self.ant_sys.Add(self.body_abdomen)
       
       
-      leg_ang =  (1/4)*math.pi+(1/2)*math.pi*np.array([0,1,2,3])
+      leg_ang =  (1/4)*math.pi+(1/2)*math.pi*np.array([0,1])
       Leg_quat = [chrono.ChQuaternionD() for i in range(len(leg_ang))]
       self.leg_body = [chrono.ChBody() for i in range(len(leg_ang))]
       self.leg_pos= [chrono.ChVectorD() for i in range(len(leg_ang))]
@@ -216,7 +216,7 @@ class Model(object):
             self.myapplication.AssetUpdateAll()
 
       self.numsteps= 0
-      self.step(np.zeros(8))
+      self.step(np.zeros(4))
       return self.get_ob()
 
    def step(self, ac):
@@ -231,7 +231,7 @@ class Model(object):
        for i in range(len(self.leg_motor)): 
 
               action_a = chrono.ChFunction_Const(self.gain*float(self.ac[i])) 
-              action_b = chrono.ChFunction_Const(self.gain*float(self.ac[i+4])) 
+              action_b = chrono.ChFunction_Const(self.gain*float(self.ac[i+2])) 
               self.leg_motor[i].SetTorqueFunction(action_a)
               self.ankle_motor[i].SetTorqueFunction(action_b)
 
@@ -255,24 +255,24 @@ class Model(object):
           ab_q = np.asarray([self.body_abdomen.GetPos().z, ab_rot.x, ab_rot.y, ab_rot.z])
           ab_speed = self.body_abdomen.GetRot().RotateBack(self.body_abdomen.GetPos_dt())
           ab_qdot = np.asarray([ ab_speed.x, ab_speed.y, ab_speed.z, self.body_abdomen.GetWvel_loc().x, self.body_abdomen.GetWvel_loc().y, self.body_abdomen.GetWvel_loc().z ])
-          self.q_mot   = np.zeros([8,])
-          self.q_dot_mot   = np.zeros([8,])
+          self.q_mot   = np.zeros([4,])
+          self.q_dot_mot   = np.zeros([4,])
           joint_at_limit   = np.asarray([])
           feet_contact   = np.asarray([])
           for i in range(len(self.leg_motor)): 
                  
                  self.q_mot[i] = self.Leg_rev[i].GetRelAngle()
-                 self.q_mot[i+4] = self.Ankle_rev[i].GetRelAngle() 
+                 self.q_mot[i+2] = self.Ankle_rev[i].GetRelAngle() 
                  self.q_dot_mot[i]  = self.Leg_rev[i].GetRelWvel().z
-                 self.q_dot_mot[i+4]  = self.Ankle_rev[i].GetRelWvel().z
+                 self.q_dot_mot[i+2]  = self.Ankle_rev[i].GetRelWvel().z
                  joint_at_limit = np.append(joint_at_limit,  [ self.Leg_rev[i].GetLimit_Rz().GetMax()   < self.q_mot[i]   or self.Leg_rev[i].GetLimit_Rz().GetMin()   > self.q_mot[i] ,
-                                                               self.Ankle_rev[i].GetLimit_Rz().GetMax() < self.q_mot[i+4] or self.Ankle_rev[i].GetLimit_Rz().GetMin() > self.q_mot[i+4]])
+                                                               self.Ankle_rev[i].GetLimit_Rz().GetMax() < self.q_mot[i+2] or self.Ankle_rev[i].GetLimit_Rz().GetMin() > self.q_mot[i+2]])
                  feet_contact = np.append(feet_contact, [self.ankle_body[i].GetContactForce().Length()] )
            
 
           feet_contact = np.clip(feet_contact , -5, 5)
           self.joint_at_limit = np.count_nonzero(np.abs(joint_at_limit))
-
+	  print(np.concatenate([ab_q, ab_qdot, self.q_mot,  self.q_dot_mot, feet_contact]))
           return np.concatenate ([ab_q, ab_qdot, self.q_mot,  self.q_dot_mot, feet_contact])
    
    def calc_rew(self, xposbefore):
