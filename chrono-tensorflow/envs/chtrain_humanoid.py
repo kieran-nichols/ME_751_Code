@@ -11,8 +11,8 @@ class Model(object):
    def __init__(self, render):
 
       self.animate = render
-      self.observation_space = np.empty([22,])
-      self.action_space = np.zeros([8,])
+      self.observation_space = np.empty([20,])
+      self.action_space = np.zeros([4,])
       self.info =  {}
     # ---------------------------------------------------------------------
     #
@@ -259,6 +259,7 @@ class Model(object):
           self.q_dot_mot   = np.zeros([4,])
           joint_at_limit   = np.asarray([])
           feet_contact   = np.asarray([])
+          print('number of motors = ', len(self.leg_motor),'\n')
           for i in range(len(self.leg_motor)): 
                  
                  self.q_mot[i] = self.Leg_rev[i].GetRelAngle()
@@ -272,8 +273,8 @@ class Model(object):
 
           feet_contact = np.clip(feet_contact , -5, 5)
           self.joint_at_limit = np.count_nonzero(np.abs(joint_at_limit))
-	  print(np.concatenate([ab_q, ab_qdot, self.q_mot,  self.q_dot_mot, feet_contact]))
-          return np.concatenate ([ab_q, ab_qdot, self.q_mot,  self.q_dot_mot, feet_contact])
+          print(ab_q, ab_qdot, self.q_mot,  self.q_dot_mot, feet_contact)
+          return np.concatenate ([ab_q, ab_qdot, self.q_mot,  self.q_dot_mot, feet_contact]);
    
    def calc_rew(self, xposbefore):
                   
