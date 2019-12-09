@@ -133,8 +133,9 @@ class Model(object):
       for i in range(len(leg_ang)):
              
              # Legs
-             Leg_quat[i].Q_from_AngAxis(-leg_ang[i] , chrono.ChVectorD(1, 0, 0))
-             self.leg_pos[i] = chrono.ChVectorD( (0.5*self.leg_length+self.abdomen_x)*0. , (0.5*self.abdomen_y0), (0.5*self.leg_length+self.abdomen_z)*math.sin(leg_ang[i])*0.)
+             Leg_quat[i].Q_from_AngAxis(-leg_ang[i] , chrono.ChVectorD(0, 1, 0))
+             #self.leg_pos[i] = chrono.ChVectorD( (0.5*self.leg_length+self.abdomen_x)*math.cos(leg_ang[i]) ,self.abdomen_y0, (0.5*self.leg_length+self.abdomen_z)*math.sin(leg_ang[i]))
+             self.leg_pos[i] = chrono.ChVectorD( (0.5*self.leg_length+self.abdomen_x)*0. ,1*self.abdomen_y0, (0.5*self.leg_length+self.abdomen_z)*math.sin(leg_ang[i]))
              self.leg_body[i].SetPos(self.leg_pos[i])
              self.leg_body[i].SetRot(Leg_quat[i])
              self.leg_body[i].AddAsset(self.leg_shape)
@@ -143,7 +144,7 @@ class Model(object):
              self.ant_sys.Add(self.leg_body[i])
              x_rel.append( Leg_quat[i].Rotate(chrono.ChVectorD(1, 0, 0)))
              z_rel.append( Leg_quat[i].Rotate(chrono.ChVectorD(0, 0, 1)))
-             Leg_qa[i].Q_from_AngAxis(-leg_ang[i] , chrono.ChVectorD(1, 0, 0))
+             Leg_qa[i].Q_from_AngAxis(-leg_ang[i] , chrono.ChVectorD(0, 1, 0))
              z2x_leg[i].Q_from_AngAxis(chrono.CH_C_PI / 2 , x_rel[i])
              Leg_q[i] = z2x_leg[i] * Leg_qa[i] 
              Leg_rev_pos.append(chrono.ChVectorD(self.leg_pos[i]-chrono.ChVectorD(math.cos(leg_ang[i])*self.leg_length/2,0,math.sin(leg_ang[i])*self.leg_length/2)))
@@ -178,10 +179,10 @@ class Model(object):
              self.ankle_body[i].AddAsset(self.foot_shape)
              
              self.Leg_rev[i].GetLimit_Rz().SetActive(True)
-             self.Leg_rev[i].GetLimit_Rz().SetMin(-math.pi)
-             self.Leg_rev[i].GetLimit_Rz().SetMax(math.pi/3*0)
+             self.Leg_rev[i].GetLimit_Rz().SetMin(-math.pi/3)
+             self.Leg_rev[i].GetLimit_Rz().SetMax(math.pi/3)
              self.Ankle_rev[i].GetLimit_Rz().SetActive(True)
-             self.Ankle_rev[i].GetLimit_Rz().SetMin(-math.pi)
+             self.Ankle_rev[i].GetLimit_Rz().SetMin(-math.pi/2)
              self.Ankle_rev[i].GetLimit_Rz().SetMax(math.pi/4)
              
 
@@ -219,99 +220,3 @@ class Model(object):
       self.step(np.zeros(4))
       return self.get_ob()
 
-   def step(self, ac):
-       xposbefore = self.body_abdomen.GetPos().x
-       self.numsteps += 1
-       if (self.animate):
-
-              self.myapplication.GetDevice().run()
-              self.myapplication.BeginScene()
-              self.myapplication.DrawAll()
-       self.ac = ac.reshape((-1,))
-       for i in range(len(self.leg_motor)): 
-
-              action_a = chrono.ChFunction_Const(self.gain*float(self.ac[i])) 
-              action_b = chrono.ChFunction_Const(self.gain*float(self.ac[i+2])) 
-              self.leg_motor[i].SetTorqueFunction(action_a)
-              self.ankle_motor[i].SetTorqueFunction(action_b)
-
-
-       if (self.animate):
-              self.myapplication.DoStep()
-              self.myapplication.EndScene()
-       else:
-              self.ant_sys.DoStepDynamics(self.timestep)
-
-       obs= self.get_ob()
-       rew = self.calc_rew(xposbefore)    
-       
-       self.is_done()
-       return obs, rew, self.isdone, self.info
-         
-   def get_ob(self):
-          
-
-          ab_rot =  	self.body_abdomen.GetRot().Q_to_Euler123()
-          ab_q = np.asarray([self.body_abdomen.GetPos().z, ab_rot.x, ab_rot.y, ab_rot.z])
-          ab_speed = self.body_abdomen.GetRot().RotateBack(self.body_abdomen.GetPos_dt())
-          ab_qdot = np.asarray([ ab_speed.x, ab_speed.y, ab_speed.z, self.body_abdomen.GetWvel_loc().x, self.body_abdomen.GetWvel_loc().y, self.body_abdomen.GetWvel_loc().z ])
-          self.q_mot   = np.zeros([4,])
-          self.q_dot_mot   = np.zeros([4,])
-          joint_at_limit   = np.asarray([])
-          feet_contact   = np.asarray([])
-          #print('number of motors = ', len(self.leg_motor),'\n')
-          for i in range(len(self.leg_motor)): 
-                 
-                 self.q_mot[i] = self.Leg_rev[i].GetRelAngle()
-                 self.q_mot[i+2] = self.Ankle_rev[i].GetRelAngle() 
-                 self.q_dot_mot[i]  = self.Leg_rev[i].GetRelWvel().z
-                 self.q_dot_mot[i+2]  = self.Ankle_rev[i].GetRelWvel().z
-                 joint_at_limit = np.append(joint_at_limit,  [ self.Leg_rev[i].GetLimit_Rz().GetMax()   < self.q_mot[i]   or self.Leg_rev[i].GetLimit_Rz().GetMin()   > self.q_mot[i] ,
-                                                               self.Ankle_rev[i].GetLimit_Rz().GetMax() < self.q_mot[i+2] or self.Ankle_rev[i].GetLimit_Rz().GetMin() > self.q_mot[i+2]])
-                 feet_contact = np.append(feet_contact, [self.ankle_body[i].GetContactForce().Length()] )
-           
-
-          feet_contact = np.clip(feet_contact , -5, 5)
-          self.joint_at_limit = np.count_nonzero(np.abs(joint_at_limit))
-          #print(ab_q, ab_qdot, self.q_mot,  self.q_dot_mot, feet_contact)
-          return np.concatenate ([ab_q, ab_qdot, self.q_mot,  self.q_dot_mot, feet_contact]);
-   
-   def calc_rew(self, xposbefore):
-                  
-                  electricity_cost     = -2.0    # cost for using motors -- this parameter should be carefully tuned against reward for making progress, other values less improtant
-                  #stall_torque_cost    = -0.1    # cost for running electric current through a motor even at zero rotational speed, small
-
-                  joints_at_limit_cost = -0.2    # discourage stuck joints
-                  
-                  power_cost  = electricity_cost  * float(np.abs(self.ac*self.q_dot_mot).mean())  # let's assume we have DC motor with controller, and reverse current braking. BTW this is the formula of motor power
-                  #Reduced stall cost to avoid joints at limit
-                  joints_limit = joints_at_limit_cost * self.joint_at_limit
-                  self.alive_bonus =  +1 if self.body_abdomen.GetContactForce().Length() == 0 else -1
-                  progress = self.calc_progress()
-                  rew = progress + self.alive_bonus + 0.1*(power_cost) + 3*(joints_limit)
-                  return rew
-   def calc_progress(self):
-              d = np.linalg.norm( [self.Ytarg - self.body_abdomen.GetPos().y, self.Xtarg - self.body_abdomen.GetPos().x] )
-              progress = -(d - self.d_old )/self.timestep
-              self.d_old = d
-              return progress                     
-   def is_done(self):
-          
-          if ( self.alive_bonus < 0 or self.body_abdomen.GetPos().y > 49 or self.body_abdomen.GetPos().x > 49 or self.numsteps *self.timestep>100):
-                 self.isdone = True
-
-          
-   def __del__(self):
-          if (self.animate):
-               self.myapplication.GetDevice().closeDevice()
-               print('Destructor called, Device deleted.')
-          else:
-               print('Destructor called, No device to delete.')
-        
-   def ScreenCapture(self, interval):
-          try: 
-              self.myapplication.SetVideoframeSave(True)
-              self.myapplication.SetVideoframeSaveInterval(interval)
-          except:
-                 print('No ChIrrApp found. Cannot save video frames.')
-                     
