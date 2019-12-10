@@ -212,9 +212,9 @@ class Model(object):
       self.ant_sys.Add(self.body_floor)
       #self.body_abdomen.SetBodyFixed(True)
    
-      if (self.animate):
-            self.myapplication.AssetBindAll()
-            self.myapplication.AssetUpdateAll()
+      #if (self.animate):
+      self.myapplication.AssetBindAll()
+      self.myapplication.AssetUpdateAll()
 
       self.numsteps= 0
       self.step(np.zeros(4))
