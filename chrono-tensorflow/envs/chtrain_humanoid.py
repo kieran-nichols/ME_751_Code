@@ -47,10 +47,10 @@ class Model(object):
       self.abdomen_density = 100
       self.abdomen_y0 = 0.8
       self.leg_length = 0.3
-      self.leg_radius = 0.04
-      self.ankle_angle = 0.*(math.pi/180)
+      self.leg_radius = 0.08
+      self.ankle_angle = 60.*(math.pi/180)
       self.ankle_length = 0.4
-      self.ankle_radius = 0.04
+      self.ankle_radius = 0.08
       self.gain = 30
 
       self.abdomen_mass = self.abdomen_density * ((4/3)*chrono.CH_C_PI*self.abdomen_x*self.abdomen_y*self.abdomen_z)
@@ -62,10 +62,10 @@ class Model(object):
       
       self.leg_limit = chrono.ChLinkLimit()
       self.ankle_limit = chrono.ChLinkLimit()
-      #self.leg_limit.SetRmax(math.pi/9)
-      #self.leg_limit.SetRmin(-math.pi/9)
-      #self.ankle_limit.SetRmax(math.pi/9)
-      #self.ankle_limit.SetRmin(-math.pi/9)
+      self.leg_limit.SetRmax(math.pi/9)
+      self.leg_limit.SetRmin(-math.pi/9)
+      self.ankle_limit.SetRmax(math.pi/9)
+      self.ankle_limit.SetRmin(-math.pi/9)
       
       if (self.animate) :
              self.myapplication = chronoirr.ChIrrApp(self.ant_sys)
@@ -102,7 +102,7 @@ class Model(object):
       self.ant_sys.Add(self.body_abdomen)
       
       
-      leg_ang =  np.array([3*math.pi/4,3*math.pi/4])#(1/4)*math.pi+(1/2)*math.pi*np.array([0,1])
+      leg_ang =  np.array([math.pi/2,-math.pi/2])#(1/4)*math.pi+(1/2)*math.pi*np.array([0,1])
       Leg_quat = [chrono.ChQuaternionD() for i in range(len(leg_ang))]
       self.leg_body = [chrono.ChBody() for i in range(len(leg_ang))]
       self.leg_pos= [chrono.ChVectorD() for i in range(len(leg_ang))]
@@ -134,7 +134,7 @@ class Model(object):
              
              # Legs
              Leg_quat[i].Q_from_AngAxis(-leg_ang[i] , chrono.ChVectorD(0, 0, 1))
-             self.leg_pos[i] = chrono.ChVectorD( (0.5*self.leg_length+self.abdomen_x)*0. , (0.5*self.abdomen_y0), (0.5*self.leg_length+self.abdomen_z)*math.sin(leg_ang[i])*0.)
+             self.leg_pos[i] = chrono.ChVectorD( (self.leg_length)*math.cos(leg_ang[i]) , (0.5*self.abdomen_y0), -self.abdomen_z)
              self.leg_body[i].SetPos(self.leg_pos[i])
              self.leg_body[i].SetRot(Leg_quat[i])
              self.leg_body[i].AddAsset(self.leg_shape)
@@ -143,7 +143,7 @@ class Model(object):
              self.ant_sys.Add(self.leg_body[i])
              x_rel.append( Leg_quat[i].Rotate(chrono.ChVectorD(1, 0, 0)))
              z_rel.append( Leg_quat[i].Rotate(chrono.ChVectorD(0, 0, 1)))
-             Leg_qa[i].Q_from_AngAxis(-leg_ang[i] , chrono.ChVectorD(0, 0, 1))
+             Leg_qa[i].Q_from_AngAxis(-leg_ang[i] , chrono.ChVectorD(0, 1, 0))
              z2x_leg[i].Q_from_AngAxis(chrono.CH_C_PI / 2 , x_rel[i])
              Leg_q[i] = z2x_leg[i] * Leg_qa[i] 
              Leg_rev_pos.append(chrono.ChVectorD(self.leg_pos[i]-chrono.ChVectorD(math.cos(leg_ang[i])*self.leg_length/2,0,math.sin(leg_ang[i])*self.leg_length/2)))
@@ -210,7 +210,7 @@ class Model(object):
       self.body_floor.GetAssets().push_back(body_floor_texture)     
       self.ant_sys.Add(self.body_floor)
       # this was commented out to not fix the abdomen
-      self.body_abdomen.SetBodyFixed(True)
+      self.body_abdomen.SetBodyFixed(False)
    
       if (self.animate):
             self.myapplication.AssetBindAll()
@@ -289,7 +289,14 @@ class Model(object):
                   joints_limit = joints_at_limit_cost * self.joint_at_limit
                   self.alive_bonus =  +1 if self.body_abdomen.GetContactForce().Length() == 0 else -1
                   progress = self.calc_progress()
-                  rew = progress + self.alive_bonus + 0.1*(power_cost) + 3*(joints_limit)
+                                         
+                  ## New costs
+                  delta_pos = 10000*(self.body_abdomen.GetPos().x - xposbefore) 
+                  print(delta_pos,progress,power_cost)         
+                  
+                  # Cost calculation
+                  rew = progress + self.alive_bonus + 0.1*(power_cost) + 3*(joints_limit) + delta_pos
+      
                   return rew
    def calc_progress(self):
               d = np.linalg.norm( [self.Ytarg - self.body_abdomen.GetPos().y, self.Xtarg - self.body_abdomen.GetPos().x] )
