@@ -14,3 +14,100 @@ Proximal Policy Optimizer
 
 Get the scaling python files from my 759 work
 Scale on my computer with serial and parallel versions
+Questions for Collin 
+
+Do I just use -c 1 for starters? 
+
+Could I use gpu? 
+
+The python parallel code utilizes the CPU multiprocessor. Should I use -c (more than 1) 
+
+When I try running the machine learning trianing on euler, I get a tf.Session problem both on my head node and when I run sbatch script. Any ideas on how to move forward? 
+
+For short iterations, is it ok to run the program on the head node or should I do everything on the main(?) node? 
+
+ 
+
+ tf_upgrade_v2 --infile value_function.py --outfile value_function.py 
+
+tf_upgrade_v2 --infile train_serial.py --outfile train_serial.py 
+
+ 
+
+RuntimeError: Exporting/importing meta graphs is not supported when eager execution is enabled. No graph exists when eager execution is enabled. 
+
+ 
+
+Started to work on Euler 
+
+conda install numpy 
+
+conda install tensorflow 
+
+conda install scikit-learn 
+
+ 
+
+python3 ./tester.py ChronoAnt --renderOFF -b 1 -n 1 
+
+ssh knichols4@euler.wacc.wisc.edu  
+
+module load anaconda/3 
+
+bootstrap_conda 
+
+#conda create --name virtualenv python=3.7 
+
+conda activate virtualenv 
+
+module load irrlicht/1.8.3 
+
+ """""""""""""""""""""""""""""" """""""""""""""""""""""""""""" 
+
+[knichols4@euler PPO]$ cat Output.txt  
+
+2019-12-08 01:26:27.504384: I tensorflow/core/platform/cpu_feature_guard.cc:145] This TensorFlow binary is optimized with Intel(R) MKL-DNN to use the following CPU instructions in performance critical operations:  SSE4.1 SSE4.2 AVX AVX2 AVX512F FMA 
+
+To enable them in non-MKL-DNN operations, rebuild TensorFlow with the appropriate compiler flags. 
+
+2019-12-08 01:26:27.775076: I tensorflow/core/platform/profile_utils/cpu_utils.cc:94] CPU Frequency: 2100000000 Hz 
+
+2019-12-08 01:26:27.777161: I tensorflow/compiler/xla/service/service.cc:168] XLA service 0x55793e2b7410 executing computations on platform Host. Devices: 
+
+2019-12-08 01:26:27.778179: I tensorflow/compiler/xla/service/service.cc:175]   StreamExecutor device (0): Host, Default Version 
+
+2019-12-08 01:26:27.784067: I tensorflow/core/common_runtime/process_util.cc:115] Creating new thread pool with default inter op setting: 2. Tune using inter_op_parallelism_threads for best performance. 
+
+Traceback (most recent call last): 
+
+  File "./train_serial.py", line 317, in <module> 
+
+    main(**vars(args)) 
+
+  File "./train_serial.py", line 266, in main 
+
+    val_func = NNValueFunction(obs_dim, env_name) 
+
+  File "/srv/home/knichols4/ME_751_Code/chrono-tensorflow/PPO/value_function.py", line 28, in __init__ 
+
+    self._restore() 
+
+  File "/srv/home/knichols4/ME_751_Code/chrono-tensorflow/PPO/value_function.py", line 88, in _restore 
+
+    loader = tf.compat.v1.train.import_meta_graph("./savedmodel/"+self.env_name+"/VF/trained_VF.ckpt.meta") 
+
+  File "/srv/home/knichols4/.conda/envs/virtualenv/lib/python3.7/site-packages/tensorflow_core/python/training/saver.py", line 1453, in import_meta_graph 
+
+    **kwargs)[0] 
+
+  File "/srv/home/knichols4/.conda/envs/virtualenv/lib/python3.7/site-packages/tensorflow_core/python/training/saver.py", line 1463, in _import_meta_graph_with_return_elements 
+
+    raise RuntimeError("Exporting/importing meta graphs is not supported when " 
+
+RuntimeError: Exporting/importing meta graphs is not supported when eager execution is enabled. No graph exists when eager execution is enabled. 
+
+Destructor called, No device to delete. 
+
+ """""""""""""""""""""""""""""" """""""""""""""""""""""""""""" 
+Questions for Collin
+
