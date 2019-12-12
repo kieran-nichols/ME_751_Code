@@ -4,11 +4,11 @@
 #SBATCH --time=0-0:01:00
 #SBATCH --output="Output.txt"
 
-#module load anaconda/3
-#bootstrap_conda
+module load anaconda/3
+bootstrap_conda
 #conda create --name virtualenv python=3.7
-#conda activate virtualenv
-#module load irrlicht/1.8.3
+conda activate virtualenv
+module load irrlicht/1.8.3
 #conda install numpy
 #conda install tensorflow
 #conda install scikit-learn

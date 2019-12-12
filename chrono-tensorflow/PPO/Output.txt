@@ -1,9 +1,9 @@
-2019-12-08 01:26:27.504384: I tensorflow/core/platform/cpu_feature_guard.cc:145] This TensorFlow binary is optimized with Intel(R) MKL-DNN to use the following CPU instructions in performance critical operations:  SSE4.1 SSE4.2 AVX AVX2 AVX512F FMA
+2019-12-12 20:24:15.366116: I tensorflow/core/platform/cpu_feature_guard.cc:145] This TensorFlow binary is optimized with Intel(R) MKL-DNN to use the following CPU instructions in performance critical operations:  SSE4.1 SSE4.2 AVX AVX2 AVX512F FMA
 To enable them in non-MKL-DNN operations, rebuild TensorFlow with the appropriate compiler flags.
-2019-12-08 01:26:27.775076: I tensorflow/core/platform/profile_utils/cpu_utils.cc:94] CPU Frequency: 2100000000 Hz
-2019-12-08 01:26:27.777161: I tensorflow/compiler/xla/service/service.cc:168] XLA service 0x55793e2b7410 executing computations on platform Host. Devices:
-2019-12-08 01:26:27.778179: I tensorflow/compiler/xla/service/service.cc:175]   StreamExecutor device (0): Host, Default Version
-2019-12-08 01:26:27.784067: I tensorflow/core/common_runtime/process_util.cc:115] Creating new thread pool with default inter op setting: 2. Tune using inter_op_parallelism_threads for best performance.
+2019-12-12 20:24:16.305199: I tensorflow/core/platform/profile_utils/cpu_utils.cc:94] CPU Frequency: 2100000000 Hz
+2019-12-12 20:24:16.329963: I tensorflow/compiler/xla/service/service.cc:168] XLA service 0x55e3c571b590 executing computations on platform Host. Devices:
+2019-12-12 20:24:16.330951: I tensorflow/compiler/xla/service/service.cc:175]   StreamExecutor device (0): Host, Default Version
+2019-12-12 20:24:16.402849: I tensorflow/core/common_runtime/process_util.cc:115] Creating new thread pool with default inter op setting: 2. Tune using inter_op_parallelism_threads for best performance.
 Traceback (most recent call last):
   File "./train_serial.py", line 317, in <module>
     main(**vars(args))
