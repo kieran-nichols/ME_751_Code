@@ -1,0 +1,3407 @@
+(base) ~$ls
+anaconda3                               gym-chrono
+baselines                               ME_751_Code
+chrono                                  Music
+chrono-tensorflow                       Pictures
+chtrain_cluster                         Public
+Desktop                                 simple_pendulum
+Documents                               simple_pendulum1
+Downloads                               snap
+examples.desktop                        Templates
+google-chrome-stable_current_amd64.deb  Videos
+(base) ~$cd ME_751_Code/
+(base) ME_751_Code$ls
+chrono-tensorflow  HW6  HW8  Other_HW  README.md
+HW10               HW7  HW9  Project
+(base) ME_751_Code$cd chrono-tensorflow/
+(base) chrono-tensorflow$ls
+envs  PPO  project_notes
+(base) chrono-tensorflow$cd PPO
+(base) PPO$ls
+combine_video.py    __pycache__        train_serial.py
+data                report.txt         upload_packages.sh
+full_video          run_episode.py     utils.py
+humanoid_visual.py  run_serial.sh      value_function.py
+log-files           savedmodel         video_capture
+Output.txt          tester.py
+policy.py           train_parallel.py
+(base) PPO$vi run_serial.sh 
+(base) PPO$echo progress 1/5*100 %
+progress 1/5*100 %
+(base) PPO$echo progress $(1/5*100)%
+bash: 1/5*100: No such file or directory
+progress %
+(base) PPO$echo progress $((1/5*100))%
+progress 0%
+(base) PPO$echo progress $((2/5*100))%
+progress 0%
+(base) PPO$echo progress $(( 2/5*100 ))%
+progress 0%
+(base) PPO$echo progress $(( 2/5**100 ))%
+progress 0%
+(base) PPO$echo progress $(( 5*100 ))%
+progress 500%
+(base) PPO$echo progress $(( 2//5*100 ))%
+bash: 2//5*100 : syntax error: operand expected (error token is "/5*100 ")
+(base) PPO$echo progress $(( 2/5 ))%
+progress 0%
+(base) PPO$echo progress $(( 2 / 5**100 ))%
+progress 0%
+(base) PPO$echo progress $(( 2 / 5*100 ))%
+progress 0%
+(base) PPO$echo progress $(( 2 / 5 /* 100 ))%
+bash: 2 / 5 /* 100 : syntax error: operand expected (error token is "* 100 ")
+(base) PPO$echo progress $(( 2/5*100 ))%
+progress 0%
+(base) PPO$echo progress $(( 2/5 ))%
+progress 0%
+(base) PPO$echo progress $(( 2\5*100 ))%
+bash: 2\5*100 : syntax error: invalid arithmetic operator (error token is "\5*100 ")
+(base) PPO$echo progress $(( 2 \ 5*100 ))%
+bash: 2 \ 5*100 : syntax error: invalid arithmetic operator (error token is "\ 5*100 ")
+(base) PPO$echo progress $(( 2/5*100 ))%
+progress 0%
+(base) PPO$printf "\n%.3f\n" "progress" "$(( 2/5*100 ))" "%"
+
+bash: printf: progress: invalid number
+0.000
+
+0.000
+
+bash: printf: %: invalid number
+0.000
+(base) PPO$printf "\n%.3f\n" "$(( 2/5*100 ))" 
+
+0.000
+(base) PPO$printf "\n %.3f\n" "$(( 2/5*100 ))" 
+
+ 0.000
+(base) PPO$printf "\n%.3f\n" "$(( 5*100 ))" 
+
+500.000
+(base) PPO$printf "\n%.3f\n" "$(( 2/5*100 ))" 
+
+0.000
+(base) PPO$echo progress $(( 2/5*100 ))% | bc
+(standard_in) 1: syntax error
+(base) PPO$echo progress $(( 2/5*100 ))% | bc -l
+(standard_in) 1: syntax error
+(base) PPO$echo progress $(( 2/5*100 ))% 
+progress 0%
+(base) PPO$$(echo progress $(( 2/5*100 ))%)|bc
+
+Command 'progress' not found, but can be installed with:
+
+sudo apt install progress
+
+(base) PPO$$(echo $(( 2/5*100 ))%)|bc
+0%: command not found
+(base) PPO$sudo apt-get bc
+[sudo] password for the1kieran: 
+E: Invalid operation bc
+(base) PPO$$(echo $(( 2/5*100 ))%)| bc -l
+0%: command not found
+(base) PPO$$echo 2 out of 5
+2: command not found
+(base) PPO$$echo $((2 out of 5))
+bash: 2 out of 5: syntax error in expression (error token is "out of 5")
+(base) PPO$$echo "2 out of 5"
+2 out of 5: command not found
+(base) PPO$echo hello
+hello
+(base) PPO$echo 2
+2
+(base) PPO$echo 2 out
+2 out
+(base) PPO$echo 2 out of 5
+2 out of 5
+(base) PPO$i=1
+(base) PPO$echo $2 out of 5
+out of 5
+(base) PPO$echo $i out of 5
+1 out of 5
+(base) PPO$echo progress: $i out of 5
+progress: 1 out of 5
+(base) PPO$echo progress: $i out of 5\n
+progress: 1 out of 5n
+(base) PPO$echo progress: $i out of 5"\n"
+progress: 1 out of 5\n
+(base) PPO$echo progress: $i out of 5
+progress: 1 out of 5
+(base) PPO$ls
+combine_video.py     policy.py       train_parallel.py
+data                 __pycache__     train_serial.py
+full_video           report.txt      upload_packages.sh
+humanoid_visual.py   run_episode.py  utils.py
+log-files            run_serial.sh   value_function.py
+Output.txt           savedmodel      video_capture
+plotting_scaling.py  tester.py
+(base) PPO$bash run_serial.sh 
+2019-12-11 15:30:57.477536: I tensorflow/core/platform/cpu_feature_guard.cc:142] Your CPU supports instructions that this TensorFlow binary was not compiled to use: AVX2 FMA
+2019-12-11 15:30:57.497376: I tensorflow/core/platform/profile_utils/cpu_utils.cc:94] CPU Frequency: 2592000000 Hz
+2019-12-11 15:30:57.497840: I tensorflow/compiler/xla/service/service.cc:168] XLA service 0x557745f434b0 executing computations on platform Host. Devices:
+2019-12-11 15:30:57.497902: I tensorflow/compiler/xla/service/service.cc:175]   StreamExecutor device (0): <undefined>, <undefined>
+2019-12-11 15:30:57.670749: W tensorflow/compiler/jit/mark_for_compilation_pass.cc:1412] (One-time warning): Not using XLA:CPU for cluster because envvar TF_XLA_FLAGS=--tf_xla_cpu_global_jit was not set.  If you want XLA:CPU, either set that envvar, or use experimental_jit_scope to enable XLA:CPU.  To confirm that XLA is active, pass --vmodule=xla_compilation_cache=1 (as a proper command-line flag, not via TF_XLA_FLAGS) or set the envvar XLA_FLAGS=--xla_hlo_profile.
+WARNING:tensorflow:From /home/the1kieran/anaconda3/lib/python3.7/site-packages/tensorflow/python/training/saver.py:1276: checkpoint_exists (from tensorflow.python.training.checkpoint_management) is deprecated and will be removed in a future version.
+Instructions for updating:
+Use standard file APIs to check for files with this prefix.
+WARNING:tensorflow:From /home/the1kieran/ME_751_Code/chrono-tensorflow/PPO/policy.py:200: The name tf.reset_default_graph is deprecated. Please use tf.compat.v1.reset_default_graph instead.
+
+WARNING:tensorflow:From /home/the1kieran/ME_751_Code/chrono-tensorflow/PPO/policy.py:207: The name tf.Session is deprecated. Please use tf.compat.v1.Session instead.
+
+WARNING:tensorflow:From /home/the1kieran/ME_751_Code/chrono-tensorflow/PPO/policy.py:210: The name tf.train.import_meta_graph is deprecated. Please use tf.compat.v1.train.import_meta_graph instead.
+
+WARNING:tensorflow:From /home/the1kieran/ME_751_Code/chrono-tensorflow/PPO/policy.py:211: The name tf.global_variables_initializer is deprecated. Please use tf.compat.v1.global_variables_initializer instead.
+
+WARNING:tensorflow:From /home/the1kieran/ME_751_Code/chrono-tensorflow/PPO/policy.py:212: The name tf.get_default_graph is deprecated. Please use tf.compat.v1.get_default_graph instead.
+
+WARNING:tensorflow:From /home/the1kieran/ME_751_Code/chrono-tensorflow/PPO/policy.py:231: The name tf.train.Saver is deprecated. Please use tf.compat.v1.train.Saver instead.
+
+***** Episode 20, Mean R = 453.2 *****
+Beta: 1.5
+ExplainedVarNew: 0.854
+ExplainedVarOld: 0.267
+KL: 0.00874
+PolicyEntropy: 4.03
+PolicyLoss: -0.0117
+Steps: 1.5e+04
+ValFuncLoss: 0.0059
+
+
+Destructor called, No device to delete.
+2019-12-11 15:31:19.539459: I tensorflow/core/platform/cpu_feature_guard.cc:142] Your CPU supports instructions that this TensorFlow binary was not compiled to use: AVX2 FMA
+2019-12-11 15:31:19.561467: I tensorflow/core/platform/profile_utils/cpu_utils.cc:94] CPU Frequency: 2592000000 Hz
+2019-12-11 15:31:19.561821: I tensorflow/compiler/xla/service/service.cc:168] XLA service 0x55cb59b18500 executing computations on platform Host. Devices:
+2019-12-11 15:31:19.561895: I tensorflow/compiler/xla/service/service.cc:175]   StreamExecutor device (0): <undefined>, <undefined>
+2019-12-11 15:31:19.743198: W tensorflow/compiler/jit/mark_for_compilation_pass.cc:1412] (One-time warning): Not using XLA:CPU for cluster because envvar TF_XLA_FLAGS=--tf_xla_cpu_global_jit was not set.  If you want XLA:CPU, either set that envvar, or use experimental_jit_scope to enable XLA:CPU.  To confirm that XLA is active, pass --vmodule=xla_compilation_cache=1 (as a proper command-line flag, not via TF_XLA_FLAGS) or set the envvar XLA_FLAGS=--xla_hlo_profile.
+WARNING:tensorflow:From /home/the1kieran/anaconda3/lib/python3.7/site-packages/tensorflow/python/training/saver.py:1276: checkpoint_exists (from tensorflow.python.training.checkpoint_management) is deprecated and will be removed in a future version.
+Instructions for updating:
+Use standard file APIs to check for files with this prefix.
+WARNING:tensorflow:From /home/the1kieran/ME_751_Code/chrono-tensorflow/PPO/policy.py:200: The name tf.reset_default_graph is deprecated. Please use tf.compat.v1.reset_default_graph instead.
+
+WARNING:tensorflow:From /home/the1kieran/ME_751_Code/chrono-tensorflow/PPO/policy.py:202: The name tf.ConfigProto is deprecated. Please use tf.compat.v1.ConfigProto instead.
+
+WARNING:tensorflow:From /home/the1kieran/ME_751_Code/chrono-tensorflow/PPO/policy.py:204: The name tf.Session is deprecated. Please use tf.compat.v1.Session instead.
+
+WARNING:tensorflow:From /home/the1kieran/ME_751_Code/chrono-tensorflow/PPO/policy.py:210: The name tf.train.import_meta_graph is deprecated. Please use tf.compat.v1.train.import_meta_graph instead.
+
+WARNING:tensorflow:From /home/the1kieran/ME_751_Code/chrono-tensorflow/PPO/policy.py:211: The name tf.global_variables_initializer is deprecated. Please use tf.compat.v1.global_variables_initializer instead.
+
+WARNING:tensorflow:From /home/the1kieran/ME_751_Code/chrono-tensorflow/PPO/policy.py:212: The name tf.get_default_graph is deprecated. Please use tf.compat.v1.get_default_graph instead.
+
+WARNING:tensorflow:From /home/the1kieran/ME_751_Code/chrono-tensorflow/PPO/policy.py:231: The name tf.train.Saver is deprecated. Please use tf.compat.v1.train.Saver instead.
+
+WARNING:tensorflow:From /home/the1kieran/ME_751_Code/chrono-tensorflow/PPO/policy.py:200: The name tf.reset_default_graph is deprecated. Please use tf.compat.v1.reset_default_graph instead.
+
+WARNING:tensorflow:From /home/the1kieran/ME_751_Code/chrono-tensorflow/PPO/policy.py:200: The name tf.reset_default_graph is deprecated. Please use tf.compat.v1.reset_default_graph instead.
+
+WARNING:tensorflow:From /home/the1kieran/ME_751_Code/chrono-tensorflow/PPO/policy.py:202: The name tf.ConfigProto is deprecated. Please use tf.compat.v1.ConfigProto instead.
+
+WARNING:tensorflow:From /home/the1kieran/ME_751_Code/chrono-tensorflow/PPO/policy.py:202: The name tf.ConfigProto is deprecated. Please use tf.compat.v1.ConfigProto instead.
+
+WARNING:tensorflow:From /home/the1kieran/ME_751_Code/chrono-tensorflow/PPO/policy.py:204: The name tf.Session is deprecated. Please use tf.compat.v1.Session instead.
+
+WARNING:tensorflow:From /home/the1kieran/ME_751_Code/chrono-tensorflow/PPO/policy.py:204: The name tf.Session is deprecated. Please use tf.compat.v1.Session instead.
+
+WARNING:tensorflow:From /home/the1kieran/ME_751_Code/chrono-tensorflow/PPO/policy.py:200: The name tf.reset_default_graph is deprecated. Please use tf.compat.v1.reset_default_graph instead.
+
+WARNING:tensorflow:From /home/the1kieran/ME_751_Code/chrono-tensorflow/PPO/policy.py:200: The name tf.reset_default_graph is deprecated. Please use tf.compat.v1.reset_default_graph instead.
+
+WARNING:tensorflow:From /home/the1kieran/ME_751_Code/chrono-tensorflow/PPO/policy.py:202: The name tf.ConfigProto is deprecated. Please use tf.compat.v1.ConfigProto instead.
+
+WARNING:tensorflow:From /home/the1kieran/ME_751_Code/chrono-tensorflow/PPO/policy.py:200: The name tf.reset_default_graph is deprecated. Please use tf.compat.v1.reset_default_graph instead.
+
+WARNING:tensorflow:From /home/the1kieran/ME_751_Code/chrono-tensorflow/PPO/policy.py:202: The name tf.ConfigProto is deprecated. Please use tf.compat.v1.ConfigProto instead.
+
+WARNING:tensorflow:From /home/the1kieran/ME_751_Code/chrono-tensorflow/PPO/policy.py:202: The name tf.ConfigProto is deprecated. Please use tf.compat.v1.ConfigProto instead.
+
+WARNING:tensorflow:From /home/the1kieran/ME_751_Code/chrono-tensorflow/PPO/policy.py:204: The name tf.Session is deprecated. Please use tf.compat.v1.Session instead.
+
+WARNING:tensorflow:From /home/the1kieran/ME_751_Code/chrono-tensorflow/PPO/policy.py:200: The name tf.reset_default_graph is deprecated. Please use tf.compat.v1.reset_default_graph instead.
+
+WARNING:tensorflow:From /home/the1kieran/ME_751_Code/chrono-tensorflow/PPO/policy.py:202: The name tf.ConfigProto is deprecated. Please use tf.compat.v1.ConfigProto instead.
+
+WARNING:tensorflow:From /home/the1kieran/ME_751_Code/chrono-tensorflow/PPO/policy.py:204: The name tf.Session is deprecated. Please use tf.compat.v1.Session instead.
+
+WARNING:tensorflow:From /home/the1kieran/ME_751_Code/chrono-tensorflow/PPO/policy.py:204: The name tf.Session is deprecated. Please use tf.compat.v1.Session instead.
+
+WARNING:tensorflow:From /home/the1kieran/ME_751_Code/chrono-tensorflow/PPO/policy.py:204: The name tf.Session is deprecated. Please use tf.compat.v1.Session instead.
+
+2019-12-11 15:31:20.310757: I tensorflow/core/platform/cpu_feature_guard.cc:142] Your CPU supports instructions that this TensorFlow binary was not compiled to use: AVX2 FMA
+2019-12-11 15:31:20.315875: I tensorflow/core/platform/cpu_feature_guard.cc:142] Your CPU supports instructions that this TensorFlow binary was not compiled to use: AVX2 FMA
+2019-12-11 15:31:20.321596: I tensorflow/core/platform/profile_utils/cpu_utils.cc:94] CPU Frequency: 2592000000 Hz
+2019-12-11 15:31:20.321918: I tensorflow/compiler/xla/service/service.cc:168] XLA service 0x55cb59b18500 executing computations on platform Host. Devices:
+2019-12-11 15:31:20.321943: I tensorflow/compiler/xla/service/service.cc:175]   StreamExecutor device (0): <undefined>, <undefined>
+WARNING:tensorflow:From /home/the1kieran/ME_751_Code/chrono-tensorflow/PPO/policy.py:210: The name tf.train.import_meta_graph is deprecated. Please use tf.compat.v1.train.import_meta_graph instead.
+
+2019-12-11 15:31:20.327139: I tensorflow/core/platform/cpu_feature_guard.cc:142] Your CPU supports instructions that this TensorFlow binary was not compiled to use: AVX2 FMA
+2019-12-11 15:31:20.329275: I tensorflow/core/platform/profile_utils/cpu_utils.cc:94] CPU Frequency: 2592000000 Hz
+2019-12-11 15:31:20.329567: I tensorflow/compiler/xla/service/service.cc:168] XLA service 0x55cb59b18500 executing computations on platform Host. Devices:
+2019-12-11 15:31:20.329587: I tensorflow/compiler/xla/service/service.cc:175]   StreamExecutor device (0): <undefined>, <undefined>
+WARNING:tensorflow:From /home/the1kieran/ME_751_Code/chrono-tensorflow/PPO/policy.py:210: The name tf.train.import_meta_graph is deprecated. Please use tf.compat.v1.train.import_meta_graph instead.
+
+2019-12-11 15:31:20.331312: I tensorflow/core/platform/cpu_feature_guard.cc:142] Your CPU supports instructions that this TensorFlow binary was not compiled to use: AVX2 FMA
+2019-12-11 15:31:20.338471: I tensorflow/core/platform/profile_utils/cpu_utils.cc:94] CPU Frequency: 2592000000 Hz
+2019-12-11 15:31:20.338819: I tensorflow/compiler/xla/service/service.cc:168] XLA service 0x55cb59b18500 executing computations on platform Host. Devices:
+2019-12-11 15:31:20.338841: I tensorflow/compiler/xla/service/service.cc:175]   StreamExecutor device (0): <undefined>, <undefined>
+2019-12-11 15:31:20.339055: I tensorflow/core/platform/cpu_feature_guard.cc:142] Your CPU supports instructions that this TensorFlow binary was not compiled to use: AVX2 FMA
+WARNING:tensorflow:From /home/the1kieran/ME_751_Code/chrono-tensorflow/PPO/policy.py:210: The name tf.train.import_meta_graph is deprecated. Please use tf.compat.v1.train.import_meta_graph instead.
+
+2019-12-11 15:31:20.340550: I tensorflow/core/platform/cpu_feature_guard.cc:142] Your CPU supports instructions that this TensorFlow binary was not compiled to use: AVX2 FMA
+2019-12-11 15:31:20.347010: I tensorflow/core/platform/profile_utils/cpu_utils.cc:94] CPU Frequency: 2592000000 Hz
+2019-12-11 15:31:20.347310: I tensorflow/compiler/xla/service/service.cc:168] XLA service 0x55cb59b18500 executing computations on platform Host. Devices:
+2019-12-11 15:31:20.347352: I tensorflow/compiler/xla/service/service.cc:175]   StreamExecutor device (0): <undefined>, <undefined>
+WARNING:tensorflow:From /home/the1kieran/ME_751_Code/chrono-tensorflow/PPO/policy.py:210: The name tf.train.import_meta_graph is deprecated. Please use tf.compat.v1.train.import_meta_graph instead.
+
+2019-12-11 15:31:20.348738: I tensorflow/core/platform/profile_utils/cpu_utils.cc:94] CPU Frequency: 2592000000 Hz
+2019-12-11 15:31:20.349008: I tensorflow/core/platform/profile_utils/cpu_utils.cc:94] CPU Frequency: 2592000000 Hz
+2019-12-11 15:31:20.349220: I tensorflow/compiler/xla/service/service.cc:168] XLA service 0x55cb59b18500 executing computations on platform Host. Devices:
+2019-12-11 15:31:20.349305: I tensorflow/compiler/xla/service/service.cc:175]   StreamExecutor device (0): <undefined>, <undefined>
+2019-12-11 15:31:20.349327: I tensorflow/compiler/xla/service/service.cc:168] XLA service 0x55cb59b18500 executing computations on platform Host. Devices:
+2019-12-11 15:31:20.349370: I tensorflow/compiler/xla/service/service.cc:175]   StreamExecutor device (0): <undefined>, <undefined>
+WARNING:tensorflow:From /home/the1kieran/ME_751_Code/chrono-tensorflow/PPO/policy.py:210: The name tf.train.import_meta_graph is deprecated. Please use tf.compat.v1.train.import_meta_graph instead.
+
+WARNING:tensorflow:From /home/the1kieran/ME_751_Code/chrono-tensorflow/PPO/policy.py:210: The name tf.train.import_meta_graph is deprecated. Please use tf.compat.v1.train.import_meta_graph instead.
+
+WARNING:tensorflow:From /home/the1kieran/ME_751_Code/chrono-tensorflow/PPO/policy.py:211: The name tf.global_variables_initializer is deprecated. Please use tf.compat.v1.global_variables_initializer instead.
+
+WARNING:tensorflow:From /home/the1kieran/ME_751_Code/chrono-tensorflow/PPO/policy.py:211: The name tf.global_variables_initializer is deprecated. Please use tf.compat.v1.global_variables_initializer instead.
+
+WARNING:tensorflow:From /home/the1kieran/ME_751_Code/chrono-tensorflow/PPO/policy.py:211: The name tf.global_variables_initializer is deprecated. Please use tf.compat.v1.global_variables_initializer instead.
+
+WARNING:tensorflow:From /home/the1kieran/ME_751_Code/chrono-tensorflow/PPO/policy.py:211: The name tf.global_variables_initializer is deprecated. Please use tf.compat.v1.global_variables_initializer instead.
+
+WARNING:tensorflow:From /home/the1kieran/ME_751_Code/chrono-tensorflow/PPO/policy.py:211: The name tf.global_variables_initializer is deprecated. Please use tf.compat.v1.global_variables_initializer instead.
+
+WARNING:tensorflow:From /home/the1kieran/ME_751_Code/chrono-tensorflow/PPO/policy.py:211: The name tf.global_variables_initializer is deprecated. Please use tf.compat.v1.global_variables_initializer instead.
+
+2019-12-11 15:31:21.170669: W tensorflow/compiler/jit/mark_for_compilation_pass.cc:1412] (One-time warning): Not using XLA:CPU for cluster because envvar TF_XLA_FLAGS=--tf_xla_cpu_global_jit was not set.  If you want XLA:CPU, either set that envvar, or use experimental_jit_scope to enable XLA:CPU.  To confirm that XLA is active, pass --vmodule=xla_compilation_cache=1 (as a proper command-line flag, not via TF_XLA_FLAGS) or set the envvar XLA_FLAGS=--xla_hlo_profile.
+WARNING:tensorflow:From /home/the1kieran/ME_751_Code/chrono-tensorflow/PPO/policy.py:212: The name tf.get_default_graph is deprecated. Please use tf.compat.v1.get_default_graph instead.
+
+WARNING:tensorflow:From /home/the1kieran/ME_751_Code/chrono-tensorflow/PPO/policy.py:231: The name tf.train.Saver is deprecated. Please use tf.compat.v1.train.Saver instead.
+
+2019-12-11 15:31:21.199947: W tensorflow/compiler/jit/mark_for_compilation_pass.cc:1412] (One-time warning): Not using XLA:CPU for cluster because envvar TF_XLA_FLAGS=--tf_xla_cpu_global_jit was not set.  If you want XLA:CPU, either set that envvar, or use experimental_jit_scope to enable XLA:CPU.  To confirm that XLA is active, pass --vmodule=xla_compilation_cache=1 (as a proper command-line flag, not via TF_XLA_FLAGS) or set the envvar XLA_FLAGS=--xla_hlo_profile.
+2019-12-11 15:31:21.226492: W tensorflow/compiler/jit/mark_for_compilation_pass.cc:1412] (One-time warning): Not using XLA:CPU for cluster because envvar TF_XLA_FLAGS=--tf_xla_cpu_global_jit was not set.  If you want XLA:CPU, either set that envvar, or use experimental_jit_scope to enable XLA:CPU.  To confirm that XLA is active, pass --vmodule=xla_compilation_cache=1 (as a proper command-line flag, not via TF_XLA_FLAGS) or set the envvar XLA_FLAGS=--xla_hlo_profile.
+WARNING:tensorflow:From /home/the1kieran/ME_751_Code/chrono-tensorflow/PPO/policy.py:212: The name tf.get_default_graph is deprecated. Please use tf.compat.v1.get_default_graph instead.
+
+WARNING:tensorflow:From /home/the1kieran/ME_751_Code/chrono-tensorflow/PPO/policy.py:231: The name tf.train.Saver is deprecated. Please use tf.compat.v1.train.Saver instead.
+
+WARNING:tensorflow:From /home/the1kieran/ME_751_Code/chrono-tensorflow/PPO/policy.py:212: The name tf.get_default_graph is deprecated. Please use tf.compat.v1.get_default_graph instead.
+
+WARNING:tensorflow:From /home/the1kieran/ME_751_Code/chrono-tensorflow/PPO/policy.py:231: The name tf.train.Saver is deprecated. Please use tf.compat.v1.train.Saver instead.
+
+2019-12-11 15:31:21.269251: W tensorflow/compiler/jit/mark_for_compilation_pass.cc:1412] (One-time warning): Not using XLA:CPU for cluster because envvar TF_XLA_FLAGS=--tf_xla_cpu_global_jit was not set.  If you want XLA:CPU, either set that envvar, or use experimental_jit_scope to enable XLA:CPU.  To confirm that XLA is active, pass --vmodule=xla_compilation_cache=1 (as a proper command-line flag, not via TF_XLA_FLAGS) or set the envvar XLA_FLAGS=--xla_hlo_profile.
+WARNING:tensorflow:From /home/the1kieran/ME_751_Code/chrono-tensorflow/PPO/policy.py:212: The name tf.get_default_graph is deprecated. Please use tf.compat.v1.get_default_graph instead.
+
+WARNING:tensorflow:From /home/the1kieran/ME_751_Code/chrono-tensorflow/PPO/policy.py:231: The name tf.train.Saver is deprecated. Please use tf.compat.v1.train.Saver instead.
+
+2019-12-11 15:31:21.296804: W tensorflow/compiler/jit/mark_for_compilation_pass.cc:1412] (One-time warning): Not using XLA:CPU for cluster because envvar TF_XLA_FLAGS=--tf_xla_cpu_global_jit was not set.  If you want XLA:CPU, either set that envvar, or use experimental_jit_scope to enable XLA:CPU.  To confirm that XLA is active, pass --vmodule=xla_compilation_cache=1 (as a proper command-line flag, not via TF_XLA_FLAGS) or set the envvar XLA_FLAGS=--xla_hlo_profile.
+WARNING:tensorflow:From /home/the1kieran/ME_751_Code/chrono-tensorflow/PPO/policy.py:212: The name tf.get_default_graph is deprecated. Please use tf.compat.v1.get_default_graph instead.
+
+WARNING:tensorflow:From /home/the1kieran/ME_751_Code/chrono-tensorflow/PPO/policy.py:231: The name tf.train.Saver is deprecated. Please use tf.compat.v1.train.Saver instead.
+
+WARNING:tensorflow:From /home/the1kieran/anaconda3/lib/python3.7/site-packages/tensorflow/python/training/saver.py:1276: checkpoint_exists (from tensorflow.python.training.checkpoint_management) is deprecated and will be removed in a future version.
+Instructions for updating:
+Use standard file APIs to check for files with this prefix.
+WARNING:tensorflow:From /home/the1kieran/anaconda3/lib/python3.7/site-packages/tensorflow/python/training/saver.py:1276: checkpoint_exists (from tensorflow.python.training.checkpoint_management) is deprecated and will be removed in a future version.
+Instructions for updating:
+Use standard file APIs to check for files with this prefix.
+WARNING:tensorflow:From /home/the1kieran/anaconda3/lib/python3.7/site-packages/tensorflow/python/training/saver.py:1276: checkpoint_exists (from tensorflow.python.training.checkpoint_management) is deprecated and will be removed in a future version.
+Instructions for updating:
+Use standard file APIs to check for files with this prefix.
+2019-12-11 15:31:21.374477: W tensorflow/compiler/jit/mark_for_compilation_pass.cc:1412] (One-time warning): Not using XLA:CPU for cluster because envvar TF_XLA_FLAGS=--tf_xla_cpu_global_jit was not set.  If you want XLA:CPU, either set that envvar, or use experimental_jit_scope to enable XLA:CPU.  To confirm that XLA is active, pass --vmodule=xla_compilation_cache=1 (as a proper command-line flag, not via TF_XLA_FLAGS) or set the envvar XLA_FLAGS=--xla_hlo_profile.
+WARNING:tensorflow:From /home/the1kieran/ME_751_Code/chrono-tensorflow/PPO/policy.py:212: The name tf.get_default_graph is deprecated. Please use tf.compat.v1.get_default_graph instead.
+
+WARNING:tensorflow:From /home/the1kieran/ME_751_Code/chrono-tensorflow/PPO/policy.py:231: The name tf.train.Saver is deprecated. Please use tf.compat.v1.train.Saver instead.
+
+WARNING:tensorflow:From /home/the1kieran/anaconda3/lib/python3.7/site-packages/tensorflow/python/training/saver.py:1276: checkpoint_exists (from tensorflow.python.training.checkpoint_management) is deprecated and will be removed in a future version.
+Instructions for updating:
+Use standard file APIs to check for files with this prefix.
+WARNING:tensorflow:From /home/the1kieran/anaconda3/lib/python3.7/site-packages/tensorflow/python/training/saver.py:1276: checkpoint_exists (from tensorflow.python.training.checkpoint_management) is deprecated and will be removed in a future version.
+Instructions for updating:
+Use standard file APIs to check for files with this prefix.
+WARNING:tensorflow:From /home/the1kieran/anaconda3/lib/python3.7/site-packages/tensorflow/python/training/saver.py:1276: checkpoint_exists (from tensorflow.python.training.checkpoint_management) is deprecated and will be removed in a future version.
+Instructions for updating:
+Use standard file APIs to check for files with this prefix.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+***** Episode 20, Mean R = 452.0 *****
+Beta: 1.5
+ExplainedVarNew: 0.845
+ExplainedVarOld: 0.338
+KL: 0.00704
+PolicyEntropy: 4.02
+PolicyLoss: -0.00863
+ValFuncLoss: 0.00639
+
+
+Destructor called, No device to delete.
+progress: 1 out of 3
+2019-12-11 15:31:37.884898: I tensorflow/core/platform/cpu_feature_guard.cc:142] Your CPU supports instructions that this TensorFlow binary was not compiled to use: AVX2 FMA
+2019-12-11 15:31:37.905481: I tensorflow/core/platform/profile_utils/cpu_utils.cc:94] CPU Frequency: 2592000000 Hz
+2019-12-11 15:31:37.905922: I tensorflow/compiler/xla/service/service.cc:168] XLA service 0x5631eedb94b0 executing computations on platform Host. Devices:
+2019-12-11 15:31:37.905973: I tensorflow/compiler/xla/service/service.cc:175]   StreamExecutor device (0): <undefined>, <undefined>
+2019-12-11 15:31:38.088556: W tensorflow/compiler/jit/mark_for_compilation_pass.cc:1412] (One-time warning): Not using XLA:CPU for cluster because envvar TF_XLA_FLAGS=--tf_xla_cpu_global_jit was not set.  If you want XLA:CPU, either set that envvar, or use experimental_jit_scope to enable XLA:CPU.  To confirm that XLA is active, pass --vmodule=xla_compilation_cache=1 (as a proper command-line flag, not via TF_XLA_FLAGS) or set the envvar XLA_FLAGS=--xla_hlo_profile.
+WARNING:tensorflow:From /home/the1kieran/anaconda3/lib/python3.7/site-packages/tensorflow/python/training/saver.py:1276: checkpoint_exists (from tensorflow.python.training.checkpoint_management) is deprecated and will be removed in a future version.
+Instructions for updating:
+Use standard file APIs to check for files with this prefix.
+WARNING:tensorflow:From /home/the1kieran/ME_751_Code/chrono-tensorflow/PPO/policy.py:200: The name tf.reset_default_graph is deprecated. Please use tf.compat.v1.reset_default_graph instead.
+
+WARNING:tensorflow:From /home/the1kieran/ME_751_Code/chrono-tensorflow/PPO/policy.py:207: The name tf.Session is deprecated. Please use tf.compat.v1.Session instead.
+
+WARNING:tensorflow:From /home/the1kieran/ME_751_Code/chrono-tensorflow/PPO/policy.py:210: The name tf.train.import_meta_graph is deprecated. Please use tf.compat.v1.train.import_meta_graph instead.
+
+WARNING:tensorflow:From /home/the1kieran/ME_751_Code/chrono-tensorflow/PPO/policy.py:211: The name tf.global_variables_initializer is deprecated. Please use tf.compat.v1.global_variables_initializer instead.
+
+WARNING:tensorflow:From /home/the1kieran/ME_751_Code/chrono-tensorflow/PPO/policy.py:212: The name tf.get_default_graph is deprecated. Please use tf.compat.v1.get_default_graph instead.
+
+WARNING:tensorflow:From /home/the1kieran/ME_751_Code/chrono-tensorflow/PPO/policy.py:231: The name tf.train.Saver is deprecated. Please use tf.compat.v1.train.Saver instead.
+
+***** Episode 20, Mean R = 646.0 *****
+Beta: 1.5
+ExplainedVarNew: 0.869
+ExplainedVarOld: 0.199
+KL: 0.0202
+PolicyEntropy: 4.01
+PolicyLoss: -0.361
+Steps: 2.15e+04
+ValFuncLoss: 0.00568
+
+
+Destructor called, No device to delete.
+2019-12-11 15:32:06.587378: I tensorflow/core/platform/cpu_feature_guard.cc:142] Your CPU supports instructions that this TensorFlow binary was not compiled to use: AVX2 FMA
+2019-12-11 15:32:06.609452: I tensorflow/core/platform/profile_utils/cpu_utils.cc:94] CPU Frequency: 2592000000 Hz
+2019-12-11 15:32:06.609876: I tensorflow/compiler/xla/service/service.cc:168] XLA service 0x55b4026ec500 executing computations on platform Host. Devices:
+2019-12-11 15:32:06.609924: I tensorflow/compiler/xla/service/service.cc:175]   StreamExecutor device (0): <undefined>, <undefined>
+2019-12-11 15:32:06.805414: W tensorflow/compiler/jit/mark_for_compilation_pass.cc:1412] (One-time warning): Not using XLA:CPU for cluster because envvar TF_XLA_FLAGS=--tf_xla_cpu_global_jit was not set.  If you want XLA:CPU, either set that envvar, or use experimental_jit_scope to enable XLA:CPU.  To confirm that XLA is active, pass --vmodule=xla_compilation_cache=1 (as a proper command-line flag, not via TF_XLA_FLAGS) or set the envvar XLA_FLAGS=--xla_hlo_profile.
+WARNING:tensorflow:From /home/the1kieran/anaconda3/lib/python3.7/site-packages/tensorflow/python/training/saver.py:1276: checkpoint_exists (from tensorflow.python.training.checkpoint_management) is deprecated and will be removed in a future version.
+Instructions for updating:
+Use standard file APIs to check for files with this prefix.
+WARNING:tensorflow:From /home/the1kieran/ME_751_Code/chrono-tensorflow/PPO/policy.py:200: The name tf.reset_default_graph is deprecated. Please use tf.compat.v1.reset_default_graph instead.
+
+WARNING:tensorflow:From /home/the1kieran/ME_751_Code/chrono-tensorflow/PPO/policy.py:202: The name tf.ConfigProto is deprecated. Please use tf.compat.v1.ConfigProto instead.
+
+WARNING:tensorflow:From /home/the1kieran/ME_751_Code/chrono-tensorflow/PPO/policy.py:204: The name tf.Session is deprecated. Please use tf.compat.v1.Session instead.
+
+WARNING:tensorflow:From /home/the1kieran/ME_751_Code/chrono-tensorflow/PPO/policy.py:210: The name tf.train.import_meta_graph is deprecated. Please use tf.compat.v1.train.import_meta_graph instead.
+
+WARNING:tensorflow:From /home/the1kieran/ME_751_Code/chrono-tensorflow/PPO/policy.py:211: The name tf.global_variables_initializer is deprecated. Please use tf.compat.v1.global_variables_initializer instead.
+
+WARNING:tensorflow:From /home/the1kieran/ME_751_Code/chrono-tensorflow/PPO/policy.py:212: The name tf.get_default_graph is deprecated. Please use tf.compat.v1.get_default_graph instead.
+
+WARNING:tensorflow:From /home/the1kieran/ME_751_Code/chrono-tensorflow/PPO/policy.py:231: The name tf.train.Saver is deprecated. Please use tf.compat.v1.train.Saver instead.
+
+WARNING:tensorflow:From /home/the1kieran/ME_751_Code/chrono-tensorflow/PPO/policy.py:200: The name tf.reset_default_graph is deprecated. Please use tf.compat.v1.reset_default_graph instead.
+
+WARNING:tensorflow:From /home/the1kieran/ME_751_Code/chrono-tensorflow/PPO/policy.py:202: The name tf.ConfigProto is deprecated. Please use tf.compat.v1.ConfigProto instead.
+
+WARNING:tensorflow:From /home/the1kieran/ME_751_Code/chrono-tensorflow/PPO/policy.py:200: The name tf.reset_default_graph is deprecated. Please use tf.compat.v1.reset_default_graph instead.
+
+WARNING:tensorflow:From /home/the1kieran/ME_751_Code/chrono-tensorflow/PPO/policy.py:200: The name tf.reset_default_graph is deprecated. Please use tf.compat.v1.reset_default_graph instead.
+
+WARNING:tensorflow:From /home/the1kieran/ME_751_Code/chrono-tensorflow/PPO/policy.py:202: The name tf.ConfigProto is deprecated. Please use tf.compat.v1.ConfigProto instead.
+
+WARNING:tensorflow:From /home/the1kieran/ME_751_Code/chrono-tensorflow/PPO/policy.py:204: The name tf.Session is deprecated. Please use tf.compat.v1.Session instead.
+
+WARNING:tensorflow:From /home/the1kieran/ME_751_Code/chrono-tensorflow/PPO/policy.py:202: The name tf.ConfigProto is deprecated. Please use tf.compat.v1.ConfigProto instead.
+
+WARNING:tensorflow:From /home/the1kieran/ME_751_Code/chrono-tensorflow/PPO/policy.py:204: The name tf.Session is deprecated. Please use tf.compat.v1.Session instead.
+
+WARNING:tensorflow:From /home/the1kieran/ME_751_Code/chrono-tensorflow/PPO/policy.py:204: The name tf.Session is deprecated. Please use tf.compat.v1.Session instead.
+
+WARNING:tensorflow:From /home/the1kieran/ME_751_Code/chrono-tensorflow/PPO/policy.py:200: The name tf.reset_default_graph is deprecated. Please use tf.compat.v1.reset_default_graph instead.
+
+WARNING:tensorflow:From /home/the1kieran/ME_751_Code/chrono-tensorflow/PPO/policy.py:200: The name tf.reset_default_graph is deprecated. Please use tf.compat.v1.reset_default_graph instead.
+
+WARNING:tensorflow:From /home/the1kieran/ME_751_Code/chrono-tensorflow/PPO/policy.py:202: The name tf.ConfigProto is deprecated. Please use tf.compat.v1.ConfigProto instead.
+
+WARNING:tensorflow:From /home/the1kieran/ME_751_Code/chrono-tensorflow/PPO/policy.py:202: The name tf.ConfigProto is deprecated. Please use tf.compat.v1.ConfigProto instead.
+
+WARNING:tensorflow:From /home/the1kieran/ME_751_Code/chrono-tensorflow/PPO/policy.py:204: The name tf.Session is deprecated. Please use tf.compat.v1.Session instead.
+
+WARNING:tensorflow:From /home/the1kieran/ME_751_Code/chrono-tensorflow/PPO/policy.py:200: The name tf.reset_default_graph is deprecated. Please use tf.compat.v1.reset_default_graph instead.
+
+WARNING:tensorflow:From /home/the1kieran/ME_751_Code/chrono-tensorflow/PPO/policy.py:202: The name tf.ConfigProto is deprecated. Please use tf.compat.v1.ConfigProto instead.
+
+WARNING:tensorflow:From /home/the1kieran/ME_751_Code/chrono-tensorflow/PPO/policy.py:204: The name tf.Session is deprecated. Please use tf.compat.v1.Session instead.
+
+WARNING:tensorflow:From /home/the1kieran/ME_751_Code/chrono-tensorflow/PPO/policy.py:204: The name tf.Session is deprecated. Please use tf.compat.v1.Session instead.
+
+2019-12-11 15:32:07.392625: I tensorflow/core/platform/cpu_feature_guard.cc:142] Your CPU supports instructions that this TensorFlow binary was not compiled to use: AVX2 FMA
+2019-12-11 15:32:07.399369: I tensorflow/core/platform/cpu_feature_guard.cc:142] Your CPU supports instructions that this TensorFlow binary was not compiled to use: AVX2 FMA
+2019-12-11 15:32:07.407376: I tensorflow/core/platform/profile_utils/cpu_utils.cc:94] CPU Frequency: 2592000000 Hz
+2019-12-11 15:32:07.408323: I tensorflow/compiler/xla/service/service.cc:168] XLA service 0x55b4026ec500 executing computations on platform Host. Devices:
+2019-12-11 15:32:07.408358: I tensorflow/compiler/xla/service/service.cc:175]   StreamExecutor device (0): <undefined>, <undefined>
+WARNING:tensorflow:From /home/the1kieran/ME_751_Code/chrono-tensorflow/PPO/policy.py:210: The name tf.train.import_meta_graph is deprecated. Please use tf.compat.v1.train.import_meta_graph instead.
+
+2019-12-11 15:32:07.409190: I tensorflow/core/platform/cpu_feature_guard.cc:142] Your CPU supports instructions that this TensorFlow binary was not compiled to use: AVX2 FMA
+2019-12-11 15:32:07.413335: I tensorflow/core/platform/profile_utils/cpu_utils.cc:94] CPU Frequency: 2592000000 Hz
+2019-12-11 15:32:07.413659: I tensorflow/compiler/xla/service/service.cc:168] XLA service 0x55b4026ec500 executing computations on platform Host. Devices:
+2019-12-11 15:32:07.413686: I tensorflow/compiler/xla/service/service.cc:175]   StreamExecutor device (0): <undefined>, <undefined>
+2019-12-11 15:32:07.414145: I tensorflow/core/platform/cpu_feature_guard.cc:142] Your CPU supports instructions that this TensorFlow binary was not compiled to use: AVX2 FMA
+WARNING:tensorflow:From /home/the1kieran/ME_751_Code/chrono-tensorflow/PPO/policy.py:210: The name tf.train.import_meta_graph is deprecated. Please use tf.compat.v1.train.import_meta_graph instead.
+
+2019-12-11 15:32:07.421437: I tensorflow/core/platform/profile_utils/cpu_utils.cc:94] CPU Frequency: 2592000000 Hz
+2019-12-11 15:32:07.422208: I tensorflow/compiler/xla/service/service.cc:168] XLA service 0x55b4026ec500 executing computations on platform Host. Devices:
+2019-12-11 15:32:07.422244: I tensorflow/compiler/xla/service/service.cc:175]   StreamExecutor device (0): <undefined>, <undefined>
+WARNING:tensorflow:From /home/the1kieran/ME_751_Code/chrono-tensorflow/PPO/policy.py:210: The name tf.train.import_meta_graph is deprecated. Please use tf.compat.v1.train.import_meta_graph instead.
+
+2019-12-11 15:32:07.424958: I tensorflow/core/platform/profile_utils/cpu_utils.cc:94] CPU Frequency: 2592000000 Hz
+2019-12-11 15:32:07.425267: I tensorflow/compiler/xla/service/service.cc:168] XLA service 0x55b4026ec500 executing computations on platform Host. Devices:
+2019-12-11 15:32:07.425302: I tensorflow/compiler/xla/service/service.cc:175]   StreamExecutor device (0): <undefined>, <undefined>
+WARNING:tensorflow:From /home/the1kieran/ME_751_Code/chrono-tensorflow/PPO/policy.py:210: The name tf.train.import_meta_graph is deprecated. Please use tf.compat.v1.train.import_meta_graph instead.
+
+2019-12-11 15:32:07.426442: I tensorflow/core/platform/cpu_feature_guard.cc:142] Your CPU supports instructions that this TensorFlow binary was not compiled to use: AVX2 FMA
+2019-12-11 15:32:07.432418: I tensorflow/core/platform/cpu_feature_guard.cc:142] Your CPU supports instructions that this TensorFlow binary was not compiled to use: AVX2 FMA
+2019-12-11 15:32:07.434590: I tensorflow/core/platform/profile_utils/cpu_utils.cc:94] CPU Frequency: 2592000000 Hz
+2019-12-11 15:32:07.434922: I tensorflow/compiler/xla/service/service.cc:168] XLA service 0x55b4026ec500 executing computations on platform Host. Devices:
+2019-12-11 15:32:07.434952: I tensorflow/compiler/xla/service/service.cc:175]   StreamExecutor device (0): <undefined>, <undefined>
+WARNING:tensorflow:From /home/the1kieran/ME_751_Code/chrono-tensorflow/PPO/policy.py:210: The name tf.train.import_meta_graph is deprecated. Please use tf.compat.v1.train.import_meta_graph instead.
+
+2019-12-11 15:32:07.446233: I tensorflow/core/platform/profile_utils/cpu_utils.cc:94] CPU Frequency: 2592000000 Hz
+2019-12-11 15:32:07.446521: I tensorflow/compiler/xla/service/service.cc:168] XLA service 0x55b4026ec500 executing computations on platform Host. Devices:
+2019-12-11 15:32:07.446562: I tensorflow/compiler/xla/service/service.cc:175]   StreamExecutor device (0): <undefined>, <undefined>
+WARNING:tensorflow:From /home/the1kieran/ME_751_Code/chrono-tensorflow/PPO/policy.py:210: The name tf.train.import_meta_graph is deprecated. Please use tf.compat.v1.train.import_meta_graph instead.
+
+WARNING:tensorflow:From /home/the1kieran/ME_751_Code/chrono-tensorflow/PPO/policy.py:211: The name tf.global_variables_initializer is deprecated. Please use tf.compat.v1.global_variables_initializer instead.
+
+WARNING:tensorflow:From /home/the1kieran/ME_751_Code/chrono-tensorflow/PPO/policy.py:211: The name tf.global_variables_initializer is deprecated. Please use tf.compat.v1.global_variables_initializer instead.
+
+WARNING:tensorflow:From /home/the1kieran/ME_751_Code/chrono-tensorflow/PPO/policy.py:211: The name tf.global_variables_initializer is deprecated. Please use tf.compat.v1.global_variables_initializer instead.
+
+WARNING:tensorflow:From /home/the1kieran/ME_751_Code/chrono-tensorflow/PPO/policy.py:211: The name tf.global_variables_initializer is deprecated. Please use tf.compat.v1.global_variables_initializer instead.
+
+WARNING:tensorflow:From /home/the1kieran/ME_751_Code/chrono-tensorflow/PPO/policy.py:211: The name tf.global_variables_initializer is deprecated. Please use tf.compat.v1.global_variables_initializer instead.
+
+WARNING:tensorflow:From /home/the1kieran/ME_751_Code/chrono-tensorflow/PPO/policy.py:211: The name tf.global_variables_initializer is deprecated. Please use tf.compat.v1.global_variables_initializer instead.
+
+2019-12-11 15:32:08.381663: W tensorflow/compiler/jit/mark_for_compilation_pass.cc:1412] (One-time warning): Not using XLA:CPU for cluster because envvar TF_XLA_FLAGS=--tf_xla_cpu_global_jit was not set.  If you want XLA:CPU, either set that envvar, or use experimental_jit_scope to enable XLA:CPU.  To confirm that XLA is active, pass --vmodule=xla_compilation_cache=1 (as a proper command-line flag, not via TF_XLA_FLAGS) or set the envvar XLA_FLAGS=--xla_hlo_profile.
+2019-12-11 15:32:08.388975: W tensorflow/compiler/jit/mark_for_compilation_pass.cc:1412] (One-time warning): Not using XLA:CPU for cluster because envvar TF_XLA_FLAGS=--tf_xla_cpu_global_jit was not set.  If you want XLA:CPU, either set that envvar, or use experimental_jit_scope to enable XLA:CPU.  To confirm that XLA is active, pass --vmodule=xla_compilation_cache=1 (as a proper command-line flag, not via TF_XLA_FLAGS) or set the envvar XLA_FLAGS=--xla_hlo_profile.
+WARNING:tensorflow:From /home/the1kieran/ME_751_Code/chrono-tensorflow/PPO/policy.py:212: The name tf.get_default_graph is deprecated. Please use tf.compat.v1.get_default_graph instead.
+
+WARNING:tensorflow:From /home/the1kieran/ME_751_Code/chrono-tensorflow/PPO/policy.py:231: The name tf.train.Saver is deprecated. Please use tf.compat.v1.train.Saver instead.
+
+WARNING:tensorflow:From /home/the1kieran/ME_751_Code/chrono-tensorflow/PPO/policy.py:212: The name tf.get_default_graph is deprecated. Please use tf.compat.v1.get_default_graph instead.
+
+2019-12-11 15:32:08.416713: W tensorflow/compiler/jit/mark_for_compilation_pass.cc:1412] (One-time warning): Not using XLA:CPU for cluster because envvar TF_XLA_FLAGS=--tf_xla_cpu_global_jit was not set.  If you want XLA:CPU, either set that envvar, or use experimental_jit_scope to enable XLA:CPU.  To confirm that XLA is active, pass --vmodule=xla_compilation_cache=1 (as a proper command-line flag, not via TF_XLA_FLAGS) or set the envvar XLA_FLAGS=--xla_hlo_profile.
+WARNING:tensorflow:From /home/the1kieran/ME_751_Code/chrono-tensorflow/PPO/policy.py:231: The name tf.train.Saver is deprecated. Please use tf.compat.v1.train.Saver instead.
+
+WARNING:tensorflow:From /home/the1kieran/ME_751_Code/chrono-tensorflow/PPO/policy.py:212: The name tf.get_default_graph is deprecated. Please use tf.compat.v1.get_default_graph instead.
+
+WARNING:tensorflow:From /home/the1kieran/ME_751_Code/chrono-tensorflow/PPO/policy.py:231: The name tf.train.Saver is deprecated. Please use tf.compat.v1.train.Saver instead.
+
+2019-12-11 15:32:08.455896: W tensorflow/compiler/jit/mark_for_compilation_pass.cc:1412] (One-time warning): Not using XLA:CPU for cluster because envvar TF_XLA_FLAGS=--tf_xla_cpu_global_jit was not set.  If you want XLA:CPU, either set that envvar, or use experimental_jit_scope to enable XLA:CPU.  To confirm that XLA is active, pass --vmodule=xla_compilation_cache=1 (as a proper command-line flag, not via TF_XLA_FLAGS) or set the envvar XLA_FLAGS=--xla_hlo_profile.
+WARNING:tensorflow:From /home/the1kieran/ME_751_Code/chrono-tensorflow/PPO/policy.py:212: The name tf.get_default_graph is deprecated. Please use tf.compat.v1.get_default_graph instead.
+
+WARNING:tensorflow:From /home/the1kieran/ME_751_Code/chrono-tensorflow/PPO/policy.py:231: The name tf.train.Saver is deprecated. Please use tf.compat.v1.train.Saver instead.
+
+2019-12-11 15:32:08.520495: W tensorflow/compiler/jit/mark_for_compilation_pass.cc:1412] (One-time warning): Not using XLA:CPU for cluster because envvar TF_XLA_FLAGS=--tf_xla_cpu_global_jit was not set.  If you want XLA:CPU, either set that envvar, or use experimental_jit_scope to enable XLA:CPU.  To confirm that XLA is active, pass --vmodule=xla_compilation_cache=1 (as a proper command-line flag, not via TF_XLA_FLAGS) or set the envvar XLA_FLAGS=--xla_hlo_profile.
+2019-12-11 15:32:08.528565: W tensorflow/compiler/jit/mark_for_compilation_pass.cc:1412] (One-time warning): Not using XLA:CPU for cluster because envvar TF_XLA_FLAGS=--tf_xla_cpu_global_jit was not set.  If you want XLA:CPU, either set that envvar, or use experimental_jit_scope to enable XLA:CPU.  To confirm that XLA is active, pass --vmodule=xla_compilation_cache=1 (as a proper command-line flag, not via TF_XLA_FLAGS) or set the envvar XLA_FLAGS=--xla_hlo_profile.
+WARNING:tensorflow:From /home/the1kieran/ME_751_Code/chrono-tensorflow/PPO/policy.py:212: The name tf.get_default_graph is deprecated. Please use tf.compat.v1.get_default_graph instead.
+
+WARNING:tensorflow:From /home/the1kieran/ME_751_Code/chrono-tensorflow/PPO/policy.py:231: The name tf.train.Saver is deprecated. Please use tf.compat.v1.train.Saver instead.
+
+WARNING:tensorflow:From /home/the1kieran/anaconda3/lib/python3.7/site-packages/tensorflow/python/training/saver.py:1276: checkpoint_exists (from tensorflow.python.training.checkpoint_management) is deprecated and will be removed in a future version.
+Instructions for updating:
+Use standard file APIs to check for files with this prefix.
+WARNING:tensorflow:From /home/the1kieran/ME_751_Code/chrono-tensorflow/PPO/policy.py:212: The name tf.get_default_graph is deprecated. Please use tf.compat.v1.get_default_graph instead.
+
+WARNING:tensorflow:From /home/the1kieran/ME_751_Code/chrono-tensorflow/PPO/policy.py:231: The name tf.train.Saver is deprecated. Please use tf.compat.v1.train.Saver instead.
+
+WARNING:tensorflow:From /home/the1kieran/anaconda3/lib/python3.7/site-packages/tensorflow/python/training/saver.py:1276: checkpoint_exists (from tensorflow.python.training.checkpoint_management) is deprecated and will be removed in a future version.
+Instructions for updating:
+Use standard file APIs to check for files with this prefix.
+WARNING:tensorflow:From /home/the1kieran/anaconda3/lib/python3.7/site-packages/tensorflow/python/training/saver.py:1276: checkpoint_exists (from tensorflow.python.training.checkpoint_management) is deprecated and will be removed in a future version.
+Instructions for updating:
+Use standard file APIs to check for files with this prefix.
+WARNING:tensorflow:From /home/the1kieran/anaconda3/lib/python3.7/site-packages/tensorflow/python/training/saver.py:1276: checkpoint_exists (from tensorflow.python.training.checkpoint_management) is deprecated and will be removed in a future version.
+Instructions for updating:
+Use standard file APIs to check for files with this prefix.
+WARNING:tensorflow:From /home/the1kieran/anaconda3/lib/python3.7/site-packages/tensorflow/python/training/saver.py:1276: checkpoint_exists (from tensorflow.python.training.checkpoint_management) is deprecated and will be removed in a future version.
+Instructions for updating:
+Use standard file APIs to check for files with this prefix.
+WARNING:tensorflow:From /home/the1kieran/anaconda3/lib/python3.7/site-packages/tensorflow/python/training/saver.py:1276: checkpoint_exists (from tensorflow.python.training.checkpoint_management) is deprecated and will be removed in a future version.
+Instructions for updating:
+Use standard file APIs to check for files with this prefix.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+***** Episode 20, Mean R = 665.3 *****
+Beta: 1.5
+ExplainedVarNew: 0.793
+ExplainedVarOld: 0.278
+KL: 0.0132
+PolicyEntropy: 4.01
+PolicyLoss: 0.0138
+ValFuncLoss: 0.00797
+
+
+Destructor called, No device to delete.
+progress: 2 out of 3
+finished
+(base) PPO$bash run_serial.sh 
+2019-12-11 15:34:29.733811: I tensorflow/core/platform/cpu_feature_guard.cc:142] Your CPU supports instructions that this TensorFlow binary was not compiled to use: AVX2 FMA
+2019-12-11 15:34:29.757401: I tensorflow/core/platform/profile_utils/cpu_utils.cc:94] CPU Frequency: 2592000000 Hz
+2019-12-11 15:34:29.757733: I tensorflow/compiler/xla/service/service.cc:168] XLA service 0x557a97be44b0 executing computations on platform Host. Devices:
+2019-12-11 15:34:29.757774: I tensorflow/compiler/xla/service/service.cc:175]   StreamExecutor device (0): <undefined>, <undefined>
+2019-12-11 15:34:29.954481: W tensorflow/compiler/jit/mark_for_compilation_pass.cc:1412] (One-time warning): Not using XLA:CPU for cluster because envvar TF_XLA_FLAGS=--tf_xla_cpu_global_jit was not set.  If you want XLA:CPU, either set that envvar, or use experimental_jit_scope to enable XLA:CPU.  To confirm that XLA is active, pass --vmodule=xla_compilation_cache=1 (as a proper command-line flag, not via TF_XLA_FLAGS) or set the envvar XLA_FLAGS=--xla_hlo_profile.
+WARNING:tensorflow:From /home/the1kieran/anaconda3/lib/python3.7/site-packages/tensorflow/python/training/saver.py:1276: checkpoint_exists (from tensorflow.python.training.checkpoint_management) is deprecated and will be removed in a future version.
+Instructions for updating:
+Use standard file APIs to check for files with this prefix.
+WARNING:tensorflow:From /home/the1kieran/ME_751_Code/chrono-tensorflow/PPO/policy.py:200: The name tf.reset_default_graph is deprecated. Please use tf.compat.v1.reset_default_graph instead.
+
+WARNING:tensorflow:From /home/the1kieran/ME_751_Code/chrono-tensorflow/PPO/policy.py:207: The name tf.Session is deprecated. Please use tf.compat.v1.Session instead.
+
+WARNING:tensorflow:From /home/the1kieran/ME_751_Code/chrono-tensorflow/PPO/policy.py:210: The name tf.train.import_meta_graph is deprecated. Please use tf.compat.v1.train.import_meta_graph instead.
+
+WARNING:tensorflow:From /home/the1kieran/ME_751_Code/chrono-tensorflow/PPO/policy.py:211: The name tf.global_variables_initializer is deprecated. Please use tf.compat.v1.global_variables_initializer instead.
+
+WARNING:tensorflow:From /home/the1kieran/ME_751_Code/chrono-tensorflow/PPO/policy.py:212: The name tf.get_default_graph is deprecated. Please use tf.compat.v1.get_default_graph instead.
+
+WARNING:tensorflow:From /home/the1kieran/ME_751_Code/chrono-tensorflow/PPO/policy.py:231: The name tf.train.Saver is deprecated. Please use tf.compat.v1.train.Saver instead.
+
+***** Episode 20, Mean R = 616.6 *****
+Beta: 1.5
+ExplainedVarNew: 0.846
+ExplainedVarOld: 0.379
+KL: 0.00675
+PolicyEntropy: 4
+PolicyLoss: -0.00529
+Steps: 2.02e+04
+ValFuncLoss: 0.00653
+
+
+Destructor called, No device to delete.
+2019-12-11 15:34:58.818731: I tensorflow/core/platform/cpu_feature_guard.cc:142] Your CPU supports instructions that this TensorFlow binary was not compiled to use: AVX2 FMA
+2019-12-11 15:34:58.841449: I tensorflow/core/platform/profile_utils/cpu_utils.cc:94] CPU Frequency: 2592000000 Hz
+2019-12-11 15:34:58.841867: I tensorflow/compiler/xla/service/service.cc:168] XLA service 0x5624c6323500 executing computations on platform Host. Devices:
+2019-12-11 15:34:58.841913: I tensorflow/compiler/xla/service/service.cc:175]   StreamExecutor device (0): <undefined>, <undefined>
+2019-12-11 15:34:59.083864: W tensorflow/compiler/jit/mark_for_compilation_pass.cc:1412] (One-time warning): Not using XLA:CPU for cluster because envvar TF_XLA_FLAGS=--tf_xla_cpu_global_jit was not set.  If you want XLA:CPU, either set that envvar, or use experimental_jit_scope to enable XLA:CPU.  To confirm that XLA is active, pass --vmodule=xla_compilation_cache=1 (as a proper command-line flag, not via TF_XLA_FLAGS) or set the envvar XLA_FLAGS=--xla_hlo_profile.
+WARNING:tensorflow:From /home/the1kieran/anaconda3/lib/python3.7/site-packages/tensorflow/python/training/saver.py:1276: checkpoint_exists (from tensorflow.python.training.checkpoint_management) is deprecated and will be removed in a future version.
+Instructions for updating:
+Use standard file APIs to check for files with this prefix.
+WARNING:tensorflow:From /home/the1kieran/ME_751_Code/chrono-tensorflow/PPO/policy.py:200: The name tf.reset_default_graph is deprecated. Please use tf.compat.v1.reset_default_graph instead.
+
+WARNING:tensorflow:From /home/the1kieran/ME_751_Code/chrono-tensorflow/PPO/policy.py:202: The name tf.ConfigProto is deprecated. Please use tf.compat.v1.ConfigProto instead.
+
+WARNING:tensorflow:From /home/the1kieran/ME_751_Code/chrono-tensorflow/PPO/policy.py:204: The name tf.Session is deprecated. Please use tf.compat.v1.Session instead.
+
+WARNING:tensorflow:From /home/the1kieran/ME_751_Code/chrono-tensorflow/PPO/policy.py:210: The name tf.train.import_meta_graph is deprecated. Please use tf.compat.v1.train.import_meta_graph instead.
+
+WARNING:tensorflow:From /home/the1kieran/ME_751_Code/chrono-tensorflow/PPO/policy.py:211: The name tf.global_variables_initializer is deprecated. Please use tf.compat.v1.global_variables_initializer instead.
+
+WARNING:tensorflow:From /home/the1kieran/ME_751_Code/chrono-tensorflow/PPO/policy.py:212: The name tf.get_default_graph is deprecated. Please use tf.compat.v1.get_default_graph instead.
+
+WARNING:tensorflow:From /home/the1kieran/ME_751_Code/chrono-tensorflow/PPO/policy.py:231: The name tf.train.Saver is deprecated. Please use tf.compat.v1.train.Saver instead.
+
+WARNING:tensorflow:From /home/the1kieran/ME_751_Code/chrono-tensorflow/PPO/policy.py:200: The name tf.reset_default_graph is deprecated. Please use tf.compat.v1.reset_default_graph instead.
+
+WARNING:tensorflow:From /home/the1kieran/ME_751_Code/chrono-tensorflow/PPO/policy.py:200: The name tf.reset_default_graph is deprecated. Please use tf.compat.v1.reset_default_graph instead.
+
+WARNING:tensorflow:From /home/the1kieran/ME_751_Code/chrono-tensorflow/PPO/policy.py:200: The name tf.reset_default_graph is deprecated. Please use tf.compat.v1.reset_default_graph instead.
+
+WARNING:tensorflow:From /home/the1kieran/ME_751_Code/chrono-tensorflow/PPO/policy.py:202: The name tf.ConfigProto is deprecated. Please use tf.compat.v1.ConfigProto instead.
+
+WARNING:tensorflow:From /home/the1kieran/ME_751_Code/chrono-tensorflow/PPO/policy.py:202: The name tf.ConfigProto is deprecated. Please use tf.compat.v1.ConfigProto instead.
+
+WARNING:tensorflow:From /home/the1kieran/ME_751_Code/chrono-tensorflow/PPO/policy.py:202: The name tf.ConfigProto is deprecated. Please use tf.compat.v1.ConfigProto instead.
+
+WARNING:tensorflow:From /home/the1kieran/ME_751_Code/chrono-tensorflow/PPO/policy.py:204: The name tf.Session is deprecated. Please use tf.compat.v1.Session instead.
+
+WARNING:tensorflow:From /home/the1kieran/ME_751_Code/chrono-tensorflow/PPO/policy.py:204: The name tf.Session is deprecated. Please use tf.compat.v1.Session instead.
+
+WARNING:tensorflow:From /home/the1kieran/ME_751_Code/chrono-tensorflow/PPO/policy.py:204: The name tf.Session is deprecated. Please use tf.compat.v1.Session instead.
+
+WARNING:tensorflow:From /home/the1kieran/ME_751_Code/chrono-tensorflow/PPO/policy.py:200: The name tf.reset_default_graph is deprecated. Please use tf.compat.v1.reset_default_graph instead.
+
+WARNING:tensorflow:From /home/the1kieran/ME_751_Code/chrono-tensorflow/PPO/policy.py:202: The name tf.ConfigProto is deprecated. Please use tf.compat.v1.ConfigProto instead.
+
+WARNING:tensorflow:From /home/the1kieran/ME_751_Code/chrono-tensorflow/PPO/policy.py:204: The name tf.Session is deprecated. Please use tf.compat.v1.Session instead.
+
+WARNING:tensorflow:From /home/the1kieran/ME_751_Code/chrono-tensorflow/PPO/policy.py:200: The name tf.reset_default_graph is deprecated. Please use tf.compat.v1.reset_default_graph instead.
+
+WARNING:tensorflow:From /home/the1kieran/ME_751_Code/chrono-tensorflow/PPO/policy.py:202: The name tf.ConfigProto is deprecated. Please use tf.compat.v1.ConfigProto instead.
+
+WARNING:tensorflow:From /home/the1kieran/ME_751_Code/chrono-tensorflow/PPO/policy.py:204: The name tf.Session is deprecated. Please use tf.compat.v1.Session instead.
+
+WARNING:tensorflow:From /home/the1kieran/ME_751_Code/chrono-tensorflow/PPO/policy.py:200: The name tf.reset_default_graph is deprecated. Please use tf.compat.v1.reset_default_graph instead.
+
+WARNING:tensorflow:From /home/the1kieran/ME_751_Code/chrono-tensorflow/PPO/policy.py:202: The name tf.ConfigProto is deprecated. Please use tf.compat.v1.ConfigProto instead.
+
+WARNING:tensorflow:From /home/the1kieran/ME_751_Code/chrono-tensorflow/PPO/policy.py:204: The name tf.Session is deprecated. Please use tf.compat.v1.Session instead.
+
+2019-12-11 15:34:59.758913: I tensorflow/core/platform/cpu_feature_guard.cc:142] Your CPU supports instructions that this TensorFlow binary was not compiled to use: AVX2 FMA
+2019-12-11 15:34:59.759054: I tensorflow/core/platform/cpu_feature_guard.cc:142] Your CPU supports instructions that this TensorFlow binary was not compiled to use: AVX2 FMA
+2019-12-11 15:34:59.759707: I tensorflow/core/platform/cpu_feature_guard.cc:142] Your CPU supports instructions that this TensorFlow binary was not compiled to use: AVX2 FMA
+2019-12-11 15:34:59.766810: I tensorflow/core/platform/profile_utils/cpu_utils.cc:94] CPU Frequency: 2592000000 Hz
+2019-12-11 15:34:59.767101: I tensorflow/compiler/xla/service/service.cc:168] XLA service 0x5624c6323500 executing computations on platform Host. Devices:
+2019-12-11 15:34:59.767133: I tensorflow/compiler/xla/service/service.cc:175]   StreamExecutor device (0): <undefined>, <undefined>
+WARNING:tensorflow:From /home/the1kieran/ME_751_Code/chrono-tensorflow/PPO/policy.py:210: The name tf.train.import_meta_graph is deprecated. Please use tf.compat.v1.train.import_meta_graph instead.
+
+2019-12-11 15:34:59.769305: I tensorflow/core/platform/profile_utils/cpu_utils.cc:94] CPU Frequency: 2592000000 Hz
+2019-12-11 15:34:59.769569: I tensorflow/compiler/xla/service/service.cc:168] XLA service 0x5624c6323500 executing computations on platform Host. Devices:
+2019-12-11 15:34:59.769674: I tensorflow/compiler/xla/service/service.cc:175]   StreamExecutor device (0): <undefined>, <undefined>
+WARNING:tensorflow:From /home/the1kieran/ME_751_Code/chrono-tensorflow/PPO/policy.py:210: The name tf.train.import_meta_graph is deprecated. Please use tf.compat.v1.train.import_meta_graph instead.
+
+2019-12-11 15:34:59.779012: I tensorflow/core/platform/profile_utils/cpu_utils.cc:94] CPU Frequency: 2592000000 Hz
+2019-12-11 15:34:59.779897: I tensorflow/compiler/xla/service/service.cc:168] XLA service 0x5624c6323500 executing computations on platform Host. Devices:
+2019-12-11 15:34:59.779925: I tensorflow/compiler/xla/service/service.cc:175]   StreamExecutor device (0): <undefined>, <undefined>
+WARNING:tensorflow:From /home/the1kieran/ME_751_Code/chrono-tensorflow/PPO/policy.py:210: The name tf.train.import_meta_graph is deprecated. Please use tf.compat.v1.train.import_meta_graph instead.
+
+2019-12-11 15:34:59.782337: I tensorflow/core/platform/cpu_feature_guard.cc:142] Your CPU supports instructions that this TensorFlow binary was not compiled to use: AVX2 FMA
+2019-12-11 15:34:59.786091: I tensorflow/core/platform/cpu_feature_guard.cc:142] Your CPU supports instructions that this TensorFlow binary was not compiled to use: AVX2 FMA
+2019-12-11 15:34:59.798318: I tensorflow/core/platform/cpu_feature_guard.cc:142] Your CPU supports instructions that this TensorFlow binary was not compiled to use: AVX2 FMA
+2019-12-11 15:34:59.801320: I tensorflow/core/platform/profile_utils/cpu_utils.cc:94] CPU Frequency: 2592000000 Hz
+2019-12-11 15:34:59.801612: I tensorflow/compiler/xla/service/service.cc:168] XLA service 0x5624c6323500 executing computations on platform Host. Devices:
+2019-12-11 15:34:59.801636: I tensorflow/compiler/xla/service/service.cc:175]   StreamExecutor device (0): <undefined>, <undefined>
+WARNING:tensorflow:From /home/the1kieran/ME_751_Code/chrono-tensorflow/PPO/policy.py:210: The name tf.train.import_meta_graph is deprecated. Please use tf.compat.v1.train.import_meta_graph instead.
+
+2019-12-11 15:34:59.806391: I tensorflow/core/platform/profile_utils/cpu_utils.cc:94] CPU Frequency: 2592000000 Hz
+2019-12-11 15:34:59.806703: I tensorflow/compiler/xla/service/service.cc:168] XLA service 0x5624c6323500 executing computations on platform Host. Devices:
+2019-12-11 15:34:59.806798: I tensorflow/compiler/xla/service/service.cc:175]   StreamExecutor device (0): <undefined>, <undefined>
+2019-12-11 15:34:59.807258: I tensorflow/core/platform/profile_utils/cpu_utils.cc:94] CPU Frequency: 2592000000 Hz
+WARNING:tensorflow:From /home/the1kieran/ME_751_Code/chrono-tensorflow/PPO/policy.py:210: The name tf.train.import_meta_graph is deprecated. Please use tf.compat.v1.train.import_meta_graph instead.
+
+2019-12-11 15:34:59.807517: I tensorflow/compiler/xla/service/service.cc:168] XLA service 0x5624c6323500 executing computations on platform Host. Devices:
+2019-12-11 15:34:59.807687: I tensorflow/compiler/xla/service/service.cc:175]   StreamExecutor device (0): <undefined>, <undefined>
+WARNING:tensorflow:From /home/the1kieran/ME_751_Code/chrono-tensorflow/PPO/policy.py:210: The name tf.train.import_meta_graph is deprecated. Please use tf.compat.v1.train.import_meta_graph instead.
+
+WARNING:tensorflow:From /home/the1kieran/ME_751_Code/chrono-tensorflow/PPO/policy.py:211: The name tf.global_variables_initializer is deprecated. Please use tf.compat.v1.global_variables_initializer instead.
+
+WARNING:tensorflow:From /home/the1kieran/ME_751_Code/chrono-tensorflow/PPO/policy.py:211: The name tf.global_variables_initializer is deprecated. Please use tf.compat.v1.global_variables_initializer instead.
+
+WARNING:tensorflow:From /home/the1kieran/ME_751_Code/chrono-tensorflow/PPO/policy.py:211: The name tf.global_variables_initializer is deprecated. Please use tf.compat.v1.global_variables_initializer instead.
+
+WARNING:tensorflow:From /home/the1kieran/ME_751_Code/chrono-tensorflow/PPO/policy.py:211: The name tf.global_variables_initializer is deprecated. Please use tf.compat.v1.global_variables_initializer instead.
+
+WARNING:tensorflow:From /home/the1kieran/ME_751_Code/chrono-tensorflow/PPO/policy.py:211: The name tf.global_variables_initializer is deprecated. Please use tf.compat.v1.global_variables_initializer instead.
+
+2019-12-11 15:35:00.687488: W tensorflow/compiler/jit/mark_for_compilation_pass.cc:1412] (One-time warning): Not using XLA:CPU for cluster because envvar TF_XLA_FLAGS=--tf_xla_cpu_global_jit was not set.  If you want XLA:CPU, either set that envvar, or use experimental_jit_scope to enable XLA:CPU.  To confirm that XLA is active, pass --vmodule=xla_compilation_cache=1 (as a proper command-line flag, not via TF_XLA_FLAGS) or set the envvar XLA_FLAGS=--xla_hlo_profile.
+WARNING:tensorflow:From /home/the1kieran/ME_751_Code/chrono-tensorflow/PPO/policy.py:212: The name tf.get_default_graph is deprecated. Please use tf.compat.v1.get_default_graph instead.
+
+WARNING:tensorflow:From /home/the1kieran/ME_751_Code/chrono-tensorflow/PPO/policy.py:231: The name tf.train.Saver is deprecated. Please use tf.compat.v1.train.Saver instead.
+
+2019-12-11 15:35:00.713438: W tensorflow/compiler/jit/mark_for_compilation_pass.cc:1412] (One-time warning): Not using XLA:CPU for cluster because envvar TF_XLA_FLAGS=--tf_xla_cpu_global_jit was not set.  If you want XLA:CPU, either set that envvar, or use experimental_jit_scope to enable XLA:CPU.  To confirm that XLA is active, pass --vmodule=xla_compilation_cache=1 (as a proper command-line flag, not via TF_XLA_FLAGS) or set the envvar XLA_FLAGS=--xla_hlo_profile.
+WARNING:tensorflow:From /home/the1kieran/ME_751_Code/chrono-tensorflow/PPO/policy.py:212: The name tf.get_default_graph is deprecated. Please use tf.compat.v1.get_default_graph instead.
+
+WARNING:tensorflow:From /home/the1kieran/ME_751_Code/chrono-tensorflow/PPO/policy.py:231: The name tf.train.Saver is deprecated. Please use tf.compat.v1.train.Saver instead.
+
+WARNING:tensorflow:From /home/the1kieran/ME_751_Code/chrono-tensorflow/PPO/policy.py:211: The name tf.global_variables_initializer is deprecated. Please use tf.compat.v1.global_variables_initializer instead.
+
+2019-12-11 15:35:00.794774: W tensorflow/compiler/jit/mark_for_compilation_pass.cc:1412] (One-time warning): Not using XLA:CPU for cluster because envvar TF_XLA_FLAGS=--tf_xla_cpu_global_jit was not set.  If you want XLA:CPU, either set that envvar, or use experimental_jit_scope to enable XLA:CPU.  To confirm that XLA is active, pass --vmodule=xla_compilation_cache=1 (as a proper command-line flag, not via TF_XLA_FLAGS) or set the envvar XLA_FLAGS=--xla_hlo_profile.
+2019-12-11 15:35:00.797279: W tensorflow/compiler/jit/mark_for_compilation_pass.cc:1412] (One-time warning): Not using XLA:CPU for cluster because envvar TF_XLA_FLAGS=--tf_xla_cpu_global_jit was not set.  If you want XLA:CPU, either set that envvar, or use experimental_jit_scope to enable XLA:CPU.  To confirm that XLA is active, pass --vmodule=xla_compilation_cache=1 (as a proper command-line flag, not via TF_XLA_FLAGS) or set the envvar XLA_FLAGS=--xla_hlo_profile.
+WARNING:tensorflow:From /home/the1kieran/ME_751_Code/chrono-tensorflow/PPO/policy.py:212: The name tf.get_default_graph is deprecated. Please use tf.compat.v1.get_default_graph instead.
+
+WARNING:tensorflow:From /home/the1kieran/ME_751_Code/chrono-tensorflow/PPO/policy.py:231: The name tf.train.Saver is deprecated. Please use tf.compat.v1.train.Saver instead.
+
+WARNING:tensorflow:From /home/the1kieran/anaconda3/lib/python3.7/site-packages/tensorflow/python/training/saver.py:1276: checkpoint_exists (from tensorflow.python.training.checkpoint_management) is deprecated and will be removed in a future version.
+Instructions for updating:
+Use standard file APIs to check for files with this prefix.
+WARNING:tensorflow:From /home/the1kieran/ME_751_Code/chrono-tensorflow/PPO/policy.py:212: The name tf.get_default_graph is deprecated. Please use tf.compat.v1.get_default_graph instead.
+
+WARNING:tensorflow:From /home/the1kieran/ME_751_Code/chrono-tensorflow/PPO/policy.py:231: The name tf.train.Saver is deprecated. Please use tf.compat.v1.train.Saver instead.
+
+2019-12-11 15:35:00.854635: W tensorflow/compiler/jit/mark_for_compilation_pass.cc:1412] (One-time warning): Not using XLA:CPU for cluster because envvar TF_XLA_FLAGS=--tf_xla_cpu_global_jit was not set.  If you want XLA:CPU, either set that envvar, or use experimental_jit_scope to enable XLA:CPU.  To confirm that XLA is active, pass --vmodule=xla_compilation_cache=1 (as a proper command-line flag, not via TF_XLA_FLAGS) or set the envvar XLA_FLAGS=--xla_hlo_profile.
+WARNING:tensorflow:From /home/the1kieran/ME_751_Code/chrono-tensorflow/PPO/policy.py:212: The name tf.get_default_graph is deprecated. Please use tf.compat.v1.get_default_graph instead.
+
+WARNING:tensorflow:From /home/the1kieran/ME_751_Code/chrono-tensorflow/PPO/policy.py:231: The name tf.train.Saver is deprecated. Please use tf.compat.v1.train.Saver instead.
+
+WARNING:tensorflow:From /home/the1kieran/anaconda3/lib/python3.7/site-packages/tensorflow/python/training/saver.py:1276: checkpoint_exists (from tensorflow.python.training.checkpoint_management) is deprecated and will be removed in a future version.
+Instructions for updating:
+Use standard file APIs to check for files with this prefix.
+2019-12-11 15:35:00.956615: W tensorflow/compiler/jit/mark_for_compilation_pass.cc:1412] (One-time warning): Not using XLA:CPU for cluster because envvar TF_XLA_FLAGS=--tf_xla_cpu_global_jit was not set.  If you want XLA:CPU, either set that envvar, or use experimental_jit_scope to enable XLA:CPU.  To confirm that XLA is active, pass --vmodule=xla_compilation_cache=1 (as a proper command-line flag, not via TF_XLA_FLAGS) or set the envvar XLA_FLAGS=--xla_hlo_profile.
+WARNING:tensorflow:From /home/the1kieran/anaconda3/lib/python3.7/site-packages/tensorflow/python/training/saver.py:1276: checkpoint_exists (from tensorflow.python.training.checkpoint_management) is deprecated and will be removed in a future version.
+Instructions for updating:
+Use standard file APIs to check for files with this prefix.
+WARNING:tensorflow:From /home/the1kieran/anaconda3/lib/python3.7/site-packages/tensorflow/python/training/saver.py:1276: checkpoint_exists (from tensorflow.python.training.checkpoint_management) is deprecated and will be removed in a future version.
+Instructions for updating:
+Use standard file APIs to check for files with this prefix.
+WARNING:tensorflow:From /home/the1kieran/ME_751_Code/chrono-tensorflow/PPO/policy.py:212: The name tf.get_default_graph is deprecated. Please use tf.compat.v1.get_default_graph instead.
+
+WARNING:tensorflow:From /home/the1kieran/ME_751_Code/chrono-tensorflow/PPO/policy.py:231: The name tf.train.Saver is deprecated. Please use tf.compat.v1.train.Saver instead.
+
+WARNING:tensorflow:From /home/the1kieran/anaconda3/lib/python3.7/site-packages/tensorflow/python/training/saver.py:1276: checkpoint_exists (from tensorflow.python.training.checkpoint_management) is deprecated and will be removed in a future version.
+Instructions for updating:
+Use standard file APIs to check for files with this prefix.
+WARNING:tensorflow:From /home/the1kieran/anaconda3/lib/python3.7/site-packages/tensorflow/python/training/saver.py:1276: checkpoint_exists (from tensorflow.python.training.checkpoint_management) is deprecated and will be removed in a future version.
+Instructions for updating:
+Use standard file APIs to check for files with this prefix.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+***** Episode 20, Mean R = 678.9 *****
+Beta: 1.5
+ExplainedVarNew: 0.856
+ExplainedVarOld: 0.334
+KL: 0.006
+PolicyEntropy: 3.98
+PolicyLoss: -0.00711
+ValFuncLoss: 0.0061
+
+
+Destructor called, No device to delete.
+progress: 1 out of 3
+2019-12-11 15:35:26.452245: I tensorflow/core/platform/cpu_feature_guard.cc:142] Your CPU supports instructions that this TensorFlow binary was not compiled to use: AVX2 FMA
+2019-12-11 15:35:26.473391: I tensorflow/core/platform/profile_utils/cpu_utils.cc:94] CPU Frequency: 2592000000 Hz
+2019-12-11 15:35:26.473837: I tensorflow/compiler/xla/service/service.cc:168] XLA service 0x563f162634b0 executing computations on platform Host. Devices:
+2019-12-11 15:35:26.473895: I tensorflow/compiler/xla/service/service.cc:175]   StreamExecutor device (0): <undefined>, <undefined>
+2019-12-11 15:35:26.693991: W tensorflow/compiler/jit/mark_for_compilation_pass.cc:1412] (One-time warning): Not using XLA:CPU for cluster because envvar TF_XLA_FLAGS=--tf_xla_cpu_global_jit was not set.  If you want XLA:CPU, either set that envvar, or use experimental_jit_scope to enable XLA:CPU.  To confirm that XLA is active, pass --vmodule=xla_compilation_cache=1 (as a proper command-line flag, not via TF_XLA_FLAGS) or set the envvar XLA_FLAGS=--xla_hlo_profile.
+WARNING:tensorflow:From /home/the1kieran/anaconda3/lib/python3.7/site-packages/tensorflow/python/training/saver.py:1276: checkpoint_exists (from tensorflow.python.training.checkpoint_management) is deprecated and will be removed in a future version.
+Instructions for updating:
+Use standard file APIs to check for files with this prefix.
+WARNING:tensorflow:From /home/the1kieran/ME_751_Code/chrono-tensorflow/PPO/policy.py:200: The name tf.reset_default_graph is deprecated. Please use tf.compat.v1.reset_default_graph instead.
+
+WARNING:tensorflow:From /home/the1kieran/ME_751_Code/chrono-tensorflow/PPO/policy.py:207: The name tf.Session is deprecated. Please use tf.compat.v1.Session instead.
+
+WARNING:tensorflow:From /home/the1kieran/ME_751_Code/chrono-tensorflow/PPO/policy.py:210: The name tf.train.import_meta_graph is deprecated. Please use tf.compat.v1.train.import_meta_graph instead.
+
+WARNING:tensorflow:From /home/the1kieran/ME_751_Code/chrono-tensorflow/PPO/policy.py:211: The name tf.global_variables_initializer is deprecated. Please use tf.compat.v1.global_variables_initializer instead.
+
+WARNING:tensorflow:From /home/the1kieran/ME_751_Code/chrono-tensorflow/PPO/policy.py:212: The name tf.get_default_graph is deprecated. Please use tf.compat.v1.get_default_graph instead.
+
+WARNING:tensorflow:From /home/the1kieran/ME_751_Code/chrono-tensorflow/PPO/policy.py:231: The name tf.train.Saver is deprecated. Please use tf.compat.v1.train.Saver instead.
+
+***** Episode 20, Mean R = 593.5 *****
+Beta: 1.5
+ExplainedVarNew: 0.906
+ExplainedVarOld: 0.551
+KL: 0.00626
+PolicyEntropy: 3.96
+PolicyLoss: -0.00691
+Steps: 2e+04
+ValFuncLoss: 0.00436
+
+
+***** Episode 40, Mean R = 672.6 *****
+Beta: 1.5
+ExplainedVarNew: 0.844
+ExplainedVarOld: 0.458
+KL: 0.00277
+PolicyEntropy: 3.96
+PolicyLoss: -0.00499
+Steps: 2.18e+04
+ValFuncLoss: 0.00643
+
+
+***** Episode 60, Mean R = 662.6 *****
+Beta: 1.5
+ExplainedVarNew: 0.756
+ExplainedVarOld: 0.152
+KL: 0.00249
+PolicyEntropy: 3.96
+PolicyLoss: -0.00424
+Steps: 2.21e+04
+ValFuncLoss: 0.0107
+
+
+***** Episode 80, Mean R = 674.5 *****
+Beta: 1.5
+ExplainedVarNew: 0.76
+ExplainedVarOld: 0.446
+KL: 0.00327
+PolicyEntropy: 3.95
+PolicyLoss: -0.00538
+Steps: 2.18e+04
+ValFuncLoss: 0.00997
+
+
+***** Episode 100, Mean R = 697.6 *****
+Beta: 1.5
+ExplainedVarNew: 0.812
+ExplainedVarOld: 0.559
+KL: 0.002
+PolicyEntropy: 3.93
+PolicyLoss: -0.00431
+Steps: 2.35e+04
+ValFuncLoss: 0.0102
+
+
+Destructor called, No device to delete.
+2019-12-11 15:37:52.081964: I tensorflow/core/platform/cpu_feature_guard.cc:142] Your CPU supports instructions that this TensorFlow binary was not compiled to use: AVX2 FMA
+2019-12-11 15:37:52.105440: I tensorflow/core/platform/profile_utils/cpu_utils.cc:94] CPU Frequency: 2592000000 Hz
+2019-12-11 15:37:52.105845: I tensorflow/compiler/xla/service/service.cc:168] XLA service 0x55678caa0500 executing computations on platform Host. Devices:
+2019-12-11 15:37:52.105884: I tensorflow/compiler/xla/service/service.cc:175]   StreamExecutor device (0): <undefined>, <undefined>
+2019-12-11 15:37:52.323746: W tensorflow/compiler/jit/mark_for_compilation_pass.cc:1412] (One-time warning): Not using XLA:CPU for cluster because envvar TF_XLA_FLAGS=--tf_xla_cpu_global_jit was not set.  If you want XLA:CPU, either set that envvar, or use experimental_jit_scope to enable XLA:CPU.  To confirm that XLA is active, pass --vmodule=xla_compilation_cache=1 (as a proper command-line flag, not via TF_XLA_FLAGS) or set the envvar XLA_FLAGS=--xla_hlo_profile.
+WARNING:tensorflow:From /home/the1kieran/anaconda3/lib/python3.7/site-packages/tensorflow/python/training/saver.py:1276: checkpoint_exists (from tensorflow.python.training.checkpoint_management) is deprecated and will be removed in a future version.
+Instructions for updating:
+Use standard file APIs to check for files with this prefix.
+WARNING:tensorflow:From /home/the1kieran/ME_751_Code/chrono-tensorflow/PPO/policy.py:200: The name tf.reset_default_graph is deprecated. Please use tf.compat.v1.reset_default_graph instead.
+
+WARNING:tensorflow:From /home/the1kieran/ME_751_Code/chrono-tensorflow/PPO/policy.py:202: The name tf.ConfigProto is deprecated. Please use tf.compat.v1.ConfigProto instead.
+
+WARNING:tensorflow:From /home/the1kieran/ME_751_Code/chrono-tensorflow/PPO/policy.py:204: The name tf.Session is deprecated. Please use tf.compat.v1.Session instead.
+
+WARNING:tensorflow:From /home/the1kieran/ME_751_Code/chrono-tensorflow/PPO/policy.py:210: The name tf.train.import_meta_graph is deprecated. Please use tf.compat.v1.train.import_meta_graph instead.
+
+WARNING:tensorflow:From /home/the1kieran/ME_751_Code/chrono-tensorflow/PPO/policy.py:211: The name tf.global_variables_initializer is deprecated. Please use tf.compat.v1.global_variables_initializer instead.
+
+WARNING:tensorflow:From /home/the1kieran/ME_751_Code/chrono-tensorflow/PPO/policy.py:212: The name tf.get_default_graph is deprecated. Please use tf.compat.v1.get_default_graph instead.
+
+WARNING:tensorflow:From /home/the1kieran/ME_751_Code/chrono-tensorflow/PPO/policy.py:231: The name tf.train.Saver is deprecated. Please use tf.compat.v1.train.Saver instead.
+
+WARNING:tensorflow:From /home/the1kieran/ME_751_Code/chrono-tensorflow/PPO/policy.py:200: The name tf.reset_default_graph is deprecated. Please use tf.compat.v1.reset_default_graph instead.
+
+WARNING:tensorflow:From /home/the1kieran/ME_751_Code/chrono-tensorflow/PPO/policy.py:200: The name tf.reset_default_graph is deprecated. Please use tf.compat.v1.reset_default_graph instead.
+
+WARNING:tensorflow:From /home/the1kieran/ME_751_Code/chrono-tensorflow/PPO/policy.py:202: The name tf.ConfigProto is deprecated. Please use tf.compat.v1.ConfigProto instead.
+
+WARNING:tensorflow:From /home/the1kieran/ME_751_Code/chrono-tensorflow/PPO/policy.py:202: The name tf.ConfigProto is deprecated. Please use tf.compat.v1.ConfigProto instead.
+
+WARNING:tensorflow:From /home/the1kieran/ME_751_Code/chrono-tensorflow/PPO/policy.py:204: The name tf.Session is deprecated. Please use tf.compat.v1.Session instead.
+
+WARNING:tensorflow:From /home/the1kieran/ME_751_Code/chrono-tensorflow/PPO/policy.py:204: The name tf.Session is deprecated. Please use tf.compat.v1.Session instead.
+
+WARNING:tensorflow:From /home/the1kieran/ME_751_Code/chrono-tensorflow/PPO/policy.py:200: The name tf.reset_default_graph is deprecated. Please use tf.compat.v1.reset_default_graph instead.
+
+WARNING:tensorflow:From /home/the1kieran/ME_751_Code/chrono-tensorflow/PPO/policy.py:200: The name tf.reset_default_graph is deprecated. Please use tf.compat.v1.reset_default_graph instead.
+
+WARNING:tensorflow:From /home/the1kieran/ME_751_Code/chrono-tensorflow/PPO/policy.py:202: The name tf.ConfigProto is deprecated. Please use tf.compat.v1.ConfigProto instead.
+
+WARNING:tensorflow:From /home/the1kieran/ME_751_Code/chrono-tensorflow/PPO/policy.py:202: The name tf.ConfigProto is deprecated. Please use tf.compat.v1.ConfigProto instead.
+
+WARNING:tensorflow:From /home/the1kieran/ME_751_Code/chrono-tensorflow/PPO/policy.py:204: The name tf.Session is deprecated. Please use tf.compat.v1.Session instead.
+
+WARNING:tensorflow:From /home/the1kieran/ME_751_Code/chrono-tensorflow/PPO/policy.py:204: The name tf.Session is deprecated. Please use tf.compat.v1.Session instead.
+
+WARNING:tensorflow:From /home/the1kieran/ME_751_Code/chrono-tensorflow/PPO/policy.py:200: The name tf.reset_default_graph is deprecated. Please use tf.compat.v1.reset_default_graph instead.
+
+WARNING:tensorflow:From /home/the1kieran/ME_751_Code/chrono-tensorflow/PPO/policy.py:202: The name tf.ConfigProto is deprecated. Please use tf.compat.v1.ConfigProto instead.
+
+WARNING:tensorflow:From /home/the1kieran/ME_751_Code/chrono-tensorflow/PPO/policy.py:204: The name tf.Session is deprecated. Please use tf.compat.v1.Session instead.
+
+WARNING:tensorflow:From /home/the1kieran/ME_751_Code/chrono-tensorflow/PPO/policy.py:200: The name tf.reset_default_graph is deprecated. Please use tf.compat.v1.reset_default_graph instead.
+
+WARNING:tensorflow:From /home/the1kieran/ME_751_Code/chrono-tensorflow/PPO/policy.py:202: The name tf.ConfigProto is deprecated. Please use tf.compat.v1.ConfigProto instead.
+
+WARNING:tensorflow:From /home/the1kieran/ME_751_Code/chrono-tensorflow/PPO/policy.py:204: The name tf.Session is deprecated. Please use tf.compat.v1.Session instead.
+
+2019-12-11 15:37:52.932736: I tensorflow/core/platform/cpu_feature_guard.cc:142] Your CPU supports instructions that this TensorFlow binary was not compiled to use: AVX2 FMA
+2019-12-11 15:37:52.936561: I tensorflow/core/platform/cpu_feature_guard.cc:142] Your CPU supports instructions that this TensorFlow binary was not compiled to use: AVX2 FMA
+2019-12-11 15:37:52.940642: I tensorflow/core/platform/cpu_feature_guard.cc:142] Your CPU supports instructions that this TensorFlow binary was not compiled to use: AVX2 FMA
+2019-12-11 15:37:52.941881: I tensorflow/core/platform/profile_utils/cpu_utils.cc:94] CPU Frequency: 2592000000 Hz
+2019-12-11 15:37:52.942261: I tensorflow/compiler/xla/service/service.cc:168] XLA service 0x55678caa0500 executing computations on platform Host. Devices:
+2019-12-11 15:37:52.942296: I tensorflow/compiler/xla/service/service.cc:175]   StreamExecutor device (0): <undefined>, <undefined>
+WARNING:tensorflow:From /home/the1kieran/ME_751_Code/chrono-tensorflow/PPO/policy.py:210: The name tf.train.import_meta_graph is deprecated. Please use tf.compat.v1.train.import_meta_graph instead.
+
+2019-12-11 15:37:52.947548: I tensorflow/core/platform/profile_utils/cpu_utils.cc:94] CPU Frequency: 2592000000 Hz
+2019-12-11 15:37:52.947949: I tensorflow/compiler/xla/service/service.cc:168] XLA service 0x55678caa0500 executing computations on platform Host. Devices:
+2019-12-11 15:37:52.947971: I tensorflow/compiler/xla/service/service.cc:175]   StreamExecutor device (0): <undefined>, <undefined>
+WARNING:tensorflow:From /home/the1kieran/ME_751_Code/chrono-tensorflow/PPO/policy.py:210: The name tf.train.import_meta_graph is deprecated. Please use tf.compat.v1.train.import_meta_graph instead.
+
+2019-12-11 15:37:52.955504: I tensorflow/core/platform/cpu_feature_guard.cc:142] Your CPU supports instructions that this TensorFlow binary was not compiled to use: AVX2 FMA
+2019-12-11 15:37:52.956748: I tensorflow/core/platform/cpu_feature_guard.cc:142] Your CPU supports instructions that this TensorFlow binary was not compiled to use: AVX2 FMA
+2019-12-11 15:37:52.960484: I tensorflow/core/platform/cpu_feature_guard.cc:142] Your CPU supports instructions that this TensorFlow binary was not compiled to use: AVX2 FMA
+2019-12-11 15:37:52.961319: I tensorflow/core/platform/profile_utils/cpu_utils.cc:94] CPU Frequency: 2592000000 Hz
+2019-12-11 15:37:52.962282: I tensorflow/core/platform/profile_utils/cpu_utils.cc:94] CPU Frequency: 2592000000 Hz
+2019-12-11 15:37:52.962533: I tensorflow/compiler/xla/service/service.cc:168] XLA service 0x55678caa0500 executing computations on platform Host. Devices:
+2019-12-11 15:37:52.962564: I tensorflow/compiler/xla/service/service.cc:175]   StreamExecutor device (0): <undefined>, <undefined>
+WARNING:tensorflow:From /home/the1kieran/ME_751_Code/chrono-tensorflow/PPO/policy.py:210: The name tf.train.import_meta_graph is deprecated. Please use tf.compat.v1.train.import_meta_graph instead.
+
+2019-12-11 15:37:52.965279: I tensorflow/compiler/xla/service/service.cc:168] XLA service 0x55678caa0500 executing computations on platform Host. Devices:
+2019-12-11 15:37:52.965370: I tensorflow/compiler/xla/service/service.cc:175]   StreamExecutor device (0): <undefined>, <undefined>
+WARNING:tensorflow:From /home/the1kieran/ME_751_Code/chrono-tensorflow/PPO/policy.py:210: The name tf.train.import_meta_graph is deprecated. Please use tf.compat.v1.train.import_meta_graph instead.
+
+2019-12-11 15:37:52.968397: I tensorflow/core/platform/profile_utils/cpu_utils.cc:94] CPU Frequency: 2592000000 Hz
+2019-12-11 15:37:52.968656: I tensorflow/compiler/xla/service/service.cc:168] XLA service 0x55678caa0500 executing computations on platform Host. Devices:
+2019-12-11 15:37:52.968686: I tensorflow/compiler/xla/service/service.cc:175]   StreamExecutor device (0): <undefined>, <undefined>
+WARNING:tensorflow:From /home/the1kieran/ME_751_Code/chrono-tensorflow/PPO/policy.py:210: The name tf.train.import_meta_graph is deprecated. Please use tf.compat.v1.train.import_meta_graph instead.
+
+2019-12-11 15:37:52.997428: I tensorflow/core/platform/profile_utils/cpu_utils.cc:94] CPU Frequency: 2592000000 Hz
+2019-12-11 15:37:52.997706: I tensorflow/compiler/xla/service/service.cc:168] XLA service 0x55678caa0500 executing computations on platform Host. Devices:
+2019-12-11 15:37:52.997739: I tensorflow/compiler/xla/service/service.cc:175]   StreamExecutor device (0): <undefined>, <undefined>
+WARNING:tensorflow:From /home/the1kieran/ME_751_Code/chrono-tensorflow/PPO/policy.py:210: The name tf.train.import_meta_graph is deprecated. Please use tf.compat.v1.train.import_meta_graph instead.
+
+WARNING:tensorflow:From /home/the1kieran/ME_751_Code/chrono-tensorflow/PPO/policy.py:211: The name tf.global_variables_initializer is deprecated. Please use tf.compat.v1.global_variables_initializer instead.
+
+WARNING:tensorflow:From /home/the1kieran/ME_751_Code/chrono-tensorflow/PPO/policy.py:211: The name tf.global_variables_initializer is deprecated. Please use tf.compat.v1.global_variables_initializer instead.
+
+WARNING:tensorflow:From /home/the1kieran/ME_751_Code/chrono-tensorflow/PPO/policy.py:211: The name tf.global_variables_initializer is deprecated. Please use tf.compat.v1.global_variables_initializer instead.
+
+WARNING:tensorflow:From /home/the1kieran/ME_751_Code/chrono-tensorflow/PPO/policy.py:211: The name tf.global_variables_initializer is deprecated. Please use tf.compat.v1.global_variables_initializer instead.
+
+2019-12-11 15:37:53.865579: W tensorflow/compiler/jit/mark_for_compilation_pass.cc:1412] (One-time warning): Not using XLA:CPU for cluster because envvar TF_XLA_FLAGS=--tf_xla_cpu_global_jit was not set.  If you want XLA:CPU, either set that envvar, or use experimental_jit_scope to enable XLA:CPU.  To confirm that XLA is active, pass --vmodule=xla_compilation_cache=1 (as a proper command-line flag, not via TF_XLA_FLAGS) or set the envvar XLA_FLAGS=--xla_hlo_profile.
+WARNING:tensorflow:From /home/the1kieran/ME_751_Code/chrono-tensorflow/PPO/policy.py:212: The name tf.get_default_graph is deprecated. Please use tf.compat.v1.get_default_graph instead.
+
+WARNING:tensorflow:From /home/the1kieran/ME_751_Code/chrono-tensorflow/PPO/policy.py:231: The name tf.train.Saver is deprecated. Please use tf.compat.v1.train.Saver instead.
+
+WARNING:tensorflow:From /home/the1kieran/ME_751_Code/chrono-tensorflow/PPO/policy.py:211: The name tf.global_variables_initializer is deprecated. Please use tf.compat.v1.global_variables_initializer instead.
+
+WARNING:tensorflow:From /home/the1kieran/ME_751_Code/chrono-tensorflow/PPO/policy.py:211: The name tf.global_variables_initializer is deprecated. Please use tf.compat.v1.global_variables_initializer instead.
+
+2019-12-11 15:37:54.024375: W tensorflow/compiler/jit/mark_for_compilation_pass.cc:1412] (One-time warning): Not using XLA:CPU for cluster because envvar TF_XLA_FLAGS=--tf_xla_cpu_global_jit was not set.  If you want XLA:CPU, either set that envvar, or use experimental_jit_scope to enable XLA:CPU.  To confirm that XLA is active, pass --vmodule=xla_compilation_cache=1 (as a proper command-line flag, not via TF_XLA_FLAGS) or set the envvar XLA_FLAGS=--xla_hlo_profile.
+2019-12-11 15:37:54.034077: W tensorflow/compiler/jit/mark_for_compilation_pass.cc:1412] (One-time warning): Not using XLA:CPU for cluster because envvar TF_XLA_FLAGS=--tf_xla_cpu_global_jit was not set.  If you want XLA:CPU, either set that envvar, or use experimental_jit_scope to enable XLA:CPU.  To confirm that XLA is active, pass --vmodule=xla_compilation_cache=1 (as a proper command-line flag, not via TF_XLA_FLAGS) or set the envvar XLA_FLAGS=--xla_hlo_profile.
+WARNING:tensorflow:From /home/the1kieran/anaconda3/lib/python3.7/site-packages/tensorflow/python/training/saver.py:1276: checkpoint_exists (from tensorflow.python.training.checkpoint_management) is deprecated and will be removed in a future version.
+Instructions for updating:
+Use standard file APIs to check for files with this prefix.
+WARNING:tensorflow:From /home/the1kieran/ME_751_Code/chrono-tensorflow/PPO/policy.py:212: The name tf.get_default_graph is deprecated. Please use tf.compat.v1.get_default_graph instead.
+
+WARNING:tensorflow:From /home/the1kieran/ME_751_Code/chrono-tensorflow/PPO/policy.py:231: The name tf.train.Saver is deprecated. Please use tf.compat.v1.train.Saver instead.
+
+WARNING:tensorflow:From /home/the1kieran/ME_751_Code/chrono-tensorflow/PPO/policy.py:212: The name tf.get_default_graph is deprecated. Please use tf.compat.v1.get_default_graph instead.
+
+WARNING:tensorflow:From /home/the1kieran/ME_751_Code/chrono-tensorflow/PPO/policy.py:231: The name tf.train.Saver is deprecated. Please use tf.compat.v1.train.Saver instead.
+
+2019-12-11 15:37:54.096887: W tensorflow/compiler/jit/mark_for_compilation_pass.cc:1412] (One-time warning): Not using XLA:CPU for cluster because envvar TF_XLA_FLAGS=--tf_xla_cpu_global_jit was not set.  If you want XLA:CPU, either set that envvar, or use experimental_jit_scope to enable XLA:CPU.  To confirm that XLA is active, pass --vmodule=xla_compilation_cache=1 (as a proper command-line flag, not via TF_XLA_FLAGS) or set the envvar XLA_FLAGS=--xla_hlo_profile.
+WARNING:tensorflow:From /home/the1kieran/ME_751_Code/chrono-tensorflow/PPO/policy.py:212: The name tf.get_default_graph is deprecated. Please use tf.compat.v1.get_default_graph instead.
+
+WARNING:tensorflow:From /home/the1kieran/ME_751_Code/chrono-tensorflow/PPO/policy.py:231: The name tf.train.Saver is deprecated. Please use tf.compat.v1.train.Saver instead.
+
+2019-12-11 15:37:54.149850: W tensorflow/compiler/jit/mark_for_compilation_pass.cc:1412] (One-time warning): Not using XLA:CPU for cluster because envvar TF_XLA_FLAGS=--tf_xla_cpu_global_jit was not set.  If you want XLA:CPU, either set that envvar, or use experimental_jit_scope to enable XLA:CPU.  To confirm that XLA is active, pass --vmodule=xla_compilation_cache=1 (as a proper command-line flag, not via TF_XLA_FLAGS) or set the envvar XLA_FLAGS=--xla_hlo_profile.
+WARNING:tensorflow:From /home/the1kieran/anaconda3/lib/python3.7/site-packages/tensorflow/python/training/saver.py:1276: checkpoint_exists (from tensorflow.python.training.checkpoint_management) is deprecated and will be removed in a future version.
+Instructions for updating:
+Use standard file APIs to check for files with this prefix.
+WARNING:tensorflow:From /home/the1kieran/ME_751_Code/chrono-tensorflow/PPO/policy.py:212: The name tf.get_default_graph is deprecated. Please use tf.compat.v1.get_default_graph instead.
+
+WARNING:tensorflow:From /home/the1kieran/ME_751_Code/chrono-tensorflow/PPO/policy.py:231: The name tf.train.Saver is deprecated. Please use tf.compat.v1.train.Saver instead.
+
+WARNING:tensorflow:From /home/the1kieran/anaconda3/lib/python3.7/site-packages/tensorflow/python/training/saver.py:1276: checkpoint_exists (from tensorflow.python.training.checkpoint_management) is deprecated and will be removed in a future version.
+Instructions for updating:
+Use standard file APIs to check for files with this prefix.
+WARNING:tensorflow:From /home/the1kieran/anaconda3/lib/python3.7/site-packages/tensorflow/python/training/saver.py:1276: checkpoint_exists (from tensorflow.python.training.checkpoint_management) is deprecated and will be removed in a future version.
+Instructions for updating:
+Use standard file APIs to check for files with this prefix.
+2019-12-11 15:37:54.269771: W tensorflow/compiler/jit/mark_for_compilation_pass.cc:1412] (One-time warning): Not using XLA:CPU for cluster because envvar TF_XLA_FLAGS=--tf_xla_cpu_global_jit was not set.  If you want XLA:CPU, either set that envvar, or use experimental_jit_scope to enable XLA:CPU.  To confirm that XLA is active, pass --vmodule=xla_compilation_cache=1 (as a proper command-line flag, not via TF_XLA_FLAGS) or set the envvar XLA_FLAGS=--xla_hlo_profile.
+WARNING:tensorflow:From /home/the1kieran/ME_751_Code/chrono-tensorflow/PPO/policy.py:212: The name tf.get_default_graph is deprecated. Please use tf.compat.v1.get_default_graph instead.
+
+WARNING:tensorflow:From /home/the1kieran/ME_751_Code/chrono-tensorflow/PPO/policy.py:231: The name tf.train.Saver is deprecated. Please use tf.compat.v1.train.Saver instead.
+
+WARNING:tensorflow:From /home/the1kieran/anaconda3/lib/python3.7/site-packages/tensorflow/python/training/saver.py:1276: checkpoint_exists (from tensorflow.python.training.checkpoint_management) is deprecated and will be removed in a future version.
+Instructions for updating:
+Use standard file APIs to check for files with this prefix.
+WARNING:tensorflow:From /home/the1kieran/anaconda3/lib/python3.7/site-packages/tensorflow/python/training/saver.py:1276: checkpoint_exists (from tensorflow.python.training.checkpoint_management) is deprecated and will be removed in a future version.
+Instructions for updating:
+Use standard file APIs to check for files with this prefix.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+***** Episode 20, Mean R = 606.7 *****
+Beta: 1.5
+ExplainedVarNew: 0.858
+ExplainedVarOld: 0.281
+KL: 0.00663
+PolicyEntropy: 3.94
+PolicyLoss: -0.00738
+ValFuncLoss: 0.00628
+
+
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+***** Episode 40, Mean R = 664.7 *****
+Beta: 1.5
+ExplainedVarNew: 0.852
+ExplainedVarOld: 0.48
+KL: 0.00332
+PolicyEntropy: 3.94
+PolicyLoss: -0.00572
+ValFuncLoss: 0.00876
+
+
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+***** Episode 60, Mean R = 671.3 *****
+Beta: 1.5
+ExplainedVarNew: 0.828
+ExplainedVarOld: 0.59
+KL: 0.00325
+PolicyEntropy: 3.92
+PolicyLoss: -0.00515
+ValFuncLoss: 0.00942
+
+
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+***** Episode 80, Mean R = 702.4 *****
+Beta: 1.5
+ExplainedVarNew: 0.842
+ExplainedVarOld: 0.642
+KL: 0.00296
+PolicyEntropy: 3.9
+PolicyLoss: -0.00512
+ValFuncLoss: 0.00875
+
+
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+***** Episode 100, Mean R = 856.7 *****
+Beta: 1.5
+ExplainedVarNew: 0.865
+ExplainedVarOld: 0.516
+KL: 0.00233
+PolicyEntropy: 3.88
+PolicyLoss: -0.00423
+ValFuncLoss: 0.00662
+
+
+Destructor called, No device to delete.
+progress: 2 out of 3
+2019-12-11 15:39:54.357256: I tensorflow/core/platform/cpu_feature_guard.cc:142] Your CPU supports instructions that this TensorFlow binary was not compiled to use: AVX2 FMA
+2019-12-11 15:39:54.381278: I tensorflow/core/platform/profile_utils/cpu_utils.cc:94] CPU Frequency: 2592000000 Hz
+2019-12-11 15:39:54.381893: I tensorflow/compiler/xla/service/service.cc:168] XLA service 0x557d3e7994b0 executing computations on platform Host. Devices:
+2019-12-11 15:39:54.381988: I tensorflow/compiler/xla/service/service.cc:175]   StreamExecutor device (0): <undefined>, <undefined>
+2019-12-11 15:39:54.910779: W tensorflow/compiler/jit/mark_for_compilation_pass.cc:1412] (One-time warning): Not using XLA:CPU for cluster because envvar TF_XLA_FLAGS=--tf_xla_cpu_global_jit was not set.  If you want XLA:CPU, either set that envvar, or use experimental_jit_scope to enable XLA:CPU.  To confirm that XLA is active, pass --vmodule=xla_compilation_cache=1 (as a proper command-line flag, not via TF_XLA_FLAGS) or set the envvar XLA_FLAGS=--xla_hlo_profile.
+WARNING:tensorflow:From /home/the1kieran/anaconda3/lib/python3.7/site-packages/tensorflow/python/training/saver.py:1276: checkpoint_exists (from tensorflow.python.training.checkpoint_management) is deprecated and will be removed in a future version.
+Instructions for updating:
+Use standard file APIs to check for files with this prefix.
+WARNING:tensorflow:From /home/the1kieran/ME_751_Code/chrono-tensorflow/PPO/policy.py:200: The name tf.reset_default_graph is deprecated. Please use tf.compat.v1.reset_default_graph instead.
+
+WARNING:tensorflow:From /home/the1kieran/ME_751_Code/chrono-tensorflow/PPO/policy.py:207: The name tf.Session is deprecated. Please use tf.compat.v1.Session instead.
+
+WARNING:tensorflow:From /home/the1kieran/ME_751_Code/chrono-tensorflow/PPO/policy.py:210: The name tf.train.import_meta_graph is deprecated. Please use tf.compat.v1.train.import_meta_graph instead.
+
+WARNING:tensorflow:From /home/the1kieran/ME_751_Code/chrono-tensorflow/PPO/policy.py:211: The name tf.global_variables_initializer is deprecated. Please use tf.compat.v1.global_variables_initializer instead.
+
+WARNING:tensorflow:From /home/the1kieran/ME_751_Code/chrono-tensorflow/PPO/policy.py:212: The name tf.get_default_graph is deprecated. Please use tf.compat.v1.get_default_graph instead.
+
+WARNING:tensorflow:From /home/the1kieran/ME_751_Code/chrono-tensorflow/PPO/policy.py:231: The name tf.train.Saver is deprecated. Please use tf.compat.v1.train.Saver instead.
+
+***** Episode 20, Mean R = 734.3 *****
+Beta: 1
+ExplainedVarNew: 0.905
+ExplainedVarOld: 0.592
+KL: 0.00497
+PolicyEntropy: 3.86
+PolicyLoss: -0.0057
+Steps: 2.46e+04
+ValFuncLoss: 0.00497
+
+
+***** Episode 40, Mean R = 700.1 *****
+Beta: 1
+ExplainedVarNew: 0.808
+ExplainedVarOld: 0.474
+KL: 0.00598
+PolicyEntropy: 3.82
+PolicyLoss: -0.00724
+Steps: 2.22e+04
+ValFuncLoss: 0.00848
+
+
+***** Episode 60, Mean R = 792.1 *****
+Beta: 1
+ExplainedVarNew: 0.775
+ExplainedVarOld: 0.531
+KL: 0.00544
+PolicyEntropy: 3.8
+PolicyLoss: -0.00588
+Steps: 2.62e+04
+ValFuncLoss: 0.01
+
+
+***** Episode 80, Mean R = 782.8 *****
+Beta: 1.5
+ExplainedVarNew: 0.796
+ExplainedVarOld: 0.505
+KL: 0.00646
+PolicyEntropy: 3.79
+PolicyLoss: -0.0154
+Steps: 2.49e+04
+ValFuncLoss: 0.0077
+
+
+***** Episode 100, Mean R = 864.9 *****
+Beta: 1.5
+ExplainedVarNew: 0.808
+ExplainedVarOld: 0.576
+KL: 0.00321
+PolicyEntropy: 3.78
+PolicyLoss: -0.00477
+Steps: 2.66e+04
+ValFuncLoss: 0.00759
+
+
+***** Episode 120, Mean R = 685.5 *****
+Beta: 1.5
+ExplainedVarNew: 0.712
+ExplainedVarOld: 0.466
+KL: 0.00231
+PolicyEntropy: 3.78
+PolicyLoss: -0.00453
+Steps: 2.18e+04
+ValFuncLoss: 0.013
+
+
+***** Episode 140, Mean R = 737.8 *****
+Beta: 1.5
+ExplainedVarNew: 0.773
+ExplainedVarOld: 0.36
+KL: 0.00262
+PolicyEntropy: 3.76
+PolicyLoss: -0.00499
+Steps: 2.35e+04
+ValFuncLoss: 0.0101
+
+
+***** Episode 160, Mean R = 784.9 *****
+Beta: 1.5
+ExplainedVarNew: 0.864
+ExplainedVarOld: 0.656
+KL: 0.00216
+PolicyEntropy: 3.74
+PolicyLoss: -0.00422
+Steps: 2.53e+04
+ValFuncLoss: 0.00609
+
+
+***** Episode 180, Mean R = 857.8 *****
+Beta: 1.5
+ExplainedVarNew: 0.826
+ExplainedVarOld: 0.492
+KL: 0.00251
+PolicyEntropy: 3.73
+PolicyLoss: -0.00468
+Steps: 2.66e+04
+ValFuncLoss: 0.0073
+
+
+***** Episode 200, Mean R = 700.3 *****
+Beta: 1.5
+ExplainedVarNew: 0.837
+ExplainedVarOld: 0.385
+KL: 0.00293
+PolicyEntropy: 3.69
+PolicyLoss: -0.00537
+Steps: 2.2e+04
+ValFuncLoss: 0.00697
+
+
+***** Episode 220, Mean R = 872.7 *****
+Beta: 1.5
+ExplainedVarNew: 0.829
+ExplainedVarOld: 0.511
+KL: 0.00237
+PolicyEntropy: 3.67
+PolicyLoss: -0.00365
+Steps: 2.65e+04
+ValFuncLoss: 0.00625
+
+
+***** Episode 240, Mean R = 875.9 *****
+Beta: 1.5
+ExplainedVarNew: 0.819
+ExplainedVarOld: 0.49
+KL: 0.00277
+PolicyEntropy: 3.64
+PolicyLoss: -0.00476
+Steps: 2.71e+04
+ValFuncLoss: 0.00653
+
+
+***** Episode 260, Mean R = 811.8 *****
+Beta: 1.5
+ExplainedVarNew: 0.857
+ExplainedVarOld: 0.621
+KL: 0.00266
+PolicyEntropy: 3.62
+PolicyLoss: -0.00471
+Steps: 2.52e+04
+ValFuncLoss: 0.00678
+
+
+***** Episode 280, Mean R = 920.0 *****
+Beta: 1.5
+ExplainedVarNew: 0.815
+ExplainedVarOld: 0.309
+KL: 0.00248
+PolicyEntropy: 3.61
+PolicyLoss: -0.00472
+Steps: 2.88e+04
+ValFuncLoss: 0.00739
+
+
+***** Episode 300, Mean R = 899.8 *****
+Beta: 1.5
+ExplainedVarNew: 0.799
+ExplainedVarOld: 0.502
+KL: 0.00215
+PolicyEntropy: 3.6
+PolicyLoss: -0.00407
+Steps: 2.77e+04
+ValFuncLoss: 0.00759
+
+
+***** Episode 320, Mean R = 916.5 *****
+Beta: 1.5
+ExplainedVarNew: 0.828
+ExplainedVarOld: 0.642
+KL: 0.0023
+PolicyEntropy: 3.58
+PolicyLoss: -0.00465
+Steps: 2.78e+04
+ValFuncLoss: 0.00639
+
+
+***** Episode 340, Mean R = 877.1 *****
+Beta: 1.5
+ExplainedVarNew: 0.831
+ExplainedVarOld: 0.554
+KL: 0.00302
+PolicyEntropy: 3.56
+PolicyLoss: -0.00559
+Steps: 2.71e+04
+ValFuncLoss: 0.00755
+
+
+***** Episode 360, Mean R = 884.7 *****
+Beta: 1.5
+ExplainedVarNew: 0.811
+ExplainedVarOld: 0.386
+KL: 0.00264
+PolicyEntropy: 3.56
+PolicyLoss: -0.00482
+Steps: 2.72e+04
+ValFuncLoss: 0.00793
+
+
+***** Episode 380, Mean R = 1023.1 *****
+Beta: 1.5
+ExplainedVarNew: 0.869
+ExplainedVarOld: 0.51
+KL: 0.00193
+PolicyEntropy: 3.54
+PolicyLoss: -0.00361
+Steps: 3.14e+04
+ValFuncLoss: 0.00559
+
+
+***** Episode 400, Mean R = 1040.7 *****
+Beta: 1.5
+ExplainedVarNew: 0.826
+ExplainedVarOld: 0.418
+KL: 0.00219
+PolicyEntropy: 3.51
+PolicyLoss: -0.00385
+Steps: 3.13e+04
+ValFuncLoss: 0.00643
+
+
+***** Episode 420, Mean R = 995.5 *****
+Beta: 1.5
+ExplainedVarNew: 0.865
+ExplainedVarOld: 0.558
+KL: 0.00251
+PolicyEntropy: 3.5
+PolicyLoss: -0.00476
+Steps: 3.18e+04
+ValFuncLoss: 0.00619
+
+
+***** Episode 440, Mean R = 1022.1 *****
+Beta: 1.5
+ExplainedVarNew: 0.817
+ExplainedVarOld: 0.539
+KL: 0.00222
+PolicyEntropy: 3.47
+PolicyLoss: -0.00424
+Steps: 3.11e+04
+ValFuncLoss: 0.00673
+
+
+***** Episode 460, Mean R = 883.0 *****
+Beta: 1.5
+ExplainedVarNew: 0.848
+ExplainedVarOld: 0.583
+KL: 0.00252
+PolicyEntropy: 3.46
+PolicyLoss: -0.00479
+Steps: 2.74e+04
+ValFuncLoss: 0.00777
+
+
+***** Episode 480, Mean R = 1008.9 *****
+Beta: 1.5
+ExplainedVarNew: 0.748
+ExplainedVarOld: 0.44
+KL: 0.0023
+PolicyEntropy: 3.46
+PolicyLoss: -0.00507
+Steps: 3.07e+04
+ValFuncLoss: 0.00854
+
+
+***** Episode 500, Mean R = 983.0 *****
+Beta: 2.25
+ExplainedVarNew: 0.841
+ExplainedVarOld: 0.623
+KL: 0.014
+PolicyEntropy: 3.45
+PolicyLoss: -1.36
+Steps: 2.99e+04
+ValFuncLoss: 0.00611
+
+
+***** Episode 520, Mean R = 935.4 *****
+Beta: 3.38
+ExplainedVarNew: 0.859
+ExplainedVarOld: 0.596
+KL: 0.00698
+PolicyEntropy: 3.46
+PolicyLoss: 0.0101
+Steps: 2.85e+04
+ValFuncLoss: 0.00556
+
+
+***** Episode 540, Mean R = 1070.4 *****
+Beta: 2.25
+ExplainedVarNew: 0.833
+ExplainedVarOld: 0.607
+KL: 0.000541
+PolicyEntropy: 3.44
+PolicyLoss: -0.00173
+Steps: 3.24e+04
+ValFuncLoss: 0.00567
+
+
+***** Episode 560, Mean R = 1076.5 *****
+Beta: 1.5
+ExplainedVarNew: 0.821
+ExplainedVarOld: 0.704
+KL: 0.00103
+PolicyEntropy: 3.42
+PolicyLoss: -0.00304
+Steps: 3.28e+04
+ValFuncLoss: 0.00699
+
+
+***** Episode 580, Mean R = 1094.4 *****
+Beta: 1.5
+ExplainedVarNew: 0.832
+ExplainedVarOld: 0.668
+KL: 0.00188
+PolicyEntropy: 3.41
+PolicyLoss: -0.00348
+Steps: 3.2e+04
+ValFuncLoss: 0.00567
+
+
+***** Episode 600, Mean R = 998.4 *****
+Beta: 1.5
+ExplainedVarNew: 0.862
+ExplainedVarOld: 0.481
+KL: 0.00151
+PolicyEntropy: 3.39
+PolicyLoss: -0.00306
+Steps: 3.01e+04
+ValFuncLoss: 0.00516
+
+
+***** Episode 620, Mean R = 961.3 *****
+Beta: 1.5
+ExplainedVarNew: 0.807
+ExplainedVarOld: 0.532
+KL: 0.00205
+PolicyEntropy: 3.38
+PolicyLoss: -0.00402
+Steps: 2.92e+04
+ValFuncLoss: 0.00783
+
+
+***** Episode 640, Mean R = 797.6 *****
+Beta: 1.5
+ExplainedVarNew: 0.812
+ExplainedVarOld: 0.553
+KL: 0.00233
+PolicyEntropy: 3.38
+PolicyLoss: -0.00457
+Steps: 2.41e+04
+ValFuncLoss: 0.00959
+
+
+***** Episode 660, Mean R = 1217.2 *****
+Beta: 1.5
+ExplainedVarNew: 0.841
+ExplainedVarOld: 0.531
+KL: 0.00212
+PolicyEntropy: 3.36
+PolicyLoss: -0.00394
+Steps: 3.62e+04
+ValFuncLoss: 0.00673
+
+
+***** Episode 680, Mean R = 1048.4 *****
+Beta: 1.5
+ExplainedVarNew: 0.829
+ExplainedVarOld: 0.613
+KL: 0.00215
+PolicyEntropy: 3.34
+PolicyLoss: -0.00544
+Steps: 3.21e+04
+ValFuncLoss: 0.00805
+
+
+***** Episode 700, Mean R = 1040.8 *****
+Beta: 1.5
+ExplainedVarNew: 0.855
+ExplainedVarOld: 0.587
+KL: 0.00182
+PolicyEntropy: 3.33
+PolicyLoss: -0.00386
+Steps: 3.21e+04
+ValFuncLoss: 0.00658
+
+
+***** Episode 720, Mean R = 1055.4 *****
+Beta: 1.5
+ExplainedVarNew: 0.854
+ExplainedVarOld: 0.573
+KL: 0.00189
+PolicyEntropy: 3.31
+PolicyLoss: -0.0036
+Steps: 3.16e+04
+ValFuncLoss: 0.00615
+
+
+***** Episode 740, Mean R = 1204.9 *****
+Beta: 1.5
+ExplainedVarNew: 0.866
+ExplainedVarOld: 0.643
+KL: 0.00257
+PolicyEntropy: 3.29
+PolicyLoss: -0.00557
+Steps: 3.59e+04
+ValFuncLoss: 0.00622
+
+
+***** Episode 760, Mean R = 999.6 *****
+Beta: 1.5
+ExplainedVarNew: 0.789
+ExplainedVarOld: 0.474
+KL: 0.00198
+PolicyEntropy: 3.25
+PolicyLoss: -0.00381
+Steps: 2.99e+04
+ValFuncLoss: 0.00878
+
+
+***** Episode 780, Mean R = 1049.2 *****
+Beta: 1.5
+ExplainedVarNew: 0.864
+ExplainedVarOld: 0.644
+KL: 0.00209
+PolicyEntropy: 3.22
+PolicyLoss: -0.00489
+Steps: 3.21e+04
+ValFuncLoss: 0.00637
+
+
+***** Episode 800, Mean R = 1061.2 *****
+Beta: 1.5
+ExplainedVarNew: 0.826
+ExplainedVarOld: 0.37
+KL: 0.00185
+PolicyEntropy: 3.2
+PolicyLoss: -0.0037
+Steps: 3.19e+04
+ValFuncLoss: 0.0069
+
+
+***** Episode 820, Mean R = 1055.1 *****
+Beta: 1.5
+ExplainedVarNew: 0.821
+ExplainedVarOld: 0.578
+KL: 0.00262
+PolicyEntropy: 3.19
+PolicyLoss: -0.00588
+Steps: 3.22e+04
+ValFuncLoss: 0.00774
+
+
+***** Episode 840, Mean R = 1278.7 *****
+Beta: 1.5
+ExplainedVarNew: 0.861
+ExplainedVarOld: 0.601
+KL: 0.00199
+PolicyEntropy: 3.18
+PolicyLoss: -0.00373
+Steps: 3.82e+04
+ValFuncLoss: 0.00554
+
+
+***** Episode 860, Mean R = 1051.8 *****
+Beta: 1.5
+ExplainedVarNew: 0.774
+ExplainedVarOld: 0.405
+KL: 0.00226
+PolicyEntropy: 3.18
+PolicyLoss: -0.00459
+Steps: 3.16e+04
+ValFuncLoss: 0.00888
+
+
+***** Episode 880, Mean R = 1219.7 *****
+Beta: 1.5
+ExplainedVarNew: 0.852
+ExplainedVarOld: 0.638
+KL: 0.00179
+PolicyEntropy: 3.16
+PolicyLoss: -0.00371
+Steps: 3.56e+04
+ValFuncLoss: 0.00562
+
+
+***** Episode 900, Mean R = 1165.3 *****
+Beta: 1.5
+ExplainedVarNew: 0.865
+ExplainedVarOld: 0.633
+KL: 0.00225
+PolicyEntropy: 3.14
+PolicyLoss: -0.00443
+Steps: 3.47e+04
+ValFuncLoss: 0.00551
+
+
+***** Episode 920, Mean R = 1056.8 *****
+Beta: 1.5
+ExplainedVarNew: 0.849
+ExplainedVarOld: 0.619
+KL: 0.00185
+PolicyEntropy: 3.13
+PolicyLoss: -0.00392
+Steps: 3.12e+04
+ValFuncLoss: 0.00696
+
+
+***** Episode 940, Mean R = 1120.9 *****
+Beta: 1.5
+ExplainedVarNew: 0.888
+ExplainedVarOld: 0.675
+KL: 0.00176
+PolicyEntropy: 3.11
+PolicyLoss: -0.00324
+Steps: 3.37e+04
+ValFuncLoss: 0.00504
+
+
+***** Episode 960, Mean R = 1199.1 *****
+Beta: 1.5
+ExplainedVarNew: 0.835
+ExplainedVarOld: 0.597
+KL: 0.00252
+PolicyEntropy: 3.11
+PolicyLoss: -0.00489
+Steps: 3.55e+04
+ValFuncLoss: 0.00726
+
+
+***** Episode 980, Mean R = 1404.0 *****
+Beta: 1.5
+ExplainedVarNew: 0.849
+ExplainedVarOld: 0.548
+KL: 0.0017
+PolicyEntropy: 3.08
+PolicyLoss: -0.00372
+Steps: 4.11e+04
+ValFuncLoss: 0.00571
+
+
+***** Episode 1000, Mean R = 1071.0 *****
+Beta: 1.5
+ExplainedVarNew: 0.793
+ExplainedVarOld: 0.472
+KL: 0.00229
+PolicyEntropy: 3.07
+PolicyLoss: -0.0049
+Steps: 3.17e+04
+ValFuncLoss: 0.00842
+
+
+Destructor called, No device to delete.
+2019-12-11 16:10:19.902902: I tensorflow/core/platform/cpu_feature_guard.cc:142] Your CPU supports instructions that this TensorFlow binary was not compiled to use: AVX2 FMA
+2019-12-11 16:10:19.925323: I tensorflow/core/platform/profile_utils/cpu_utils.cc:94] CPU Frequency: 2592000000 Hz
+2019-12-11 16:10:19.925647: I tensorflow/compiler/xla/service/service.cc:168] XLA service 0x5624ddc58500 executing computations on platform Host. Devices:
+2019-12-11 16:10:19.925675: I tensorflow/compiler/xla/service/service.cc:175]   StreamExecutor device (0): <undefined>, <undefined>
+2019-12-11 16:10:20.242067: W tensorflow/compiler/jit/mark_for_compilation_pass.cc:1412] (One-time warning): Not using XLA:CPU for cluster because envvar TF_XLA_FLAGS=--tf_xla_cpu_global_jit was not set.  If you want XLA:CPU, either set that envvar, or use experimental_jit_scope to enable XLA:CPU.  To confirm that XLA is active, pass --vmodule=xla_compilation_cache=1 (as a proper command-line flag, not via TF_XLA_FLAGS) or set the envvar XLA_FLAGS=--xla_hlo_profile.
+WARNING:tensorflow:From /home/the1kieran/anaconda3/lib/python3.7/site-packages/tensorflow/python/training/saver.py:1276: checkpoint_exists (from tensorflow.python.training.checkpoint_management) is deprecated and will be removed in a future version.
+Instructions for updating:
+Use standard file APIs to check for files with this prefix.
+WARNING:tensorflow:From /home/the1kieran/ME_751_Code/chrono-tensorflow/PPO/policy.py:200: The name tf.reset_default_graph is deprecated. Please use tf.compat.v1.reset_default_graph instead.
+
+WARNING:tensorflow:From /home/the1kieran/ME_751_Code/chrono-tensorflow/PPO/policy.py:202: The name tf.ConfigProto is deprecated. Please use tf.compat.v1.ConfigProto instead.
+
+WARNING:tensorflow:From /home/the1kieran/ME_751_Code/chrono-tensorflow/PPO/policy.py:204: The name tf.Session is deprecated. Please use tf.compat.v1.Session instead.
+
+WARNING:tensorflow:From /home/the1kieran/ME_751_Code/chrono-tensorflow/PPO/policy.py:210: The name tf.train.import_meta_graph is deprecated. Please use tf.compat.v1.train.import_meta_graph instead.
+
+WARNING:tensorflow:From /home/the1kieran/ME_751_Code/chrono-tensorflow/PPO/policy.py:211: The name tf.global_variables_initializer is deprecated. Please use tf.compat.v1.global_variables_initializer instead.
+
+WARNING:tensorflow:From /home/the1kieran/ME_751_Code/chrono-tensorflow/PPO/policy.py:212: The name tf.get_default_graph is deprecated. Please use tf.compat.v1.get_default_graph instead.
+
+WARNING:tensorflow:From /home/the1kieran/ME_751_Code/chrono-tensorflow/PPO/policy.py:231: The name tf.train.Saver is deprecated. Please use tf.compat.v1.train.Saver instead.
+
+WARNING:tensorflow:From /home/the1kieran/ME_751_Code/chrono-tensorflow/PPO/policy.py:200: The name tf.reset_default_graph is deprecated. Please use tf.compat.v1.reset_default_graph instead.
+
+WARNING:tensorflow:From /home/the1kieran/ME_751_Code/chrono-tensorflow/PPO/policy.py:202: The name tf.ConfigProto is deprecated. Please use tf.compat.v1.ConfigProto instead.
+
+WARNING:tensorflow:From /home/the1kieran/ME_751_Code/chrono-tensorflow/PPO/policy.py:200: The name tf.reset_default_graph is deprecated. Please use tf.compat.v1.reset_default_graph instead.
+
+WARNING:tensorflow:From /home/the1kieran/ME_751_Code/chrono-tensorflow/PPO/policy.py:202: The name tf.ConfigProto is deprecated. Please use tf.compat.v1.ConfigProto instead.
+
+WARNING:tensorflow:From /home/the1kieran/ME_751_Code/chrono-tensorflow/PPO/policy.py:204: The name tf.Session is deprecated. Please use tf.compat.v1.Session instead.
+
+WARNING:tensorflow:From /home/the1kieran/ME_751_Code/chrono-tensorflow/PPO/policy.py:204: The name tf.Session is deprecated. Please use tf.compat.v1.Session instead.
+
+WARNING:tensorflow:From /home/the1kieran/ME_751_Code/chrono-tensorflow/PPO/policy.py:200: The name tf.reset_default_graph is deprecated. Please use tf.compat.v1.reset_default_graph instead.
+
+WARNING:tensorflow:From /home/the1kieran/ME_751_Code/chrono-tensorflow/PPO/policy.py:202: The name tf.ConfigProto is deprecated. Please use tf.compat.v1.ConfigProto instead.
+
+WARNING:tensorflow:From /home/the1kieran/ME_751_Code/chrono-tensorflow/PPO/policy.py:204: The name tf.Session is deprecated. Please use tf.compat.v1.Session instead.
+
+WARNING:tensorflow:From /home/the1kieran/ME_751_Code/chrono-tensorflow/PPO/policy.py:200: The name tf.reset_default_graph is deprecated. Please use tf.compat.v1.reset_default_graph instead.
+
+WARNING:tensorflow:From /home/the1kieran/ME_751_Code/chrono-tensorflow/PPO/policy.py:202: The name tf.ConfigProto is deprecated. Please use tf.compat.v1.ConfigProto instead.
+
+WARNING:tensorflow:From /home/the1kieran/ME_751_Code/chrono-tensorflow/PPO/policy.py:204: The name tf.Session is deprecated. Please use tf.compat.v1.Session instead.
+
+WARNING:tensorflow:From /home/the1kieran/ME_751_Code/chrono-tensorflow/PPO/policy.py:200: The name tf.reset_default_graph is deprecated. Please use tf.compat.v1.reset_default_graph instead.
+
+WARNING:tensorflow:From /home/the1kieran/ME_751_Code/chrono-tensorflow/PPO/policy.py:202: The name tf.ConfigProto is deprecated. Please use tf.compat.v1.ConfigProto instead.
+
+WARNING:tensorflow:From /home/the1kieran/ME_751_Code/chrono-tensorflow/PPO/policy.py:204: The name tf.Session is deprecated. Please use tf.compat.v1.Session instead.
+
+WARNING:tensorflow:From /home/the1kieran/ME_751_Code/chrono-tensorflow/PPO/policy.py:200: The name tf.reset_default_graph is deprecated. Please use tf.compat.v1.reset_default_graph instead.
+
+WARNING:tensorflow:From /home/the1kieran/ME_751_Code/chrono-tensorflow/PPO/policy.py:202: The name tf.ConfigProto is deprecated. Please use tf.compat.v1.ConfigProto instead.
+
+WARNING:tensorflow:From /home/the1kieran/ME_751_Code/chrono-tensorflow/PPO/policy.py:204: The name tf.Session is deprecated. Please use tf.compat.v1.Session instead.
+
+2019-12-11 16:10:20.829204: I tensorflow/core/platform/cpu_feature_guard.cc:142] Your CPU supports instructions that this TensorFlow binary was not compiled to use: AVX2 FMA
+2019-12-11 16:10:20.831429: I tensorflow/core/platform/cpu_feature_guard.cc:142] Your CPU supports instructions that this TensorFlow binary was not compiled to use: AVX2 FMA
+2019-12-11 16:10:20.846179: I tensorflow/core/platform/profile_utils/cpu_utils.cc:94] CPU Frequency: 2592000000 Hz
+2019-12-11 16:10:20.846481: I tensorflow/compiler/xla/service/service.cc:168] XLA service 0x5624ddc58500 executing computations on platform Host. Devices:
+2019-12-11 16:10:20.846565: I tensorflow/compiler/xla/service/service.cc:175]   StreamExecutor device (0): <undefined>, <undefined>
+WARNING:tensorflow:From /home/the1kieran/ME_751_Code/chrono-tensorflow/PPO/policy.py:210: The name tf.train.import_meta_graph is deprecated. Please use tf.compat.v1.train.import_meta_graph instead.
+
+2019-12-11 16:10:20.849305: I tensorflow/core/platform/cpu_feature_guard.cc:142] Your CPU supports instructions that this TensorFlow binary was not compiled to use: AVX2 FMA
+2019-12-11 16:10:20.857593: I tensorflow/core/platform/cpu_feature_guard.cc:142] Your CPU supports instructions that this TensorFlow binary was not compiled to use: AVX2 FMA
+2019-12-11 16:10:20.858222: I tensorflow/core/platform/profile_utils/cpu_utils.cc:94] CPU Frequency: 2592000000 Hz
+2019-12-11 16:10:20.858584: I tensorflow/compiler/xla/service/service.cc:168] XLA service 0x5624ddc58500 executing computations on platform Host. Devices:
+2019-12-11 16:10:20.859445: I tensorflow/compiler/xla/service/service.cc:175]   StreamExecutor device (0): <undefined>, <undefined>
+WARNING:tensorflow:From /home/the1kieran/ME_751_Code/chrono-tensorflow/PPO/policy.py:210: The name tf.train.import_meta_graph is deprecated. Please use tf.compat.v1.train.import_meta_graph instead.
+
+2019-12-11 16:10:20.861957: I tensorflow/core/platform/profile_utils/cpu_utils.cc:94] CPU Frequency: 2592000000 Hz
+2019-12-11 16:10:20.862468: I tensorflow/compiler/xla/service/service.cc:168] XLA service 0x5624ddc58500 executing computations on platform Host. Devices:
+2019-12-11 16:10:20.862551: I tensorflow/compiler/xla/service/service.cc:175]   StreamExecutor device (0): <undefined>, <undefined>
+WARNING:tensorflow:From /home/the1kieran/ME_751_Code/chrono-tensorflow/PPO/policy.py:210: The name tf.train.import_meta_graph is deprecated. Please use tf.compat.v1.train.import_meta_graph instead.
+
+2019-12-11 16:10:20.864668: I tensorflow/core/platform/cpu_feature_guard.cc:142] Your CPU supports instructions that this TensorFlow binary was not compiled to use: AVX2 FMA
+2019-12-11 16:10:20.873471: I tensorflow/core/platform/profile_utils/cpu_utils.cc:94] CPU Frequency: 2592000000 Hz
+2019-12-11 16:10:20.873912: I tensorflow/compiler/xla/service/service.cc:168] XLA service 0x5624ddc58500 executing computations on platform Host. Devices:
+2019-12-11 16:10:20.873990: I tensorflow/compiler/xla/service/service.cc:175]   StreamExecutor device (0): <undefined>, <undefined>
+WARNING:tensorflow:From /home/the1kieran/ME_751_Code/chrono-tensorflow/PPO/policy.py:210: The name tf.train.import_meta_graph is deprecated. Please use tf.compat.v1.train.import_meta_graph instead.
+
+2019-12-11 16:10:20.876826: I tensorflow/core/platform/profile_utils/cpu_utils.cc:94] CPU Frequency: 2592000000 Hz
+2019-12-11 16:10:20.877210: I tensorflow/compiler/xla/service/service.cc:168] XLA service 0x5624ddc58500 executing computations on platform Host. Devices:
+2019-12-11 16:10:20.877290: I tensorflow/compiler/xla/service/service.cc:175]   StreamExecutor device (0): <undefined>, <undefined>
+WARNING:tensorflow:From /home/the1kieran/ME_751_Code/chrono-tensorflow/PPO/policy.py:210: The name tf.train.import_meta_graph is deprecated. Please use tf.compat.v1.train.import_meta_graph instead.
+
+2019-12-11 16:10:20.878953: I tensorflow/core/platform/cpu_feature_guard.cc:142] Your CPU supports instructions that this TensorFlow binary was not compiled to use: AVX2 FMA
+2019-12-11 16:10:20.901347: I tensorflow/core/platform/profile_utils/cpu_utils.cc:94] CPU Frequency: 2592000000 Hz
+2019-12-11 16:10:20.902120: I tensorflow/compiler/xla/service/service.cc:168] XLA service 0x5624ddc58500 executing computations on platform Host. Devices:
+2019-12-11 16:10:20.902210: I tensorflow/compiler/xla/service/service.cc:175]   StreamExecutor device (0): <undefined>, <undefined>
+WARNING:tensorflow:From /home/the1kieran/ME_751_Code/chrono-tensorflow/PPO/policy.py:210: The name tf.train.import_meta_graph is deprecated. Please use tf.compat.v1.train.import_meta_graph instead.
+
+WARNING:tensorflow:From /home/the1kieran/ME_751_Code/chrono-tensorflow/PPO/policy.py:211: The name tf.global_variables_initializer is deprecated. Please use tf.compat.v1.global_variables_initializer instead.
+
+WARNING:tensorflow:From /home/the1kieran/ME_751_Code/chrono-tensorflow/PPO/policy.py:211: The name tf.global_variables_initializer is deprecated. Please use tf.compat.v1.global_variables_initializer instead.
+
+WARNING:tensorflow:From /home/the1kieran/ME_751_Code/chrono-tensorflow/PPO/policy.py:211: The name tf.global_variables_initializer is deprecated. Please use tf.compat.v1.global_variables_initializer instead.
+
+WARNING:tensorflow:From /home/the1kieran/ME_751_Code/chrono-tensorflow/PPO/policy.py:211: The name tf.global_variables_initializer is deprecated. Please use tf.compat.v1.global_variables_initializer instead.
+
+2019-12-11 16:10:21.923087: W tensorflow/compiler/jit/mark_for_compilation_pass.cc:1412] (One-time warning): Not using XLA:CPU for cluster because envvar TF_XLA_FLAGS=--tf_xla_cpu_global_jit was not set.  If you want XLA:CPU, either set that envvar, or use experimental_jit_scope to enable XLA:CPU.  To confirm that XLA is active, pass --vmodule=xla_compilation_cache=1 (as a proper command-line flag, not via TF_XLA_FLAGS) or set the envvar XLA_FLAGS=--xla_hlo_profile.
+WARNING:tensorflow:From /home/the1kieran/ME_751_Code/chrono-tensorflow/PPO/policy.py:212: The name tf.get_default_graph is deprecated. Please use tf.compat.v1.get_default_graph instead.
+
+WARNING:tensorflow:From /home/the1kieran/ME_751_Code/chrono-tensorflow/PPO/policy.py:231: The name tf.train.Saver is deprecated. Please use tf.compat.v1.train.Saver instead.
+
+WARNING:tensorflow:From /home/the1kieran/ME_751_Code/chrono-tensorflow/PPO/policy.py:211: The name tf.global_variables_initializer is deprecated. Please use tf.compat.v1.global_variables_initializer instead.
+
+WARNING:tensorflow:From /home/the1kieran/ME_751_Code/chrono-tensorflow/PPO/policy.py:211: The name tf.global_variables_initializer is deprecated. Please use tf.compat.v1.global_variables_initializer instead.
+
+2019-12-11 16:10:22.023120: W tensorflow/compiler/jit/mark_for_compilation_pass.cc:1412] (One-time warning): Not using XLA:CPU for cluster because envvar TF_XLA_FLAGS=--tf_xla_cpu_global_jit was not set.  If you want XLA:CPU, either set that envvar, or use experimental_jit_scope to enable XLA:CPU.  To confirm that XLA is active, pass --vmodule=xla_compilation_cache=1 (as a proper command-line flag, not via TF_XLA_FLAGS) or set the envvar XLA_FLAGS=--xla_hlo_profile.
+WARNING:tensorflow:From /home/the1kieran/anaconda3/lib/python3.7/site-packages/tensorflow/python/training/saver.py:1276: checkpoint_exists (from tensorflow.python.training.checkpoint_management) is deprecated and will be removed in a future version.
+Instructions for updating:
+Use standard file APIs to check for files with this prefix.
+WARNING:tensorflow:From /home/the1kieran/ME_751_Code/chrono-tensorflow/PPO/policy.py:212: The name tf.get_default_graph is deprecated. Please use tf.compat.v1.get_default_graph instead.
+
+WARNING:tensorflow:From /home/the1kieran/ME_751_Code/chrono-tensorflow/PPO/policy.py:231: The name tf.train.Saver is deprecated. Please use tf.compat.v1.train.Saver instead.
+
+2019-12-11 16:10:22.094829: W tensorflow/compiler/jit/mark_for_compilation_pass.cc:1412] (One-time warning): Not using XLA:CPU for cluster because envvar TF_XLA_FLAGS=--tf_xla_cpu_global_jit was not set.  If you want XLA:CPU, either set that envvar, or use experimental_jit_scope to enable XLA:CPU.  To confirm that XLA is active, pass --vmodule=xla_compilation_cache=1 (as a proper command-line flag, not via TF_XLA_FLAGS) or set the envvar XLA_FLAGS=--xla_hlo_profile.
+2019-12-11 16:10:22.127248: W tensorflow/compiler/jit/mark_for_compilation_pass.cc:1412] (One-time warning): Not using XLA:CPU for cluster because envvar TF_XLA_FLAGS=--tf_xla_cpu_global_jit was not set.  If you want XLA:CPU, either set that envvar, or use experimental_jit_scope to enable XLA:CPU.  To confirm that XLA is active, pass --vmodule=xla_compilation_cache=1 (as a proper command-line flag, not via TF_XLA_FLAGS) or set the envvar XLA_FLAGS=--xla_hlo_profile.
+WARNING:tensorflow:From /home/the1kieran/ME_751_Code/chrono-tensorflow/PPO/policy.py:212: The name tf.get_default_graph is deprecated. Please use tf.compat.v1.get_default_graph instead.
+
+WARNING:tensorflow:From /home/the1kieran/ME_751_Code/chrono-tensorflow/PPO/policy.py:231: The name tf.train.Saver is deprecated. Please use tf.compat.v1.train.Saver instead.
+
+WARNING:tensorflow:From /home/the1kieran/ME_751_Code/chrono-tensorflow/PPO/policy.py:212: The name tf.get_default_graph is deprecated. Please use tf.compat.v1.get_default_graph instead.
+
+WARNING:tensorflow:From /home/the1kieran/ME_751_Code/chrono-tensorflow/PPO/policy.py:231: The name tf.train.Saver is deprecated. Please use tf.compat.v1.train.Saver instead.
+
+2019-12-11 16:10:22.192523: W tensorflow/compiler/jit/mark_for_compilation_pass.cc:1412] (One-time warning): Not using XLA:CPU for cluster because envvar TF_XLA_FLAGS=--tf_xla_cpu_global_jit was not set.  If you want XLA:CPU, either set that envvar, or use experimental_jit_scope to enable XLA:CPU.  To confirm that XLA is active, pass --vmodule=xla_compilation_cache=1 (as a proper command-line flag, not via TF_XLA_FLAGS) or set the envvar XLA_FLAGS=--xla_hlo_profile.
+WARNING:tensorflow:From /home/the1kieran/anaconda3/lib/python3.7/site-packages/tensorflow/python/training/saver.py:1276: checkpoint_exists (from tensorflow.python.training.checkpoint_management) is deprecated and will be removed in a future version.
+Instructions for updating:
+Use standard file APIs to check for files with this prefix.
+WARNING:tensorflow:From /home/the1kieran/ME_751_Code/chrono-tensorflow/PPO/policy.py:212: The name tf.get_default_graph is deprecated. Please use tf.compat.v1.get_default_graph instead.
+
+WARNING:tensorflow:From /home/the1kieran/ME_751_Code/chrono-tensorflow/PPO/policy.py:231: The name tf.train.Saver is deprecated. Please use tf.compat.v1.train.Saver instead.
+
+2019-12-11 16:10:22.249171: W tensorflow/compiler/jit/mark_for_compilation_pass.cc:1412] (One-time warning): Not using XLA:CPU for cluster because envvar TF_XLA_FLAGS=--tf_xla_cpu_global_jit was not set.  If you want XLA:CPU, either set that envvar, or use experimental_jit_scope to enable XLA:CPU.  To confirm that XLA is active, pass --vmodule=xla_compilation_cache=1 (as a proper command-line flag, not via TF_XLA_FLAGS) or set the envvar XLA_FLAGS=--xla_hlo_profile.
+WARNING:tensorflow:From /home/the1kieran/anaconda3/lib/python3.7/site-packages/tensorflow/python/training/saver.py:1276: checkpoint_exists (from tensorflow.python.training.checkpoint_management) is deprecated and will be removed in a future version.
+Instructions for updating:
+Use standard file APIs to check for files with this prefix.
+WARNING:tensorflow:From /home/the1kieran/ME_751_Code/chrono-tensorflow/PPO/policy.py:212: The name tf.get_default_graph is deprecated. Please use tf.compat.v1.get_default_graph instead.
+
+WARNING:tensorflow:From /home/the1kieran/ME_751_Code/chrono-tensorflow/PPO/policy.py:231: The name tf.train.Saver is deprecated. Please use tf.compat.v1.train.Saver instead.
+
+WARNING:tensorflow:From /home/the1kieran/anaconda3/lib/python3.7/site-packages/tensorflow/python/training/saver.py:1276: checkpoint_exists (from tensorflow.python.training.checkpoint_management) is deprecated and will be removed in a future version.
+Instructions for updating:
+Use standard file APIs to check for files with this prefix.
+WARNING:tensorflow:From /home/the1kieran/anaconda3/lib/python3.7/site-packages/tensorflow/python/training/saver.py:1276: checkpoint_exists (from tensorflow.python.training.checkpoint_management) is deprecated and will be removed in a future version.
+Instructions for updating:
+Use standard file APIs to check for files with this prefix.
+WARNING:tensorflow:From /home/the1kieran/anaconda3/lib/python3.7/site-packages/tensorflow/python/training/saver.py:1276: checkpoint_exists (from tensorflow.python.training.checkpoint_management) is deprecated and will be removed in a future version.
+Instructions for updating:
+Use standard file APIs to check for files with this prefix.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+***** Episode 20, Mean R = 1185.3 *****
+Beta: 1.5
+ExplainedVarNew: 0.89
+ExplainedVarOld: 0.571
+KL: 0.00647
+PolicyEntropy: 3.03
+PolicyLoss: -0.0161
+ValFuncLoss: 0.00553
+
+
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+***** Episode 40, Mean R = 1207.1 *****
+Beta: 1.5
+ExplainedVarNew: 0.827
+ExplainedVarOld: 0.541
+KL: 0.00293
+PolicyEntropy: 3
+PolicyLoss: -0.00453
+ValFuncLoss: 0.00747
+
+
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+***** Episode 60, Mean R = 1434.9 *****
+Beta: 1.5
+ExplainedVarNew: 0.859
+ExplainedVarOld: 0.605
+KL: 0.0022
+PolicyEntropy: 2.97
+PolicyLoss: -0.00544
+ValFuncLoss: 0.00653
+
+
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+***** Episode 80, Mean R = 1243.4 *****
+Beta: 1.5
+ExplainedVarNew: 0.859
+ExplainedVarOld: 0.654
+KL: 0.00221
+PolicyEntropy: 2.95
+PolicyLoss: -0.00462
+ValFuncLoss: 0.00551
+
+
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+***** Episode 100, Mean R = 1324.7 *****
+Beta: 1.5
+ExplainedVarNew: 0.866
+ExplainedVarOld: 0.585
+KL: 0.00336
+PolicyEntropy: 2.94
+PolicyLoss: -0.00673
+ValFuncLoss: 0.00654
+
+
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+***** Episode 120, Mean R = 1270.3 *****
+Beta: 1.5
+ExplainedVarNew: 0.844
+ExplainedVarOld: 0.564
+KL: 0.00273
+PolicyEntropy: 2.94
+PolicyLoss: -0.00735
+ValFuncLoss: 0.00824
+
+
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+***** Episode 140, Mean R = 1287.8 *****
+Beta: 1.5
+ExplainedVarNew: 0.873
+ExplainedVarOld: 0.613
+KL: 0.00176
+PolicyEntropy: 2.91
+PolicyLoss: -0.00443
+ValFuncLoss: 0.00577
+
+
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+***** Episode 160, Mean R = 1176.3 *****
+Beta: 1.5
+ExplainedVarNew: 0.798
+ExplainedVarOld: 0.583
+KL: 0.0025
+PolicyEntropy: 2.9
+PolicyLoss: -0.00755
+ValFuncLoss: 0.00794
+
+
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+***** Episode 180, Mean R = 1358.9 *****
+Beta: 1.5
+ExplainedVarNew: 0.865
+ExplainedVarOld: 0.686
+KL: 0.0025
+PolicyEntropy: 2.88
+PolicyLoss: -0.00562
+ValFuncLoss: 0.00645
+
+
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+***** Episode 200, Mean R = 1467.0 *****
+Beta: 1.5
+ExplainedVarNew: 0.871
+ExplainedVarOld: 0.622
+KL: 0.00173
+PolicyEntropy: 2.86
+PolicyLoss: -0.00414
+ValFuncLoss: 0.00476
+
+
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+***** Episode 220, Mean R = 1305.2 *****
+Beta: 1.5
+ExplainedVarNew: 0.875
+ExplainedVarOld: 0.555
+KL: 0.00218
+PolicyEntropy: 2.87
+PolicyLoss: -0.00462
+ValFuncLoss: 0.00635
+
+
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+***** Episode 240, Mean R = 1295.4 *****
+Beta: 1.5
+ExplainedVarNew: 0.87
+ExplainedVarOld: 0.624
+KL: 0.00255
+PolicyEntropy: 2.84
+PolicyLoss: -0.00573
+ValFuncLoss: 0.00541
+
+
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+***** Episode 260, Mean R = 1405.5 *****
+Beta: 1.5
+ExplainedVarNew: 0.867
+ExplainedVarOld: 0.541
+KL: 0.00158
+PolicyEntropy: 2.83
+PolicyLoss: -0.00369
+ValFuncLoss: 0.00697
+
+
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+***** Episode 280, Mean R = 1269.6 *****
+Beta: 1.5
+ExplainedVarNew: 0.834
+ExplainedVarOld: 0.603
+KL: 0.0022
+PolicyEntropy: 2.82
+PolicyLoss: -0.00479
+ValFuncLoss: 0.00849
+
+
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+***** Episode 300, Mean R = 1535.4 *****
+Beta: 1
+ExplainedVarNew: 0.852
+ExplainedVarOld: 0.562
+KL: 0.00149
+PolicyEntropy: 2.8
+PolicyLoss: -0.00306
+ValFuncLoss: 0.00574
+
+
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+***** Episode 320, Mean R = 1499.0 *****
+Beta: 1
+ExplainedVarNew: 0.836
+ExplainedVarOld: 0.472
+KL: 0.00391
+PolicyEntropy: 2.8
+PolicyLoss: -0.00539
+ValFuncLoss: 0.00625
+
+
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+***** Episode 340, Mean R = 1350.3 *****
+Beta: 1
+ExplainedVarNew: 0.799
+ExplainedVarOld: 0.64
+KL: 0.00316
+PolicyEntropy: 2.77
+PolicyLoss: -0.00484
+ValFuncLoss: 0.00823
+
+
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+***** Episode 360, Mean R = 1494.6 *****
+Beta: 1
+ExplainedVarNew: 0.857
+ExplainedVarOld: 0.605
+KL: 0.00381
+PolicyEntropy: 2.74
+PolicyLoss: -0.00514
+ValFuncLoss: 0.0058
+
+
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+***** Episode 380, Mean R = 1063.7 *****
+Beta: 1.5
+ExplainedVarNew: 0.822
+ExplainedVarOld: 0.311
+KL: 0.0332
+PolicyEntropy: 2.73
+PolicyLoss: -0.666
+ValFuncLoss: 0.0104
+
+
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+***** Episode 400, Mean R = 1374.3 *****
+Beta: 2.25
+ExplainedVarNew: 0.86
+ExplainedVarOld: 0.599
+KL: 0.0131
+PolicyEntropy: 2.72
+PolicyLoss: 0.0216
+ValFuncLoss: 0.0055
+
+
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+***** Episode 420, Mean R = 1266.3 *****
+Beta: 2.25
+ExplainedVarNew: 0.899
+ExplainedVarOld: 0.393
+KL: 0.00336
+PolicyEntropy: 2.73
+PolicyLoss: 3.55e-05
+ValFuncLoss: 0.00502
+
+
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+***** Episode 440, Mean R = 1392.2 *****
+Beta: 2.25
+ExplainedVarNew: 0.86
+ExplainedVarOld: 0.505
+KL: 0.00158
+PolicyEntropy: 2.71
+PolicyLoss: -0.00443
+ValFuncLoss: 0.00633
+
+
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+***** Episode 460, Mean R = 1149.1 *****
+Beta: 1.5
+ExplainedVarNew: 0.842
+ExplainedVarOld: 0.62
+KL: 0.00118
+PolicyEntropy: 2.7
+PolicyLoss: -0.00377
+ValFuncLoss: 0.00668
+
+
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+***** Episode 480, Mean R = 1420.5 *****
+Beta: 1.5
+ExplainedVarNew: 0.896
+ExplainedVarOld: 0.6
+KL: 0.00169
+PolicyEntropy: 2.68
+PolicyLoss: -0.00339
+ValFuncLoss: 0.00498
+
+
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+***** Episode 500, Mean R = 1516.5 *****
+Beta: 1.5
+ExplainedVarNew: 0.84
+ExplainedVarOld: 0.593
+KL: 0.00205
+PolicyEntropy: 2.67
+PolicyLoss: -0.00478
+ValFuncLoss: 0.00628
+
+
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+***** Episode 520, Mean R = 1137.8 *****
+Beta: 1.5
+ExplainedVarNew: 0.848
+ExplainedVarOld: 0.634
+KL: 0.00301
+PolicyEntropy: 2.66
+PolicyLoss: -0.00812
+ValFuncLoss: 0.00899
+
+
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+***** Episode 540, Mean R = 1301.1 *****
+Beta: 1.5
+ExplainedVarNew: 0.813
+ExplainedVarOld: 0.542
+KL: 0.00184
+PolicyEntropy: 2.64
+PolicyLoss: -0.00358
+ValFuncLoss: 0.00792
+
+
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+***** Episode 560, Mean R = 1378.5 *****
+Beta: 1.5
+ExplainedVarNew: 0.88
+ExplainedVarOld: 0.679
+KL: 0.0018
+PolicyEntropy: 2.64
+PolicyLoss: -0.00327
+ValFuncLoss: 0.00564
+
+
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+***** Episode 580, Mean R = 1547.4 *****
+Beta: 1.5
+ExplainedVarNew: 0.855
+ExplainedVarOld: 0.439
+KL: 0.00179
+PolicyEntropy: 2.62
+PolicyLoss: -0.00351
+ValFuncLoss: 0.00573
+
+
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+***** Episode 600, Mean R = 1307.9 *****
+Beta: 1.5
+ExplainedVarNew: 0.848
+ExplainedVarOld: 0.531
+KL: 0.00196
+PolicyEntropy: 2.61
+PolicyLoss: -0.00366
+ValFuncLoss: 0.00733
+
+
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+***** Episode 620, Mean R = 1251.0 *****
+Beta: 1.5
+ExplainedVarNew: 0.849
+ExplainedVarOld: 0.564
+KL: 0.00315
+PolicyEntropy: 2.6
+PolicyLoss: -0.00799
+ValFuncLoss: 0.00875
+
+
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+***** Episode 640, Mean R = 1466.1 *****
+Beta: 1.5
+ExplainedVarNew: 0.843
+ExplainedVarOld: 0.533
+KL: 0.00191
+PolicyEntropy: 2.59
+PolicyLoss: -0.00401
+ValFuncLoss: 0.00583
+
+
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+***** Episode 660, Mean R = 1123.0 *****
+Beta: 1.5
+ExplainedVarNew: 0.818
+ExplainedVarOld: 0.485
+KL: 0.00386
+PolicyEntropy: 2.59
+PolicyLoss: -0.011
+ValFuncLoss: 0.0109
+
+
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+***** Episode 680, Mean R = 1377.3 *****
+Beta: 1.5
+ExplainedVarNew: 0.864
+ExplainedVarOld: 0.642
+KL: 0.00194
+PolicyEntropy: 2.58
+PolicyLoss: -0.00326
+ValFuncLoss: 0.00677
+
+
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+***** Episode 700, Mean R = 1382.0 *****
+Beta: 1.5
+ExplainedVarNew: 0.819
+ExplainedVarOld: 0.511
+KL: 0.00241
+PolicyEntropy: 2.56
+PolicyLoss: -0.00529
+ValFuncLoss: 0.0081
+
+
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+***** Episode 720, Mean R = 1487.2 *****
+Beta: 1.5
+ExplainedVarNew: 0.862
+ExplainedVarOld: 0.532
+KL: 0.00247
+PolicyEntropy: 2.54
+PolicyLoss: -0.00515
+ValFuncLoss: 0.0059
+
+
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+***** Episode 740, Mean R = 1589.3 *****
+Beta: 1.5
+ExplainedVarNew: 0.826
+ExplainedVarOld: 0.422
+KL: 0.00182
+PolicyEntropy: 2.53
+PolicyLoss: -0.00357
+ValFuncLoss: 0.00603
+
+
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+***** Episode 760, Mean R = 1489.6 *****
+Beta: 1
+ExplainedVarNew: 0.844
+ExplainedVarOld: 0.53
+KL: 0.00142
+PolicyEntropy: 2.5
+PolicyLoss: -0.00294
+ValFuncLoss: 0.00668
+
+
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+***** Episode 780, Mean R = 1542.6 *****
+Beta: 1
+ExplainedVarNew: 0.85
+ExplainedVarOld: 0.588
+KL: 0.00516
+PolicyEntropy: 2.48
+PolicyLoss: -0.0139
+ValFuncLoss: 0.00688
+
+
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+***** Episode 800, Mean R = 1737.6 *****
+Beta: 1
+ExplainedVarNew: 0.861
+ExplainedVarOld: 0.669
+KL: 0.00435
+PolicyEntropy: 2.48
+PolicyLoss: -0.00629
+ValFuncLoss: 0.00681
+
+
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+***** Episode 820, Mean R = 1715.8 *****
+Beta: 1
+ExplainedVarNew: 0.86
+ExplainedVarOld: 0.513
+KL: 0.00325
+PolicyEntropy: 2.47
+PolicyLoss: -0.00435
+ValFuncLoss: 0.00637
+
+
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+***** Episode 840, Mean R = 1654.1 *****
+Beta: 1
+ExplainedVarNew: 0.849
+ExplainedVarOld: 0.547
+KL: 0.00357
+PolicyEntropy: 2.42
+PolicyLoss: -0.00552
+ValFuncLoss: 0.00701
+
+
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+***** Episode 860, Mean R = 1665.5 *****
+Beta: 1
+ExplainedVarNew: 0.883
+ExplainedVarOld: 0.597
+KL: 0.00301
+PolicyEntropy: 2.41
+PolicyLoss: -0.00521
+ValFuncLoss: 0.0051
+
+
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+***** Episode 880, Mean R = 1719.7 *****
+Beta: 1.5
+ExplainedVarNew: 0.746
+ExplainedVarOld: 0.501
+KL: 0.017
+PolicyEntropy: 2.39
+PolicyLoss: -0.0874
+ValFuncLoss: 0.00972
+
+
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+***** Episode 900, Mean R = 1639.2 *****
+Beta: 1.5
+ExplainedVarNew: 0.837
+ExplainedVarOld: 0.567
+KL: 0.00329
+PolicyEntropy: 2.37
+PolicyLoss: -0.000723
+ValFuncLoss: 0.00732
+
+
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+***** Episode 920, Mean R = 1778.6 *****
+Beta: 1
+ExplainedVarNew: 0.854
+ExplainedVarOld: 0.589
+KL: 0.00132
+PolicyEntropy: 2.37
+PolicyLoss: -0.00327
+ValFuncLoss: 0.00618
+
+
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+***** Episode 940, Mean R = 1683.0 *****
+Beta: 1
+ExplainedVarNew: 0.827
+ExplainedVarOld: 0.605
+KL: 0.00338
+PolicyEntropy: 2.35
+PolicyLoss: -0.00469
+ValFuncLoss: 0.00902
+
+
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+***** Episode 960, Mean R = 1441.5 *****
+Beta: 1
+ExplainedVarNew: 0.787
+ExplainedVarOld: 0.558
+KL: 0.00422
+PolicyEntropy: 2.34
+PolicyLoss: -0.00576
+ValFuncLoss: 0.0105
+
+
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+***** Episode 980, Mean R = 1795.7 *****
+Beta: 1
+ExplainedVarNew: 0.872
+ExplainedVarOld: 0.65
+KL: 0.00355
+PolicyEntropy: 2.31
+PolicyLoss: -0.00448
+ValFuncLoss: 0.00582
+
+
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+Destructor called, No device to delete.
+***** Episode 1000, Mean R = 1714.8 *****
+Beta: 1
+ExplainedVarNew: 0.855
+ExplainedVarOld: 0.59
+KL: 0.00356
+PolicyEntropy: 2.29
+PolicyLoss: -0.00421
+ValFuncLoss: 0.00673
+
+
+Destructor called, No device to delete.
+progress: 3 out of 3
+finished
+(base) PPO$
+
