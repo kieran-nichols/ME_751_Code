@@ -300,8 +300,8 @@ class Model(object):
                   progress = self.calc_progress()
                                          
                   ## New costs
-                  delta_pos = 10000*(self.body_abdomen.GetPos().x - xposbefore) 
-                  print(delta_pos,progress,power_cost)         
+                  delta_pos = 0#10000*(self.body_abdomen.GetPos().x - xposbefore) 
+                  #print(delta_pos,progress,power_cost)         
                   
                   # Cost calculation
                   rew = progress + self.alive_bonus + 0.1*(power_cost) + 3*(joints_limit) + delta_pos
