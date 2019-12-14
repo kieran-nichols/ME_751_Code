@@ -102,8 +102,8 @@ class Model(object):
       self.body_abdomen.GetCollisionModel().BuildModel()
       self.ant_sys.Add(self.body_abdomen)
       
-      
-      leg_ang =  np.array([math.pi/2,math.pi/2])#(1/4)*math.pi+(1/2)*math.pi*np.array([0,1])
+      tilt_factor = 1.1 # no tilt; higher number tilts body toward positive x
+      leg_ang =  np.array([tilt_factor*math.pi/2,tilt_factor*math.pi/2])#(1/4)*math.pi+(1/2)*math.pi*np.array([0,1])
       Leg_quat = [chrono.ChQuaternionD() for i in range(len(leg_ang))]
       self.leg_body = [chrono.ChBody() for i in range(len(leg_ang))]
       self.leg_pos= [chrono.ChVectorD() for i in range(len(leg_ang))]
@@ -287,10 +287,10 @@ class Model(object):
    
    def calc_rew(self, xposbefore):
                   
-                  electricity_cost     = -2.0    # cost for using motors -- this parameter should be carefully tuned against reward for making progress, other values less improtant
+                  electricity_cost     = -0    # cost for using motors -- this parameter should be carefully tuned against reward for making progress, other values less improtant
                   #stall_torque_cost    = -0.1    # cost for running electric current through a motor even at zero rotational speed, small
 
-                  joints_at_limit_cost = -0.2    # discourage stuck joints
+                  joints_at_limit_cost = -0    # discourage stuck joints
                   
                   power_cost  = electricity_cost  * float(np.abs(self.ac*self.q_dot_mot).mean())  # let's assume we have DC motor with controller, and reverse current braking. BTW this is the formula of motor power
                   #Reduced stall cost to avoid joints at limit
@@ -304,7 +304,8 @@ class Model(object):
                   print(self.body_abdomen.GetPos().x)     
                   
                   # Cost calculation
-                  rew = progress + self.alive_bonus + 0.1*(power_cost) + 3*(joints_limit) + delta_pos
+                  rew = progress + self.alive_bonus + 0.1*(power_cost) + 3*(joints_limit) + delta_pos #+ self.body_abdomen.GetPos().x
+                  #print(progress)
       
                   return rew
    def calc_progress(self):
