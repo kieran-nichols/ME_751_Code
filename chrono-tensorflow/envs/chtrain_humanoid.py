@@ -39,16 +39,16 @@ class Model(object):
       self.ant_material.SetComplianceT(0.0005)
 
       self.timestep = 0.01
-      self.abdomen_x = 0.25
-      self.abdomen_y = 0.25
-      self.abdomen_z = 0.25
+      self.abdomen_x = 0.2
+      self.abdomen_y = 0.2
+      self.abdomen_z = 0.2
 
       self.leg_density = 250    # kg/m^3
       self.abdomen_density = 100
       self.abdomen_y0 = 0.8
-      self.leg_length = 0.3
+      self.leg_length = 0.4
       self.leg_radius = 0.08
-      self.ankle_angle = 60.*(math.pi/180)
+      self.ankle_angle = 0.*(math.pi/180)
       self.ankle_length = 0.4
       self.ankle_radius = 0.08
       self.gain = 30
@@ -102,7 +102,7 @@ class Model(object):
       self.ant_sys.Add(self.body_abdomen)
       
       
-      leg_ang =  np.array([math.pi/2,-math.pi/2])#(1/4)*math.pi+(1/2)*math.pi*np.array([0,1])
+      leg_ang =  np.array([math.pi/2,math.pi/2])#(1/4)*math.pi+(1/2)*math.pi*np.array([0,1])
       Leg_quat = [chrono.ChQuaternionD() for i in range(len(leg_ang))]
       self.leg_body = [chrono.ChBody() for i in range(len(leg_ang))]
       self.leg_pos= [chrono.ChVectorD() for i in range(len(leg_ang))]
@@ -130,11 +130,11 @@ class Model(object):
       self.ankle_body = [chrono.ChBody() for i in range(len(leg_ang))]
       self.Ankle_rev = [chrono.ChLinkLockRevolute() for i in range(len(leg_ang))]
       self.ankle_motor = [chrono.ChLinkMotorRotationTorque() for i in range(len(leg_ang)) ]
-      for i in range(len(leg_ang)):
-             
+      for i in range(len(leg_ang)):	
+		             
              # Legs
              Leg_quat[i].Q_from_AngAxis(-leg_ang[i] , chrono.ChVectorD(0, 0, 1))
-             self.leg_pos[i] = chrono.ChVectorD( (self.leg_length)*math.cos(leg_ang[i]) , (0.5*self.abdomen_y0), -self.abdomen_z)
+             self.leg_pos[i] = chrono.ChVectorD( 0 , (0.5*self.abdomen_y0*math.sin(leg_ang[i])), ((-1)**i)*self.abdomen_z/2*math.sin(leg_ang[i]))
              self.leg_body[i].SetPos(self.leg_pos[i])
              self.leg_body[i].SetRot(Leg_quat[i])
              self.leg_body[i].AddAsset(self.leg_shape)
