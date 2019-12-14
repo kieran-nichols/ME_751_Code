@@ -49,7 +49,7 @@ class Model(object):
       self.leg_length = 0.4
       self.leg_radius = 0.06
       self.ankle_angle = 0.*(math.pi/180)
-      self.CMtohip_angle = 45.*(math.pi/180)
+      self.CMtohip_angle = 15.*(math.pi/180)
       self.ankle_length = 0.4
       self.ankle_radius = 0.06
       self.gain = 30
@@ -135,8 +135,8 @@ class Model(object):
 		             
              # Legs
              Leg_quat[i].Q_from_AngAxis(-leg_ang[i] , chrono.ChVectorD(0, 0, 1))
-             self.leg_pos[i] = chrono.ChVectorD( (0.5*self.leg_length*math.cos(leg_ang[i])) , (self.abdomen_y0-self.leg_length/2*math.sin(leg_ang[i])), (-1)**i*self.abdomen_z)
-             #self.leg_pos[i] = chrono.ChVectorD( (0.5*self.leg_length)*math.cos(leg_ang[i]) , (self.abdomen_y0-self.abdomen_y*math.cos(self.CMtohip_angle)-self.leg_length/2), ((-1)**i)*self.abdomen_z/2*math.sin(self.CMtohip_angle))             
+             # postion of leg CM from abdomen
+             self.leg_pos[i] = chrono.ChVectorD( (0.5*self.leg_length*math.cos(leg_ang[i])) , (self.abdomen_y0-self.leg_length/2*math.sin(leg_ang[i])-self.abdomen_y*math.cos(self.CMtohip_angle)), (-1)**i*self.abdomen_z*math.sin(self.CMtohip_angle))
              self.leg_body[i].SetPos(self.leg_pos[i])
              self.leg_body[i].SetRot(Leg_quat[i])
              self.leg_body[i].AddAsset(self.leg_shape)
@@ -148,8 +148,7 @@ class Model(object):
              Leg_qa[i].Q_from_AngAxis(-leg_ang[i] , chrono.ChVectorD(0, 1, 0))
              z2x_leg[i].Q_from_AngAxis(chrono.CH_C_PI / 2 , x_rel[i])
              Leg_q[i] = z2x_leg[i] * Leg_qa[i] 
-             #Leg_rev_pos.append(chrono.ChVectorD(self.leg_pos[i]-chrono.ChVectorD(math.cos(leg_ang[i])*self.leg_length/2,0,math.sin(leg_ang[i])*self.leg_length/2)))
-             Leg_rev_pos.append(chrono.ChVectorD(0,self.abdomen_y0,0))
+             Leg_rev_pos.append(chrono.ChVectorD(0,self.abdomen_y0,0)) # connection to abdomen
              Leg_chordsys.append(chrono.ChCoordsysD(Leg_rev_pos[i], Leg_q[i]))
              self.legjoint_frame.append(chrono.ChFrameD(Leg_chordsys[i]))
              self.Leg_rev[i].Initialize(self.body_abdomen, self.leg_body[i],Leg_chordsys[i])
@@ -193,7 +192,7 @@ class Model(object):
     # and a visualization shape
       self.body_floor = chrono.ChBody()
       self.body_floor.SetBodyFixed(True)
-      self.body_floor.SetPos(chrono.ChVectorD(0, -1, 0 ))
+      self.body_floor.SetPos(chrono.ChVectorD(0, -self.abdomen_y0-self.abdomen_y*math.cos(self.CMtohip_angle)-self.ankle_radius, 0 ))
       self.body_floor.SetMaterialSurface(self.ant_material)
       
       # Floor Collision.
@@ -301,7 +300,8 @@ class Model(object):
                                          
                   ## New costs
                   delta_pos = 0#10000*(self.body_abdomen.GetPos().x - xposbefore) 
-                  #print(delta_pos,progress,power_cost)         
+                  #print(delta_pos,progress,power_cost)    
+                  print(self.body_abdomen.GetPos().x)     
                   
                   # Cost calculation
                   rew = progress + self.alive_bonus + 0.1*(power_cost) + 3*(joints_limit) + delta_pos
