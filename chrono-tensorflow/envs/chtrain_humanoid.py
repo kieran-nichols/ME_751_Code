@@ -45,12 +45,13 @@ class Model(object):
 
       self.leg_density = 250    # kg/m^3
       self.abdomen_density = 100
-      self.abdomen_y0 = 0.8
+      self.abdomen_y0 = 0.9 # 1
       self.leg_length = 0.4
-      self.leg_radius = 0.08
+      self.leg_radius = 0.06
       self.ankle_angle = 0.*(math.pi/180)
+      self.CMtohip_angle = 45.*(math.pi/180)
       self.ankle_length = 0.4
-      self.ankle_radius = 0.08
+      self.ankle_radius = 0.06
       self.gain = 30
 
       self.abdomen_mass = self.abdomen_density * ((4/3)*chrono.CH_C_PI*self.abdomen_x*self.abdomen_y*self.abdomen_z)
@@ -62,10 +63,10 @@ class Model(object):
       
       self.leg_limit = chrono.ChLinkLimit()
       self.ankle_limit = chrono.ChLinkLimit()
-      self.leg_limit.SetRmax(math.pi/9)
-      self.leg_limit.SetRmin(-math.pi/9)
-      self.ankle_limit.SetRmax(math.pi/9)
-      self.ankle_limit.SetRmin(-math.pi/9)
+      self.leg_limit.SetRmax(math.pi/4)
+      self.leg_limit.SetRmin(-math.pi/4)
+      self.ankle_limit.SetRmax(math.pi/4)
+      self.ankle_limit.SetRmin(-math.pi/4)
       
       if (self.animate) :
              self.myapplication = chronoirr.ChIrrApp(self.ant_sys)
@@ -134,7 +135,8 @@ class Model(object):
 		             
              # Legs
              Leg_quat[i].Q_from_AngAxis(-leg_ang[i] , chrono.ChVectorD(0, 0, 1))
-             self.leg_pos[i] = chrono.ChVectorD( 0 , (0.5*self.abdomen_y0*math.sin(leg_ang[i])), ((-1)**i)*self.abdomen_z/2*math.sin(leg_ang[i]))
+             self.leg_pos[i] = chrono.ChVectorD( (0.5*self.leg_length*math.cos(leg_ang[i])) , (self.abdomen_y0-self.leg_length/2*math.sin(leg_ang[i])), (-1)**i*self.abdomen_z)
+             #self.leg_pos[i] = chrono.ChVectorD( (0.5*self.leg_length)*math.cos(leg_ang[i]) , (self.abdomen_y0-self.abdomen_y*math.cos(self.CMtohip_angle)-self.leg_length/2), ((-1)**i)*self.abdomen_z/2*math.sin(self.CMtohip_angle))             
              self.leg_body[i].SetPos(self.leg_pos[i])
              self.leg_body[i].SetRot(Leg_quat[i])
              self.leg_body[i].AddAsset(self.leg_shape)
@@ -146,7 +148,8 @@ class Model(object):
              Leg_qa[i].Q_from_AngAxis(-leg_ang[i] , chrono.ChVectorD(0, 1, 0))
              z2x_leg[i].Q_from_AngAxis(chrono.CH_C_PI / 2 , x_rel[i])
              Leg_q[i] = z2x_leg[i] * Leg_qa[i] 
-             Leg_rev_pos.append(chrono.ChVectorD(self.leg_pos[i]-chrono.ChVectorD(math.cos(leg_ang[i])*self.leg_length/2,0,math.sin(leg_ang[i])*self.leg_length/2)))
+             #Leg_rev_pos.append(chrono.ChVectorD(self.leg_pos[i]-chrono.ChVectorD(math.cos(leg_ang[i])*self.leg_length/2,0,math.sin(leg_ang[i])*self.leg_length/2)))
+             Leg_rev_pos.append(chrono.ChVectorD(0,self.abdomen_y0,0))
              Leg_chordsys.append(chrono.ChCoordsysD(Leg_rev_pos[i], Leg_q[i]))
              self.legjoint_frame.append(chrono.ChFrameD(Leg_chordsys[i]))
              self.Leg_rev[i].Initialize(self.body_abdomen, self.leg_body[i],Leg_chordsys[i])
@@ -178,11 +181,11 @@ class Model(object):
              
              # Limits need to turn back to true        
              self.Leg_rev[i].GetLimit_Rz().SetActive(True)
-             self.Leg_rev[i].GetLimit_Rz().SetMin(-2.*math.pi/3)
-             self.Leg_rev[i].GetLimit_Rz().SetMax(math.pi/3*0)
+             self.Leg_rev[i].GetLimit_Rz().SetMin(-math.pi/3)
+             self.Leg_rev[i].GetLimit_Rz().SetMax(math.pi/3)
              self.Ankle_rev[i].GetLimit_Rz().SetActive(True)
-             self.Ankle_rev[i].GetLimit_Rz().SetMin(-math.pi)
-             self.Ankle_rev[i].GetLimit_Rz().SetMax(math.pi/4)
+             self.Ankle_rev[i].GetLimit_Rz().SetMin(-math.pi/3)
+             self.Ankle_rev[i].GetLimit_Rz().SetMax(math.pi/3)
              
 
            
@@ -209,8 +212,14 @@ class Model(object):
       body_floor_texture.SetTextureFilename('../data/grass.jpg')
       self.body_floor.GetAssets().push_back(body_floor_texture)     
       self.ant_sys.Add(self.body_floor)
-      # this was commented out to not fix the abdomen
-      self.body_abdomen.SetBodyFixed(False)
+      
+      # this was commented out to not fix the segments
+      # this is helpful to check geometry of humanoid
+      #self.body_abdomen.SetBodyFixed(True)
+      #self.leg_body[0].SetBodyFixed(True)
+      #self.leg_body[1].SetBodyFixed(True)
+      #self.ankle_body[0].SetBodyFixed(True)
+      #self.ankle_body[1].SetBodyFixed(True)
    
       if (self.animate):
             self.myapplication.AssetBindAll()
