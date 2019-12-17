@@ -299,7 +299,7 @@ class Model(object):
                   a = 0#.1
                   
                   # sum of costs
-                  rew = progress + self.alive_bonus + 0.1*(power_cost) + 3*(joints_limit) - a*vel_cost - a/20*accel_cost
+                  rew = progress + self.alive_bonus + 0.1*(power_cost) + 3*(joints_limit) - a*vel_cost - a/20.*accel_cost
                   return rew
    def calc_progress(self):
               d = np.linalg.norm( [self.Ytarg - self.body_abdomen.GetPos().y, self.Xtarg - self.body_abdomen.GetPos().x] )

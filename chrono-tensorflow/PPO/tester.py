@@ -85,7 +85,8 @@ def run_episode(env, policy, scaler, animate=True):
             reward = np.asscalar(reward)
         rewards.append(reward)
         step += 1e-3  # increment time step feature
-
+    
+    print(env.coor_state())
     return (np.concatenate(observes), np.concatenate(actions),
             np.array(rewards, dtype=np.float64), np.concatenate(unscaled_obs))
 

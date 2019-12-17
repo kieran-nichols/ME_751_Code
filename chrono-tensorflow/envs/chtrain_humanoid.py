@@ -283,6 +283,7 @@ class Model(object):
           feet_contact = np.clip(feet_contact , -5, 5)
           self.joint_at_limit = np.count_nonzero(np.abs(joint_at_limit))
           #print(ab_q, ab_qdot, self.q_mot,  self.q_dot_mot, feet_contact)
+          # added x,y,z position of abdomen
           return np.concatenate ([ab_q, ab_qdot, self.q_mot,  self.q_dot_mot, feet_contact]);
    
    def calc_rew(self, xposbefore):
@@ -301,7 +302,7 @@ class Model(object):
                   ## New costs
                   delta_pos = 0#10000*(self.body_abdomen.GetPos().x - xposbefore) 
                   #print(delta_pos,progress,power_cost)    
-                  print(self.body_abdomen.GetPos().x)     
+                  #print(self.body_abdomen.GetPos().x)     
                   
                   # Cost calculation
                   rew = progress + self.alive_bonus + 0.1*(power_cost) + 3*(joints_limit) + delta_pos #+ self.body_abdomen.GetPos().x
@@ -332,4 +333,8 @@ class Model(object):
               self.myapplication.SetVideoframeSaveInterval(interval)
           except:
                  print('No ChIrrApp found. Cannot save video frames.')
-                     
+                 
+   def coor_state(self):
+   	  #print(self.body_abdomen.GetPos())
+          return self.body_abdomen.GetPos()
+          ###           
