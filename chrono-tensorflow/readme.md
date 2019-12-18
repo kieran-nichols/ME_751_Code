@@ -35,7 +35,6 @@ Picture
 ### Machine Learning Algorithm
 The machine learning for this project uses coding structures from Tensorflow. Tensorflow is an open-source machine learning platform that allows for easy model building and production of robust machine learning. To solve tasks, neural networks will be used in the process of Proximal Policy Optimization (PPO), which is a form of reinforcement learning. Reinforcement learning is the process promoting actions of a program in order to maximize its specified cumulative reward. PPO further specifies that as the machine learning be based in a stochastic gradient ascent (way of maximizing reward) to perform each set of iterations (in my case; ensuring that the robot stays up).
 
-
 ### Problems
 Couldn't get it to work on Windows or WSL on Windows  
 There are various versions of Machine learning for PyChrono available and it's difficult to choose.

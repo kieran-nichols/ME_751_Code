@@ -1,3 +1,3 @@
-#env
+# env
 
 This folder contains the env (robotic devices) of the humanoid and ant. The env is set up by specifying the physical bodies of the robot with its various segments defined by various constraints and having a floor. The ant is a sphere with four sets of upper and lower legs that is controlled with 8 motors (4 at the sphere-upper leg joints and 4 at the upper-lower leg joints). The humanoid comprises of a sphere with 2 sets of upper and lower leg segments with 4 motors. The input for these motors are the actions of the machine learning. The tasks of the robotic ant and humanoid (environments/env) is goal to walk as close to a straight line as possible. 
