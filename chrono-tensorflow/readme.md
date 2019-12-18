@@ -10,7 +10,7 @@ Python
 
 ### Installing
 Bash
-Use linux system (tested on Ubuntu
+Use linux system (this project was tested on Ubuntu)
 
 Python
 Anaconda (conda)
@@ -21,10 +21,9 @@ Refer to http://projectchrono.org/pychrono/
 Tensorflow
 Refer to https://docs.anaconda.com/anaconda/user-guide/tasks/tensorflow/
 
-Gym chrono?
 
 ## Project Description
-My projects centers about utilizing PyChrono and Machine Learning to create a controller that achieves walking for the multi-segmented body of a four-legged ant and humanoid.  
+My project centers about utilizing PyChrono and Machine Learning to create a controller that achieves walking for the multi-segmented body of a four-legged ant and humanoid.  
 
 ### Goals
 Implementation of Gym-Chrono: the machine learning component of PyChrono on personal computer with visualization working  
@@ -43,22 +42,20 @@ PPO
 
 ### Program Execution
 
-`python ./train_serial.py ChronoAnt -n 20000 -b 100  --renderOFF`
-|---|---|---|---|---|---|
-| 1	     | 2	            | 3	       | 4      | 5     |  6       |
-|---|---|---|---|---|---|
+`python ./train_serial.py ChronoAnt -n 20000 -b 100  --renderON`
 
 1. Use python or python3 command in a bash terminal
-2. This command specifies that the serial learning will be utilized. './train_parall.py' can also be used for parallel learning
-3. 'ChronoAnt' will use the Ant object. 'ChronoHumanoid' will use the humanoid object
-4.
-5.
-6.
+2. This command specifies that the serial learning will be utilized. `./train_parallel.py` can also be used for parallel learning. `./tester.py` can be used for running the episodes without further improving the learning. 
+3. 'ChronoAnt' will use the Ant robot. 'ChronoHumanoid' will use the humanoid robot. The robot are also called env (environment)
+4. `-n 20000` says that 20000 episodes will be used
+5. `-b 100` says that batches of 100 will be processed at a time for learning.
+6. `--renderON` displays the robot and floor as it learns how to walk or fails to walk.
 
 Other commands
-Discount factor
-Lambda
-Kullback Leibler divergence target value
+Discount factor: '-g'
+Lambda: '-l'
+Kullback Leibler divergence target value: '-k'
+Help: '-h'
 
 
 ### Output
@@ -73,10 +70,8 @@ Sacling analysis
 
 ### Problems
 Couldn't get it to work on Windows or WSL on Windows  
-Gymchrono vs Pychrono  
-Ending execution  
+There are various versions of Machine learning for PyChrono available and it's difficult to choose.
 
-## Other
 
 ## Author
 

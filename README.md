@@ -1,6 +1,8 @@
 # ME_751_Code
 
-Run system3D.m file in Mathlab to get output. System3d.m will use functions from func.m
+## HW
+Contains various code for use in ME 751 for emcompasses kinematics, kinematics of rigid and flexible bodies, and fluid dynamics
 
-For HW6: there is a file for each question. Question 2 and 3 were not completed but I seperated the end result answer (Case 1)
-and my incompleted work (other Case.)
+
+## Project
+Contains code for using machine learning (Tensorflow) and Chrono (PyChrono) to teach ant and humanoid robots to walk.
