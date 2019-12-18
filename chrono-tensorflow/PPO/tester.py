@@ -86,7 +86,15 @@ def run_episode(env, policy, scaler, animate=True):
         rewards.append(reward)
         step += 1e-3  # increment time step feature
     
-    print(env.coor_state())
+    #print(env.coor_state())
+    f= open("coor_state.txt","a")
+    #for i in len(env.coor_state()):
+    np.savetxt(f, [env.coor_state()],fmt='%0.4f',newline='',delimiter=',')
+    #f.write("%f,%f,%f" % env.coor_state().x,env.coor_state().y,env.coor_state().z)
+    #f.write(env.coor_state())
+    f.write("\n")
+    f.close()
+    
     return (np.concatenate(observes), np.concatenate(actions),
             np.array(rewards, dtype=np.float64), np.concatenate(unscaled_obs))
 
@@ -109,6 +117,11 @@ def run_policy(env, policy, scaler, logger, episodes):
     """
     total_steps = 0
     trajectories = []
+    
+    # to create new file at beginning of trial
+    f= open("coor_state.txt","w")
+    f.close
+    
     for e in range(episodes):
         run_episode(env, policy, scaler)
 
