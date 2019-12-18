@@ -121,11 +121,16 @@ def run_policy(env, policy, scaler, logger, episodes):
                       'rewards': rewards,
                       'unscaled_obs': unscaled_obs}
         trajectories.append(trajectory)
+        
+        f= open("coor_state.txt","a")
+        np.savetxt(f, [env.coor_state()],fmt='%0.4f',newline='',delimiter=',')
+        f.write("\n")
+        f.close()
     unscaled = np.concatenate([t['unscaled_obs'] for t in trajectories])
     scaler.update(unscaled)  # update running statistics for scaling observations
     logger.log({'_MeanReward': np.mean([t['rewards'].sum() for t in trajectories]),
                 'Steps': total_steps})
-
+                
     return trajectories
 
 
@@ -261,7 +266,11 @@ def main(env_name, num_episodes, render, gamma, lam, kl_targ, batch_size):
         obs_dim += 1  # add 1 to obs dimension for time step feature (see run_episode())
     now = datetime.utcnow().strftime("%b-%d_%H-%M-%S")  # create unique directories
     logger = Logger(logname=env_name, now=now)
-
+    
+    # to create new file at beginning of trial
+    f= open("coor_state.txt","w")
+    f.close
+    
     scaler = Scaler(obs_dim, env_name)
     val_func = NNValueFunction(obs_dim, env_name)
     policy = Policy(obs_dim, act_dim, kl_targ, env_name)
@@ -291,6 +300,7 @@ def main(env_name, num_episodes, render, gamma, lam, kl_targ, batch_size):
             if input('Terminate training (y/[n])? ') == 'y':
                 break
             killer.kill_now = False
+    
     logger.close()
     policy.close_sess()
     val_func.close_sess()

@@ -80,6 +80,10 @@ def run_policy(env, policy, scaler, logger, args, episodes):
     for i in range(episodes):
         arg.append(args)
     trajectories = pool.map(run_episode.run_parallel_episodes, arg)
+    #f= open("coor_state.txt","a")
+    #np.savetxt(f, [env.coor_state()],fmt='%0.4f',newline='',delimiter=',')
+    #f.write("\n")
+    #f.close()
     
     unscaled = np.concatenate([t['unscaled_obs'] for t in trajectories])
     scaler.update(unscaled)  # update running statistics for scaling observations
@@ -228,6 +232,10 @@ def main(env_name, num_episodes, gamma, lam, kl_targ, batch_size):
     policy = Policy(obs_dim, act_dim, kl_targ, env_name, True)
 
     episode = 0
+    
+    # to create new file at beginning of trial
+    #f= open("coor_state.txt","w")
+    #f.close
 
     while episode < num_episodes:
         trajectories = run_policy(env, policy, scaler, logger, arg,  episodes=batch_size)

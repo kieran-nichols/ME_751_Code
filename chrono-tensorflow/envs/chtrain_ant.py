@@ -313,4 +313,17 @@ class Model(object):
               self.myapplication.SetVideoframeSaveInterval(interval)
           except:
                  print('No ChIrrApp found. Cannot save video frames.')
+                 
+   def coor_state(self):
+          #print(self.body_abdomen.GetPos())
+          state   = np.zeros([6])
+          #for i in range(len(state)):
+          state[0] = float(self.body_abdomen.GetPos().x)
+          state[1] = float(self.body_abdomen.GetPos().y)
+          state[2] = float(self.body_abdomen.GetPos().z)
+          state[3] = float(self.body_abdomen.GetPos_dt().x)
+          state[4] = float(self.body_abdomen.GetPos_dt().y)
+          state[5] = float(self.body_abdomen.GetPos_dt().z)
+          return state
+          ### 
                      

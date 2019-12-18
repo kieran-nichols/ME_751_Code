@@ -7,7 +7,6 @@ Created on Thu Jan 10 11:01:21 2019
 
 import chtrain_ant
 import chtrain_ant_v1
-import chtrain_pendulum
 import chtrain_humanoid
        
 def Init(env_name, render):
@@ -17,8 +16,6 @@ def Init(env_name, render):
        elif env_name=='ChronoAntv1':
               return chtrain_ant_v1.Model(render)
                      
-       elif env_name=='ChronoPendulum':
-              return chtrain_pendulum.Model(render)
        
        elif env_name=='ChronoHumanoid':
               return chtrain_humanoid.Model(render) 

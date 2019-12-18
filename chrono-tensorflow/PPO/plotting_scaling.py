@@ -25,8 +25,8 @@ with open('Scaling.csv','r') as csvfile:
 
 
 # print(x, y, z)
-plt.plot(x, y,label='Serial',color='blue',linestyle=':')
-plt.plot(x, z,label='Parallel',color='red',linestyle=':')
+plt.plot(x, y,label='Serial',color='blue')#,linestyle=':')
+plt.plot(x, z,label='Parallel',color='red')#,linestyle=':')
 # plt.plot(X1,Y1,label='Inc. M = 1024',color='blue')
 # plt.plot(X1,Z1,label='Exc. M = 1024',color='red')
 plt.xlabel('Iteration number (N)')
