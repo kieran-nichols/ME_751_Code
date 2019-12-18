@@ -37,7 +37,7 @@ The machine learning for this project uses coding structures from Tensorflow. Te
 
 ### Problems
 Couldn't get it to work on Windows or WSL on Windows  
-There are various versions of Machine learning for PyChrono available and it's difficult to choose.
+Notes of the problems on Euler can be found in the project notes file
 
 
 ## Author

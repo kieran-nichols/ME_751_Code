@@ -5,7 +5,7 @@ import numpy as np
 import os
 from os.path import isfile, join
 pathIn= './video_capture/'
-pathOut = './full_video/test.avi'
+pathOut = './full_video/ant_1.avi'
 fps = 10
 frame_array = []
 files = [f for f in os.listdir(pathIn) if isfile(join(pathIn, f))]

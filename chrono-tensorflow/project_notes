@@ -4,7 +4,7 @@ To improve the spider walking; should I improve the spider walking?
 	1) Threshold the accelerations and velocities
 	2) Lower the cost for motor effort
 
-I need to understand machine learning concepts:
+Need understand machine learning concepts:
 Training batch
 Difference of episode and batch
 Discount factor
@@ -14,6 +14,7 @@ Proximal Policy Optimizer
 
 Get the scaling python files from my 759 work
 Scale on my computer with serial and parallel versions
+
 Questions for Collin 
 
 Do I just use -c 1 for starters? 
