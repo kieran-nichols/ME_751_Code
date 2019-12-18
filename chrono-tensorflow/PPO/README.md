@@ -1,4 +1,4 @@
-#PPO
+# PPO
 
 ## Program Execution
 Basic program execution
@@ -19,7 +19,7 @@ Lambda: `-l`
 Kullback Leibler divergence target value: `-k`
 Help: `-h`
 
-## Project high level program
+## Project's high level program
 This project has a shell script that can be run in bash to have outputs that log checkpoints for saving, save pictures of rendering, processing videos from pictures, scaling analysis of the serial and parallel codes, and create state graphs that describe the position and velocity of the robots.
 
 To execute program, use `bash run_program.sh`
